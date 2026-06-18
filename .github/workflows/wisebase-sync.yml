@@ -1,21 +1,21 @@
 name: Wisebase Sync
-
 on:
+  push:
+    paths:
+      - knowledge-base/**
   schedule:
-    - cron: '0 */6 * * *'
+    - cron: "30 */6 * * *"
   workflow_dispatch:
-
 jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
+          python-version: "3.11"
       - run: pip install requests
-      - name: Sync to Wisebase
-        env:
+      - env:
           WISEBASE_API_URL: ${{ secrets.WISEBASE_API_URL }}
           WISEBASE_API_KEY: ${{ secrets.WISEBASE_API_KEY }}
         run: python workflows/sync_wisebase.py
