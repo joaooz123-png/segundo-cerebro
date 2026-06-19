@@ -1,23 +1,26 @@
 name: Knowledge Growth
+
 on:
   schedule:
-    - cron: "0 */6 * * *"
+    - cron: '0 9 * * *'
   workflow_dispatch:
+
+permissions:
+  contents: write
+
 jobs:
   grow:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
-      - run: pip install requests
+          python-version: '3.11'
+      - run: pip install feedparser requests
       - run: python workflows/fetch_knowledge.py
       - run: |
           git config user.email bot@segundo-cerebro.ai
-          git config user.name Memento-Bot
-          git add knowledge-base/
-          git diff --staged --quiet || git commit -m "chore: knowledge update"
+          git config user.name Segundo-Cerebro-Bot
+          git add data-feeds/
+          git diff --staged --quiet || git commit -m "auto knowledge update"
           git push
