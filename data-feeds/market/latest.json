@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-01T02:44:18.524628",
+  "timestamp": "2026-07-01T12:28:14.685446",
   "timezone": "America/Sao_Paulo",
   "quotes": {
     "PETR4.SA": {
@@ -22,21 +22,21 @@
     },
     "^BVSP": {
       "name": "IBOVESPA",
-      "price": 172024.12,
+      "price": 172024.0,
       "prev_close": 173205.34,
       "change_pct": -0.68
     },
     "USDBRL=X": {
       "name": "USD/BRL",
-      "price": 5.17,
+      "price": 5.19,
       "prev_close": 5.17,
-      "change_pct": -0.0
+      "change_pct": 0.44
     },
     "BTC-USD": {
       "name": "Bitcoin",
-      "price": 59037.43,
-      "prev_close": 58551.55,
-      "change_pct": 0.83
+      "price": 58489.99,
+      "prev_close": 58523.93,
+      "change_pct": -0.06
     }
   }
 }
