@@ -1,0 +1,31 @@
+name: Ensaio sobre as Coisas do Alto
+
+on:
+  push:
+    branches:
+      - feat/ensaio-coisas-do-alto
+    paths:
+      - "projects/ensaio-coisas-do-alto/**"
+      - ".github/workflows/ensaio-ci.yml"
+  pull_request:
+    paths:
+      - "projects/ensaio-coisas-do-alto/**"
+      - ".github/workflows/ensaio-ci.yml"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: projects/ensaio-coisas-do-alto
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: projects/ensaio-coisas-do-alto/package.json
+      - run: npm install --ignore-scripts
+      - run: npm run typecheck
+      - run: npm run build
