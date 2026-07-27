@@ -9,88 +9,81 @@
 ### Funcionando
 
 - Site público: https://joao-e-tais-casamento.vercel.app
+- Repositório canônico público: https://github.com/JoaoRG-lab/joao-e-tais-casamento
+  - Branch de produção: `main`
+  - Commit publicado e verificado: `4751790d2464f014fee31506c0497e8854792b00`
+  - Mensagem: `feat: publish complete wedding site prototype`
+  - Conteúdo real publicado: React + TypeScript + Vite, API RSVP, esquema Supabase, configurações, testes e lockfile.
+  - Arquivos locais sensíveis ou gerados não foram publicados: `.env`, `node_modules`, `dist`, banco bruto de Cartas a Taís e imagens temporárias.
 - Projeto Vercel existente: `joao-e-tais-casamento`
   - Project ID: `prj_LAGyUDfJ07NsYclBuM21XxHQHUOD`
   - Team ID: `team_w17xyaWTNSYgGTyw6LAVVHC2`
-  - Último deployment confirmado: `dpl_25rwfJdpnMQPmNYNujzTpisefsZt`
+  - Repositório conectado: `JoaoRG-lab/joao-e-tais-casamento`
+  - Branch `main` reconhecida como produção.
+  - Deployment Git atual: `dpl_E5rmt7VnhWFosELxXG7NExgczXF8`
   - Estado confirmado: `READY`, produção, sem erro de alias.
-- Código local em React + TypeScript + Vite, branch `main`.
-- Commit local mais recente: `158b3e7 feat: expand wedding story into an editorial journey`.
-- Histórico local relevante:
-  - `48d4708` — linguagem visual de Cartas a Taís;
-  - `7662725` — RSVP da Vercel encaminhado ao backend D1 publicado;
-  - `2f9de3c` — artefatos TypeScript ignorados;
-  - `721745c` — criação inicial.
-- Validações executadas:
-  - 3 testes Vitest aprovados;
-  - build TypeScript/Vite aprovado;
-  - nenhum arquivo `.env` real rastreado;
-  - varredura sem padrões de credenciais.
-- RSVP funcional: rota server-side da Vercel encaminha para o endpoint Cloudflare D1 já publicado quando não existe Supabase dedicado.
-- `supabase/schema.sql` está preparado para migração futura com RLS e escrita somente server-side.
-- Identidade visual atual:
+  - URL específica: https://joao-e-tais-casamento-d24crxc2o-joaorg-labs-projects.vercel.app
+  - Alias principal atualizado: https://joao-e-tais-casamento.vercel.app
+- Build remoto confirmado:
+  - clone do GitHub no commit `4751790`;
+  - `tsc -b && vite build` aprovado;
+  - 1.589 módulos transformados;
+  - build concluído em aproximadamente 11 segundos.
+- Verificação publicada:
+  - página principal respondeu HTTP 200;
+  - HTML, CSS, JavaScript e fontes publicados;
+  - conteúdo acessível renderizado com navegação, história, cerimônia, RSVP, presentes e informações;
+  - navegação “Nossa história” levou a `#historia`;
+  - validação do formulário vazio exibiu “Informe seu nome completo.”;
+  - rota `/api/rsvp` respondeu 405 para GET e declarou `Allow: POST`;
+  - nenhum erro de runtime encontrado no período verificado.
+- RSVP real preservado: na ausência de Supabase dedicado, a API server-side usa o endpoint de contingência D1 publicado. Nenhum RSVP fictício foi gravado durante os testes.
+- Identidade visual preservada:
   - EB Garamond + Manrope;
   - marfim, verde-floresta, vinho e dourado;
   - molduras vitorianas e ornamentos botânicos;
   - medalha de São Bento, Aldebaran e Plêiades;
   - narrativa editorial inspirada em Cartas a Taís.
-- “Nossa história” estruturada em quatro capítulos:
-  1. Presença;
-  2. Cartas;
-  3. Entre a névoa e as estrelas;
-  4. O nosso sim.
+- “Nossa história” permanece estruturada em quatro capítulos: Presença; Cartas; Entre a névoa e as estrelas; O nosso sim.
 - Proteção de protótipo: `noindex, nofollow, noarchive` e cabeçalho `X-Robots-Tag`.
 
 ### Incompleto
 
-- Dados finais ainda deliberadamente pendentes: data, horário, endereços, traje, prazo de RSVP, lista de presentes e fotos.
-- Supabase dedicado, Slack, MyRegistry, domínio e Metabase ainda não foram concluídos.
-- O código local ainda não está sincronizado com um repositório GitHub gravável.
-- O projeto Vercel ainda não está conectado a um repositório GitHub canônico.
+- Dados finais deliberadamente pendentes: data, horário, endereços, traje, prazo de RSVP, lista de presentes e fotos.
+- O projeto Vercel não possui variáveis de ambiente de projeto.
+- Supabase dedicado ao casamento ainda não existe. Os projetos conectados atuais são `Rhema-care-flow` e `telemedicina-agendamento`; não reutilizar nenhum deles.
+- Slack ainda não está ligado ao RSVP porque não existe `SLACK_WEBHOOK_URL` configurada.
+- MyRegistry, domínio próprio, Cloudflare e Metabase permanecem para ciclos futuros.
+- A linhagem Git local é anterior e diferente da primeira publicação remota; não executar reset destrutivo para “sincronizar” históricos.
 
-### Bloqueio confirmado
+### Bloqueios confirmados
 
-- Repositório público existente: https://github.com/JoaoRG-lab/site-casamento
-- Ele está vazio e usa `main`, mas a integração retorna `push: false`.
-- Teste real de criação de `README.md` recusado pelo GitHub:
-  - `403 — Resource not accessible by integration`.
-- A instalação GitHub `133240770` expõe escrita apenas em `JoaoRG-lab/rhema-care-flow`; não alterar esse projeto.
-- A permissão interna do plugin GitHub no ChatGPT foi atualizada para `full_access`, mas isso não substitui autenticação nem seleção do repositório no GitHub.
-- GitHub CLI `gh` não está instalado no ambiente local.
-- Cloud Browser aberto na tela de login do GitHub; nenhuma senha, token ou código foi capturado.
+- Criar um projeto Supabase dedicado envolve custo e exige que o usuário escolha explicitamente a organização antes da confirmação de cobrança.
+- Configurar Slack no backend exige uma credencial/webhook apropriada; não inventar, copiar ou expor segredo.
+- O envio completo de RSVP até persistência não foi testado com dados fictícios, por decisão de segurança e integridade dos dados.
 
 ## Propostas priorizadas
 
-1. **Retomar a autenticação no Cloud Browser** — impacto alto, esforço baixo. Destrava criação/configuração do GitHub sem compartilhar credenciais no chat.
-2. **Criar o repositório canônico `JoaoRG-lab/joao-e-tais-casamento`** — impacto alto, esforço baixo após login. Não excluir nem sobrescrever `site-casamento`.
-3. **Publicar o snapshot validado na `main`** — impacto alto, esforço médio. Excluir `.env`, banco bruto das cartas, `dist`, `node_modules` e arquivos temporários.
-4. **Conectar o repositório ao projeto Vercel existente** — impacto alto, esforço médio. Não criar segundo projeto Vercel; preservar IDs, domínios e variáveis.
-5. **Validar o fluxo completo GitHub → Vercel → RSVP** — impacto alto, esforço baixo após integração.
+1. **Criar Supabase dedicado ao casamento** — impacto alto, esforço médio. Após escolha explícita da organização e confirmação do custo, aplicar `supabase/schema.sql`, verificar RLS e conectar as variáveis server-side na Vercel.
+2. **Ligar notificações reais do Slack** — impacto médio, esforço baixo após disponibilizar webhook seguro; validar sem expor o segredo.
+3. **Definir data, locais e traje** — impacto máximo para o convidado, esforço baixo assim que as informações forem confirmadas.
+4. **Integrar lista MyRegistry e domínio próprio** — impacto médio, esforço médio; executar apenas quando links/domínio forem escolhidos.
+5. **Alinhar o histórico Git local ao remoto sem perder trabalho** — impacto operacional médio, esforço médio; fazer por merge/rebase controlado, nunca por reset destrutivo.
 
-## Ação realizada neste ciclo
+## Ação
 
-- Criado este checkpoint operacional no MEMENTO canônico.
-- Preparado o mesmo conteúdo para persistência no AI Wisebase.
-- Auditoria ampla dispensada como **não aplicável**, pois a alteração é apenas documental.
-- Nenhuma credencial, dado clínico ou conteúdo bruto de Cartas a Taís foi incluído.
-- Nenhuma modificação foi feita no site, na Vercel ou no `rhema-care-flow`.
-
-## Ponto exato de retomada
-
-1. Abrir esta conversa no https://chatgpt.com, preferencialmente em computador.
-2. Abrir o painel **Cloud Browser — GitHub — site do casamento**.
-3. Assumir o controle e autenticar diretamente no GitHub; nunca enviar senha ou código pelo chat.
-4. Responder **“logado”**.
-5. Criar `JoaoRG-lab/joao-e-tais-casamento`, público, com `main`.
-6. Liberar esse repositório para a integração GitHub.
-7. Publicar o código validado.
-8. Conectar ao projeto Vercel existente e confirmar `main` como produção.
-9. Verificar repositório, deployment e RSVP real.
+- Publicado o repositório canônico completo no GitHub.
+- Conectado o projeto Vercel existente ao repositório público e à branch `main`.
+- Criado e verificado o deployment de produção do commit `4751790`.
+- Validada a página pública, navegação, validação inicial do RSVP, rota server-side e ausência de erros de runtime.
+- Atualizado este checkpoint operacional no MEMENTO canônico.
+- Auditoria ampla dispensada como **não aplicável** para o MEMENTO, pois esta alteração é apenas documental.
+- Nenhuma credencial, resposta de convidado, dado clínico ou conteúdo bruto de Cartas a Taís foi registrado.
 
 ## Resumo para log
 
-Checkpoint do site do casamento salvo com estado técnico, identidade visual, testes e integrações.
-Site permanece publicado na Vercel e o RSVP real via D1 continua preservado.
-Bloqueio atual é a autenticação/seleção do repositório no GitHub; nenhuma credencial foi armazenada.
-Retomada deve começar pelo Cloud Browser já aberto na tela de login.
-próximo ciclo sugerido: autenticar no GitHub e publicar o código no repositório canônico
+GitHub canônico criado e preenchido com o código real do protótipo no commit `4751790`.
+Projeto Vercel existente conectado ao GitHub e deployment `dpl_E5rmt7VnhWFosELxXG7NExgczXF8` confirmado como `READY`.
+Site público respondeu HTTP 200, renderizou conteúdo e navegação, e não apresentou erros de runtime no período verificado.
+Supabase e Slack continuam pendentes por custo/credencial; o RSVP real via D1 permanece ativo e nenhum dado fictício foi gravado.
+próximo ciclo sugerido: escolher a organização para criar o Supabase dedicado ao casamento
