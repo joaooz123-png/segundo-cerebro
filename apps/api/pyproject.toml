@@ -1,0 +1,20 @@
+[project]
+name = "rg-knowledge-api"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+  "fastapi>=0.116",
+  "uvicorn[standard]>=0.35",
+  "pydantic>=2.11",
+  "pydantic-settings>=2.10",
+  "sqlalchemy>=2.0",
+  "psycopg[binary]>=3.2",
+  "pgvector>=0.4",
+  "alembic>=1.16",
+]
+
+[project.scripts]
+dev = "rg_api.main:run"
+
+[tool.ruff]
+line-length = 100
