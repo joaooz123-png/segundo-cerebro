@@ -1,0 +1,56 @@
+version: 1
+policy:
+  default_mode: read_only
+  writes_require_explicit_approval: true
+  secrets_in_repo: forbidden
+  sensitive_data_domains:
+    - legal
+    - medical
+    - financial
+connectors:
+  github:
+    role: source_control_and_coding_agents
+    capabilities: [read, search, branch, commit, pull_request, issues, ci]
+  google_drive:
+    role: original_evidence_store
+    capabilities: [search, read, upload, organize]
+  gmail:
+    role: communications_and_protocols
+    capabilities: [search, read, attachments, draft]
+  fireflies:
+    role: meeting_transcripts
+    capabilities: [search, read, action_items]
+  wisebase:
+    role: semantic_knowledge_index
+    capabilities: [search, browse, upload]
+  asana:
+    role: execution_and_roadmap
+    capabilities: [projects, tasks, status]
+  pipedrive:
+    role: commercial_relationships
+    capabilities: [organizations, people, deals, activities]
+  vibe_prospecting:
+    role: company_and_contact_enrichment
+    capabilities: [search, enrich, export]
+  hugging_face:
+    role: embeddings_and_models
+    capabilities: [models, datasets, inference]
+  context7:
+    role: current_library_documentation
+    capabilities: [resolve_library, fetch_docs]
+  wolfram:
+    role: formal_computation_and_validation
+    capabilities: [calculate, solve, verify]
+  vercel:
+    role: deployment_and_preview
+    capabilities: [projects, deployments, logs, environment_bridge]
+  neon:
+    role: primary_postgresql_and_pgvector
+    connection: environment_variables
+    capabilities: [sql, vector_search, full_text, audit]
+  web_ingestion:
+    role: public_web_acquisition
+    adapters: [native_web_search, tavily, exa, parallel_search, firecrawl_optional]
+  coding_agents:
+    role: isolated_software_changes
+    adapters: [openai_agents_sdk, codex, github_pr_agents, local_cli_agents]
