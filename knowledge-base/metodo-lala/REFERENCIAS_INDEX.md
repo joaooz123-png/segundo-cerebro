@@ -1,6 +1,6 @@
 # REFERÊNCIAS — ÍNDICE ESTRUTURADO
 
-Total: 69 referências. A versão comentada integral está no Google Drive privado.
+Total: 89 referências. A versão comentada integral está no Google Drive privado.
 
 - `WHO-2018-NCF` · 2018 · **Cuidado responsivo e desenvolvimento** · WHO, UNICEF, World Bank Group. Nurturing Care Framework for Early Childhood Development. · https://www.who.int/publications/i/item/9789241514064
 - `WHO-2020-ECD` · 2020 · **Cuidado responsivo e desenvolvimento** · World Health Organization. Improving early childhood development: WHO guideline. · https://www.who.int/publications/i/item/97892400020986
@@ -71,3 +71,23 @@ Total: 69 referências. A versão comentada integral está no Google Drive priva
 - `GOODMAN-2016` · 2016 · **Prática informada por trauma** · Goodman LA et al. Trauma-informed practice with survivors. · 10.1002/jcop.21799
 - `MENDEL-2021` · 2021 · **Prática informada por trauma** · Mendel WE et al. Trauma-informed approaches in family services. · 10.1002/jcop.22562
 - `ROSSI-2023` · 2023 · **Família e trauma** · Rossi FS et al. Trauma-informed family court and relational practice. · 10.1111/fcre.12762
+- `AAP-2020-SURVEILLANCE` · 2020 · **Vigilância e rastreio desenvolvimental** · Lipkin PH, Macias MM. Promoting Optimal Development: Identifying Infants and Young Children With Developmental Disorders Through Developmental Surveillance and Screening. · 10.1542/peds.2019-3449
+- `AAP-2018-PLAY` · 2018 · **Brincar e desenvolvimento** · Yogman M et al. The Power of Play: A Pediatric Role in Enhancing Development in Young Children. · 10.1542/peds.2018-2058
+- `WHO-2019-24H` · 2019 · **Sono, atividade física e sedentarismo** · World Health Organization. Guidelines on physical activity, sedentary behaviour and sleep for children under 5 years of age. · https://www.who.int/publications/i/item/9789241550536
+- `AASM-2016-SLEEP` · 2016 · **Sono** · Paruthi S et al. Recommended Amount of Sleep for Pediatric Populations: A Consensus Recommendation of the American Academy of Sleep Medicine. · 10.5664/jcsm.5866
+- `SKENE-2022` · 2022 · **Brincar guiado** · Skene K et al. Can guidance during play enhance children's learning and development in educational contexts? · 10.1111/cdev.13730
+- `WEISBERG-2016` · 2016 · **Brincar guiado** · Weisberg DS et al. Guided Play: Principles and Practices. · 10.1177/0963721416645512
+- `ALOTAIBI-2024` · 2024 · **Aprendizagem baseada em jogos** · Alotaibi MS. Game-based learning in early childhood education: a systematic review and meta-analysis. · 10.3389/fpsyg.2024.1307881
+- `SIM-2019-PREDICTIVE` · 2019 · **Rastreio de linguagem e comportamento** · Sim F et al. Predictive validity of preschool screening tools for language and behavioural difficulties. · 10.1371/journal.pone.0211409
+- `DENMAN-2022-LANG` · 2022 · **Rastreio de linguagem** · Denman D et al. Systematic Review and Meta-Analysis of Screening Tools for Language Disorder. · 10.3389/fped.2022.801220
+- `DECOCK-2013-BRIEFP` · 2013 · **Avaliação de funções executivas** · Duku E, Vaillancourt T, Szatmari P et al. Validation of the BRIEF-P in a sample of Canadian preschool children. · 10.1080/09297049.2013.796919
+- `GERSTADT-2015-BRIEFP` · 2015 · **Medição de funções executivas** · Garon N et al. Does the BRIEF-P Predict Specific Executive Function Components in Preschoolers? · 10.1080/21622965.2014.1002923
+- `WALLACE-2015` · 2015 · **Rastreio de fala e linguagem** · Wallace IF et al. Screening for Speech and Language Delay in Children 5 Years Old and Younger. · 10.1542/peds.2014-3889
+- `SHEHATA-2024-PARENTTOOLS` · 2024 · **Rastreio preenchido por cuidadores** · Shehata S et al. Comparison of parent or caregiver-completed development screening tools with Bayley Scales of Infant Development. · 10.1136/archdischild-2023-326771
+- `LI-2025-FINEMOTOR` · 2025 · **Motricidade fina e aprendizagem** · Li Y et al. Research progress on the relationship between fine motor skills and academic ability in children. · 10.3389/fspor.2024.1386967
+- `JYLANKI-2022` · 2022 · **Movimento, cognição e aprendizagem** · Jylänki P et al. The effects of motor skill and physical activity interventions on preschoolers' cognitive and academic skills. · 10.1016/j.ypmed.2021.106948
+- `LI-2026-MOTOR` · 2026 · **Habilidades motoras e autorregulação** · Li Y et al. Fundamental motor skill interventions significantly improve executive functions and social-emotional competence in preschoolers. · 10.3389/fpsyg.2025.1721589
+- `KOHN-2022-SDB` · 2022 · **Sono e neurocognição** · Kohler M et al. Neurocognitive outcomes of children with sleep disordered breathing. · 10.1016/j.smrv.2022.101629
+- `ZHANG-2024-SDB` · 2024 · **Sono e comportamento** · Zhang W et al. Sleep disordered breathing and neurobehavioral deficits in children and adolescents. · 10.1186/s12887-023-04511-2
+- `LIN-2013-RHINITIS` · 2013 · **Rinite e respiração do sono** · Lin SY et al. The association between allergic rhinitis and sleep-disordered breathing in children. · 10.1002/alr.21123
+- `LIU-2020-RHINITIS` · 2020 · **Rinite e sono** · Liu J et al. The association between allergic rhinitis and sleep. · 10.1371/journal.pone.0228533
