@@ -1,0 +1,73 @@
+# REFERÊNCIAS — ÍNDICE ESTRUTURADO
+
+Total: 69 referências. A versão comentada integral está no Google Drive privado.
+
+- `WHO-2018-NCF` · 2018 · **Cuidado responsivo e desenvolvimento** · WHO, UNICEF, World Bank Group. Nurturing Care Framework for Early Childhood Development. · https://www.who.int/publications/i/item/9789241514064
+- `WHO-2020-ECD` · 2020 · **Cuidado responsivo e desenvolvimento** · World Health Organization. Improving early childhood development: WHO guideline. · https://www.who.int/publications/i/item/97892400020986
+- `CDC-2026-4Y` · 2026 · **Vigilância desenvolvimental** · CDC. Milestones by 4 Years. · https://www.cdc.gov/act-early/milestones/4-years.html
+- `IES-2021-LIT` · 2021 · **Alfabetização emergente** · Herrera S, Phillips BM, Newton YC, Dombek JL, Hernandez JA. Effectiveness of Early Literacy Instruction: Summary of 20 Years of Research. · https://ies.ed.gov/use-work/resource-library/report/systematic-literature-review/effectiveness-early-literacy-instruction-summary-20-years-research
+- `DOWDALL-2020` · 2020 · **Leitura compartilhada** · Dowdall N et al. Shared Picture Book Reading Interventions for Child Language Development. · 10.1111/cdev.13225
+- `FLACK-2018` · 2018 · **Leitura compartilhada** · Flack ZM, Field AP, Horst JS. The effects of shared storybook reading on word learning. · 10.1037/dev0000512
+- `NOBLE-2019` · 2019 · **Leitura compartilhada** · Noble C et al. The impact of shared book reading on children's language skills. · 10.1016/j.edurev.2019.100290
+- `IES-DIALOGIC` · 2024 · **Leitura dialógica** · What Works Clearinghouse. Dialogic Reading. · https://ies.ed.gov/ncee/WWC/InterventionReport/135/Published
+- `OZCAN-2026` · 2026 · **Narrativa** · Özcan SÖ. The effect of dialogic reading interventions on narrative skills in the preschool period. · 10.3389/feduc.2026.1817388
+- `PETERSEN-2011` · 2011 · **Narrativa** · Petersen DB. A Systematic Review of Narrative-Based Language Intervention With Children Who Have Language Impairment. · 10.1177/1525740109353937
+- `PICO-2021` · 2021 · **Narrativa** · Pico DL et al. Interventions Designed to Improve Narrative Language in School-Age Children. · 10.1044/2021_LSHSS-20-00160
+- `ANDERSSON-2025` · 2025 · **Narrativa** · Andersson Lilja P et al. Implementing explicit and implicit narrative instruction in preschool. · 10.1016/j.linged.2025.101465
+- `CONRAD-2022` · 2022 · **Conhecimento impresso** · Conrad NJ, Deacon SH. Print Learning. · 10.1002/rrq.489
+- `DYNIA-2011` · 2011 · **Conhecimento impresso** · Dynia JM et al. Adult print referencing and print salience. · 10.1111/j.1467-9817.2011.01502.x
+- `PIASTA-2012` · 2012 · **Conhecimento impresso** · Piasta SB et al. Increasing young children's contact with print during shared reading. · 10.1111/j.1467-8624.2012.01754.x
+- `PIASTA-2016` · 2016 · **Alfabetização emergente** · Piasta SB. Current understandings of what works to support the development of emergent literacy. · 10.1111/cdep.12188
+- `BEAR-2022` · 2022 · **Alfabetização emergente** · Bear DR. Early literacy development and instruction. · 10.1002/trtr.2106
+- `GEHSMANN-2023` · 2023 · **Alfabetização emergente** · Gehsmann KM, Mesmer HA. Early literacy instruction. · 10.1002/trtr.2225
+- `SARGIANI-2021` · 2021 · **Princípio alfabético** · Sargiani R, Ehri LC, Maluf MR. Teaching beginners to decode. · 10.1002/rrq.432
+- `CUSITER-2025` · 2025 · **Linguagem e código** · Cusiter M et al. Combined language and code interventions in early childhood. · 10.1111/cdev.14252
+- `JASINSKA-2024` · 2024 · **Leitura e cérebro** · Jasińska KK et al. Early literacy and brain development. · 10.1111/mbe.12411
+- `MIGUEZ-2021` · 2021 · **Consciência fonológica** · Míguez-Álvarez C et al. Phonological awareness and early literacy. · 10.1111/lang.12471
+- `FLACK-HORST-2017` · 2017 · **Design visual** · Flack ZM, Horst JS. Two sides to every story: children learn words from illustrations. · 10.1002/icd.2047
+- `JUSTICE-2005` · 2005 · **Atenção visual ao impresso** · Justice LM et al. Preschoolers' eye gaze during storybook reading. · 10.1111/j.1467-9817.2005.00267.x
+- `XU-2020` · 2020 · **Livros digitais** · Xu Y, Yau JC, Reich SM. Digital book features and young children's learning. · 10.1111/jcal.12480
+- `KAEFER-2016` · 2016 · **Conhecimento prévio e imagens** · Kaefer T et al. Prior knowledge and learning from picture books. · 10.1002/icd.2018
+- `PARISH-MORRIS-2013` · 2013 · **Livros digitais** · Parish-Morris J et al. Once upon a time: parent-child dialogue and electronic books. · 10.1111/mbe.12028
+- `EWIN-2020` · 2020 · **Mídia conjunta** · Ewin CA et al. Joint media engagement between parents and young children. · 10.1002/hbe2.203
+- `GARRISON-2011` · 2011 · **Telas e sono** · Garrison MM et al. Media Use and Child Sleep: The Impact of Content, Timing, and Environment. · 10.1542/peds.2010-3304
+- `SCIONTI-2020` · 2020 · **Funções executivas** · Scionti N et al. Is Cognitive Training Effective for Improving Executive Functions in Preschoolers? · 10.3389/fpsyg.2019.02812
+- `TRUJILLO-2026` · 2026 · **Funções executivas** · Trujillo-Trujillo CC et al. Effectiveness of executive function interventions in typically developing preschool children. · 10.1080/09297049.2025.2595075
+- `AASE-2005` · 2005 · **Reforço e atenção** · Aase H, Sagvolden T. Moment-to-moment dynamics of ADHD behaviour and reinforcement. · 10.1111/j.1469-7610.2005.01468.x
+- `HULSBOSCH-2023` · 2023 · **Motivação e atenção** · Hulsbosch AK et al. Reinforcement sensitivity in children with attentional difficulties. · 10.1111/jcpp.13805
+- `BADO-2024` · 2024 · **Atenção e desenvolvimento** · Bado P et al. Developmental pathways of attention and executive control. · 10.1002/jcv2.12231
+- `CHAN-2024` · 2024 · **Funções executivas e contexto** · Chan SWY et al. Executive function development and contextual variation. · 10.1111/jcpp.14103
+- `TOPLAK-2013` · 2013 · **Medição de funções executivas** · Toplak ME, West RF, Stanovich KE. Practitioner review: performance-based measures and ratings of executive function. · 10.1111/jcpp.12001
+- `BIERMAN-2013` · 2013 · **Intervenções multidomínio** · Bierman KL et al. Multifaceted preschool intervention and developmental outcomes. · 10.1111/cdev.12117
+- `NAG-2024` · 2024 · **Ambiente doméstico de aprendizagem** · Nag S et al. Home learning environments and children's language and literacy skills in LMICs. · 10.1037/bul0000417
+- `MELHUISH-2008` · 2008 · **Ambiente doméstico de aprendizagem** · Melhuish EC et al. Effects of the Home Learning Environment and Preschool Center Experience. · 10.1111/j.1540-4560.2008.00550.x
+- `LYNCH-2023` · 2023 · **Alfabetização familiar** · Lynch J, Prins E. Family literacy and the ORIM framework. · 10.1002/trtr.2187
+- `NEUMAN-2022` · 2022 · **Ambientes de aprendizagem** · Neuman SB, Knapczyk JJ. Designing everyday environments for early literacy. · 10.1002/rrq.468
+- `JAMES-BRABHAM-2025` · 2025 · **Numeracia emergente** · James-Brabham E et al. Do home mathematical activities relate to early mathematical skills? · 10.1111/cdev.14162
+- `NAPOLI-2017` · 2017 · **Literacia e numeracia domésticas** · Napoli AR, Purpura DJ. The home literacy and numeracy environment in preschool. · 10.1016/j.jecp.2017.10.002
+- `KNIGHT-2019` · 2019 · **Cuidado responsivo** · Knight DS et al. Responsive parenting constructs and measurement. · 10.1002/pam.22145
+- `GULSRUD-2015` · 2015 · **Engajamento conjunto** · Gulsrud AC et al. Pacing and mirrored engagement as active ingredients. · 10.1111/jcpp.12481
+- `HUBER-2023` · 2023 · **Turnos conversacionais** · Huber E et al. Caregiver coaching and conversational turn-taking. · 10.1111/desc.13391
+- `CLEGG-2020` · 2020 · **Ensino pelo cuidador** · Clegg JM et al. Caregiver teaching is dynamic and flexible. · 10.1111/cdev.13443
+- `MARTINI-2024` · 2024 · **Sensibilidade parental** · Martini J et al. Emotional and cognitive dimensions of caregiver sensitivity. · 10.1111/sode.12763
+- `POPPLESTONE-2026` · 2026 · **Cuidado responsivo** · Popplestone S et al. Home learning opportunities and responsive caregiving. · 10.1111/cch.70265
+- `RANKIN-2022` · 2022 · **Suporte emocional e linguagem** · Rankin PS et al. Emotional support quality and language development. · 10.1111/cdev.13811
+- `CONICA-2023` · 2023 · **Formato de livro e diálogo** · Conica M et al. Book type and adult-child language. · 10.1002/rrq.501
+- `FANG-2024` · 2024 · **Estresse parental** · Fang Y et al. Parent, child, and situational factors associated with parenting stress. · 10.1007/s00787-022-02027-1
+- `MORRIS-2007` · 2007 · **Regulação emocional** · Morris AS et al. The role of the family context in the development of emotion regulation. · 10.1111/j.1467-9507.2007.00389.x
+- `PESONEN-2008` · 2008 · **Temperamento e parentalidade** · Pesonen AK et al. Transactional relations between child temperament and parenting. · 10.1111/j.1467-9507.2007.00427.x
+- `LIU-2025` · 2025 · **Parentalidade e autorregulação** · Liu et al. Parenting, family stress and child regulation. · 10.1111/famp.70053
+- `JANCZAK-2025` · 2025 · **Parentalidade e família** · Jańczak A et al. Parenting practices and family context. · 10.1111/fare.13165
+- `DELOSREYES-2005` · 2005 · **Múltiplos informantes** · De Los Reyes A, Kazdin AE. Informant discrepancies in the assessment of childhood psychopathology. · 10.1037/0033-2909.131.4.483
+- `DELOSREYES-2013` · 2013 · **Múltiplos informantes** · De Los Reyes A et al. Principles Underlying the Use of Multiple Informants' Reports. · 10.1146/annurev-clinpsy-050212-185617
+- `DELOSREYES-2009` · 2009 · **Múltiplos informantes** · De Los Reyes A et al. Linking Informant Discrepancies to Observed Variations in Young Children's Disruptive Behavior. · 10.1007/s10802-009-9307-3
+- `KERR-2007` · 2007 · **Múltiplos informantes** · Kerr DCR et al. Assessment of child problem behaviors by multiple informants. · 10.1111/j.1469-7610.2007.01776.x
+- `ORDWAY-2011` · 2011 · **Relato materno** · Ordway MR. Depressed mothers as informants on child behavior. · 10.1002/nur.20463
+- `SMYTH-2026` · 2026 · **Transições entre casas** · Smyth BM, Reid Hobbs M, Stokkebekk JK. From here to there and the in-between. · 10.1111/fcre.70047
+- `LAMELA-2016` · 2016 · **Coparentalidade pós-separação** · Lamela D, Figueiredo B. Coparenting after marital dissolution and children's mental health. · 10.1016/j.jped.2015.09.011
+- `TEUBERT-2010` · 2010 · **Coparentalidade** · Teubert D, Pinquart M. The Association Between Coparenting and Child Adjustment. · 10.1080/15295192.2010.492040
+- `VOWELS-2023` · 2023 · **Arranjos pós-separação** · Vowels LM et al. Systematic review and theoretical comparison of children's outcomes in post-separation living arrangements. · 10.1371/journal.pone.0288112
+- `LEON-2003` · 2003 · **Divórcio e ajustamento infantil** · Leon K. Risk and Protective Factors in Young Children's Adjustment to Parental Divorce. · 10.1111/j.1741-3729.2003.00258.x
+- `GOODMAN-2016` · 2016 · **Prática informada por trauma** · Goodman LA et al. Trauma-informed practice with survivors. · 10.1002/jcop.21799
+- `MENDEL-2021` · 2021 · **Prática informada por trauma** · Mendel WE et al. Trauma-informed approaches in family services. · 10.1002/jcop.22562
+- `ROSSI-2023` · 2023 · **Família e trauma** · Rossi FS et al. Trauma-informed family court and relational practice. · 10.1111/fcre.12762
