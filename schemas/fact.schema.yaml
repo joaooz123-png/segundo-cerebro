@@ -1,0 +1,32 @@
+type: object
+required: [id, title, status, summary, entities, sources, created_at, updated_at]
+properties:
+  id:
+    type: string
+    pattern: '^FACT-[0-9]{6}$'
+  title:
+    type: string
+  status:
+    enum: [DOCUMENTADO, RELATADO, INFERIDO, PENDENTE, CONTESTADO]
+  summary:
+    type: string
+  date:
+    type: [string, 'null']
+  entities:
+    type: array
+    items: {type: string}
+  sources:
+    type: array
+    items: {type: string}
+  related_facts:
+    type: array
+    items: {type: string}
+  corrections:
+    type: array
+    items: {type: string}
+  confidentiality:
+    enum: [PUBLICO, INTERNO, SIGILOSO, SENSIVEL]
+  created_at:
+    type: string
+  updated_at:
+    type: string
