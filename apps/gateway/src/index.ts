@@ -1,43 +1,26 @@
 import Fastify from 'fastify';
 import { z } from 'zod';
+import { createAgentRegistry } from './agents/registry.js';
+import { TaskSchema, TaskStatusSchema } from './domain/task.js';
+import { TaskDispatcher } from './queue/dispatcher.js';
+import { TaskStore } from './queue/task-store.js';
 
 const app = Fastify({ logger: true });
-
-const TaskSchema = z.object({
-  taskId: z.string().min(1),
-  agent: z.enum(['retriever', 'planner', 'verifier', 'composer', 'archivist', 'coding']),
-  action: z.string().min(1),
-  contextPackId: z.string().optional(),
-  repository: z.string().optional(),
-  branch: z.string().optional(),
-  payload: z.record(z.unknown()).default({}),
-  approvalRequired: z.boolean().default(true)
+const store = new TaskStore();
+const agents = createAgentRegistry();
+const dispatcher = new TaskDispatcher(store, agents, {
+  githubToken: process.env.GITHUB_TOKEN
 });
-
-type Task = z.infer<typeof TaskSchema>;
-
-const agentRegistry = new Map<string, (task: Task) => Promise<unknown>>();
-
-agentRegistry.set('retriever', async (task) => ({
-  accepted: true,
-  role: 'retriever',
-  taskId: task.taskId,
-  next: 'query configured sources and build a context pack'
-}));
-
-agentRegistry.set('coding', async (task) => ({
-  accepted: true,
-  role: 'coding',
-  taskId: task.taskId,
-  repository: task.repository,
-  branch: task.branch,
-  next: 'create an isolated branch, implement the scoped change, run checks, and open a PR'
-}));
 
 app.get('/health', async () => ({
   status: 'ok',
   service: 'rg-knowledge-node-gateway',
-  agents: [...agentRegistry.keys()]
+  agents: [...agents.keys()],
+  queue: {
+    total: store.list().length,
+    queued: store.list('queued').length,
+    running: store.list('running').length
+  }
 }));
 
 app.post('/v1/tasks', async (request, reply) => {
@@ -46,11 +29,28 @@ app.post('/v1/tasks', async (request, reply) => {
     return reply.code(400).send({ error: 'invalid_task', details: parsed.error.flatten() });
   }
 
-  const handler = agentRegistry.get(parsed.data.agent);
-  if (!handler) return reply.code(404).send({ error: 'agent_not_registered' });
+  try {
+    const record = dispatcher.submit(parsed.data);
+    return reply.code(202).send(record);
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    const status = message === 'task_already_exists' ? 409 : 500;
+    return reply.code(status).send({ error: message });
+  }
+});
 
-  const result = await handler(parsed.data);
-  return reply.code(202).send(result);
+app.get('/v1/tasks', async (request, reply) => {
+  const query = z.object({ status: TaskStatusSchema.optional() }).safeParse(request.query);
+  if (!query.success) return reply.code(400).send({ error: 'invalid_query' });
+  return store.list(query.data.status);
+});
+
+app.get('/v1/tasks/:taskId', async (request, reply) => {
+  const params = z.object({ taskId: z.string().min(1) }).safeParse(request.params);
+  if (!params.success) return reply.code(400).send({ error: 'invalid_task_id' });
+  const record = store.get(params.data.taskId);
+  if (!record) return reply.code(404).send({ error: 'task_not_found' });
+  return record;
 });
 
 const port = Number(process.env.PORT ?? 3100);
