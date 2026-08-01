@@ -6,6 +6,8 @@
     "dev:web": "pnpm --filter web dev",
     "dev:api": "pnpm --filter api dev",
     "dev:retriever": "pnpm --filter retriever dev",
+    "dev:gateway": "pnpm --filter @rg-knowledge-os/gateway dev",
+    "build": "pnpm -r build",
     "lint": "pnpm -r lint",
     "test": "pnpm -r test"
   }
