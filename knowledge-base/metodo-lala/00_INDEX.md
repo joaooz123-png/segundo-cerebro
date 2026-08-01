@@ -1,6 +1,6 @@
 # MÉTODO LALÁ — BASE CEREBRAL
 
-**Versão:** 1.0  
+**Versão:** 1.1  
 **Data:** 01/08/2026  
 **Natureza:** base metodológica desidentificada, longitudinal, observacional, educativa e não diagnóstica.
 
@@ -12,7 +12,8 @@
 4. [Governança, privacidade e limites](06_GOVERNANCA_PRIVACIDADE.md)
 5. [Registro de decisões e correções](07_REGISTRO_DECISOES.md)
 6. [Como apresentar o projeto a Taís](08_EXPLICACAO_PARA_TAIS.md)
-7. [Índice de referências](REFERENCIAS_INDEX.md)
+7. [Instrumentos profissionais e encaminhamento](09_INSTRUMENTOS_PROFISSIONAIS.md)
+8. [Índice de 89 referências](REFERENCIAS_INDEX.md)
 
 A bibliografia comentada integral, os instrumentos respondidos e os documentos sensíveis permanecem no Google Drive privado. O Wisebase recebe apenas microcards e mapas conceituais.
 
