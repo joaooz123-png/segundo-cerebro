@@ -1,0 +1,12 @@
+{
+  "name": "rg-knowledge-os",
+  "private": true,
+  "packageManager": "pnpm@9.12.0",
+  "scripts": {
+    "dev:web": "pnpm --filter web dev",
+    "dev:api": "pnpm --filter api dev",
+    "dev:retriever": "pnpm --filter retriever dev",
+    "lint": "pnpm -r lint",
+    "test": "pnpm -r test"
+  }
+}
