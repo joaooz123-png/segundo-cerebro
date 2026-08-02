@@ -1,0 +1,113 @@
+name: PF-ILD PubMed v2 validation
+
+on:
+  push:
+    branches:
+      - pfild-g1-search-validation
+    paths:
+      - .github/workflows/pfild-pubmed-v2-validation.yml
+      - projects/pfild-ppf-systematic-review/scripts/correct_seed_metadata.py
+      - projects/pfild-ppf-systematic-review/scripts/validate_pubmed_v2.py
+      - projects/pfild-ppf-systematic-review/scripts/audit_pubmed_precision.py
+      - projects/pfild-ppf-systematic-review/scripts/dual_internal_search_review.py
+      - projects/pfild-ppf-systematic-review/scripts/build_pubmed_candidate_union.py
+      - projects/pfild-ppf-systematic-review/search/pubmed_v2_candidate.txt
+      - projects/pfild-ppf-systematic-review/data/project_state.json
+      - projects/pfild-ppf-systematic-review/data/seeds/**
+  pull_request:
+    branches:
+      - mainn
+    paths:
+      - .github/workflows/pfild-pubmed-v2-validation.yml
+      - projects/pfild-ppf-systematic-review/scripts/correct_seed_metadata.py
+      - projects/pfild-ppf-systematic-review/scripts/validate_pubmed_v2.py
+      - projects/pfild-ppf-systematic-review/scripts/audit_pubmed_precision.py
+      - projects/pfild-ppf-systematic-review/scripts/dual_internal_search_review.py
+      - projects/pfild-ppf-systematic-review/scripts/build_pubmed_candidate_union.py
+      - projects/pfild-ppf-systematic-review/search/pubmed_v2_candidate.txt
+      - projects/pfild-ppf-systematic-review/data/project_state.json
+      - projects/pfild-ppf-systematic-review/data/seeds/**
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pfild-pubmed-v2-validation-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: false
+
+jobs:
+  validate-search:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Resolve target branch
+        id: target
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            echo "branch=${{ github.head_ref }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "branch=${{ github.ref_name }}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Check out validation branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.target.outputs.branch }}
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Apply audited bibliographic corrections
+        run: python projects/pfild-ppf-systematic-review/scripts/correct_seed_metadata.py
+
+      - name: Execute PubMed v2 and validate sentinel recall
+        env:
+          NCBI_API_KEY: ${{ secrets.NCBI_API_KEY }}
+          NCBI_EMAIL: ${{ secrets.NCBI_EMAIL }}
+        run: python projects/pfild-ppf-systematic-review/scripts/validate_pubmed_v2.py
+
+      - name: Audit deterministic precision sample and v1-only safety set
+        env:
+          NCBI_API_KEY: ${{ secrets.NCBI_API_KEY }}
+          NCBI_EMAIL: ${{ secrets.NCBI_EMAIL }}
+        run: python projects/pfild-ppf-systematic-review/scripts/audit_pubmed_precision.py
+
+      - name: Run sensitivity-first and adversarial internal reviews
+        run: python projects/pfild-ppf-systematic-review/scripts/dual_internal_search_review.py
+
+      - name: Build provenance-preserving PubMed candidate union
+        run: python projects/pfild-ppf-systematic-review/scripts/build_pubmed_candidate_union.py
+
+      - name: Upload reproducible validation outputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: pfild-pubmed-v2-validation-${{ github.run_id }}
+          path: |
+            projects/pfild-ppf-systematic-review/data/pubmed_v2_validation/
+            projects/pfild-ppf-systematic-review/data/metadata_corrections.csv
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Commit correction and validation outputs to source branch
+        shell: bash
+        run: |
+          if [ -z "$(git status --porcelain -- projects/pfild-ppf-systematic-review/data/seeds projects/pfild-ppf-systematic-review/data/metadata_corrections.csv projects/pfild-ppf-systematic-review/data/pubmed_v2_validation)" ]; then
+            echo 'No correction or validation output changes to commit.'
+            exit 0
+          fi
+          git config user.name 'pfild-review-bot'
+          git config user.email 'pfild-review-bot@users.noreply.github.com'
+          git add projects/pfild-ppf-systematic-review/data/seeds
+          git add projects/pfild-ppf-systematic-review/data/metadata_corrections.csv
+          git add projects/pfild-ppf-systematic-review/data/pubmed_v2_validation
+          git commit -m 'data: build PubMed candidate union with provenance'
+          git fetch origin ${{ steps.target.outputs.branch }}
+          git rebase origin/${{ steps.target.outputs.branch }}
+          git push origin HEAD:${{ steps.target.outputs.branch }}

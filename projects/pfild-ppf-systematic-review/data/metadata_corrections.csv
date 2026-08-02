@@ -1,0 +1,2 @@
+﻿timestamp_utc,seed_id,field,old_value,new_value,reason,verification_sources,changed_in_this_run
+2026-08-02T22:14:01.998373+00:00,S029,pmid_or_registry,32019572,31996266,PMID 32019572 resolves to an unrelated leflunomide/methotrexate toxicity case report. DOI 10.1186/s12931-020-1296-3 and the article title resolve to PMID 31996266.,NCBI PubMed identifier resolution; DOI resolution; Amass BiomedCore cross-check,yes

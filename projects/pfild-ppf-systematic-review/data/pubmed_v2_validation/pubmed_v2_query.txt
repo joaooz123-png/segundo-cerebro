@@ -1,7 +1,3 @@
-# PubMed v2.2 candidate — NOT YET EXTERNAL PRESS APPROVED
-# Purpose: recover explicit PF-ILD/PPF nomenclature plus progression-in-fibrotic-ILD variants.
-# No language, date, human, publication-type or study-design filters.
-
 (
   "progressive fibrosing interstitial lung disease"[tiab] OR
   "progressive fibrosing interstitial lung diseases"[tiab] OR
@@ -58,11 +54,3 @@ OR
   AND
   "Disease Progression"[Mesh]
 )
-
-# Required validation before formal replacement:
-# 1. Recover all PubMed-applicable eligible sentinel references.
-# 2. Inspect at least 100 deterministic random records for precision and unexpected mappings.
-# 3. Inspect PubMed Query Translation and any phrase-not-found warnings.
-# 4. Run the internal adversarial PRESS agent and resolve critical findings.
-# 5. Obtain formal independent PRESS review by a qualified information specialist.
-# 6. Freeze the final string, date, platform, counts, translation and raw export.
