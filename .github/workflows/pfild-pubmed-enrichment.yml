@@ -70,7 +70,7 @@ jobs:
       - name: Commit enriched metadata to the source branch
         shell: bash
         run: |
-          if git diff --quiet -- projects/pfild-ppf-systematic-review/data/pubmed; then
+          if [ -z "$(git status --porcelain -- projects/pfild-ppf-systematic-review/data/pubmed)" ]; then
             echo 'No metadata changes to commit.'
             exit 0
           fi
