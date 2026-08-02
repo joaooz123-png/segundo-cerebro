@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-08-02T22:13:47.047927+00:00",
+  "generated_at_utc": "2026-08-02T22:14:04.317838+00:00",
   "database": "PubMed/MEDLINE",
   "platform": "NCBI E-utilities",
   "candidate_strategy_file": "search/pubmed_v2_candidate.txt",
@@ -18,18 +18,10 @@
   },
   "sentinel_validation": {
     "pubmed_applicable_sentinels": 62,
-    "retrieved": 61,
-    "missing": 1,
-    "recall": 0.9838709677419355,
-    "missing_records": [
-      {
-        "seed_id": "S029",
-        "pmid": "32019572",
-        "title": "Progression of fibrosing interstitial lung disease",
-        "doi": "10.1186/s12931-020-1296-3",
-        "document_type": "Review"
-      }
-    ]
+    "retrieved": 62,
+    "missing": 0,
+    "recall": 1.0,
+    "missing_records": []
   },
   "interpretation": {
     "eligibility_decisions_made": 0,
