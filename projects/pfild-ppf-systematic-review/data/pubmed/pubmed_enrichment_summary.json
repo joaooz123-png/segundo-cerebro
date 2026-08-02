@@ -1,0 +1,25 @@
+{
+  "generated_at_utc": "2026-08-02T17:20:02.718513+00:00",
+  "source": "NCBI PubMed EFetch with ESummary fallback",
+  "input_project_state": "data/project_state.json",
+  "expected_pmids": 1004,
+  "output_rows": 1004,
+  "complete_efetch_records": 1000,
+  "summary_fallback_records": 4,
+  "unavailable_records": 0,
+  "records_with_abstract": 920,
+  "records_with_doi": 969,
+  "records_with_pmcid": 568,
+  "high_recall_priority": 385,
+  "medium_recall_priority": 534,
+  "low_recall_priority": 85,
+  "pmid_order_sha256": "e7e2d647d2e72abe01af9bc5ccfedb54cb70cc63083c4a38b7f4c16301f82e88",
+  "machine_flags_are_final_decisions": false,
+  "notes": [
+    "Every formal PMID is retained as exactly one output row.",
+    "ESummary fallback records are explicitly distinguished from complete EFetch records.",
+    "Machine recall flags are prioritization aids only.",
+    "No inclusion, exclusion, duplicate, or PRISMA screening count is changed.",
+    "Complete authorship is preserved when returned by NCBI; et al. is not applied to source metadata."
+  ]
+}
