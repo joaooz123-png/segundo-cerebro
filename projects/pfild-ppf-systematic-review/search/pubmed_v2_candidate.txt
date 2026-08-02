@@ -1,5 +1,5 @@
-# PubMed v2 candidate — NOT YET PRESS APPROVED
-# Purpose: recover modern explicit PF-ILD/PPF nomenclature plus broader progression-in-fibrotic-ILD variants.
+# PubMed v2.1 candidate — NOT YET EXTERNAL PRESS APPROVED
+# Purpose: recover explicit PF-ILD/PPF nomenclature plus progression-in-fibrotic-ILD variants.
 # No language, date, human, publication-type or study-design filters.
 
 (
@@ -16,14 +16,17 @@
   "progressive fibrosis phenotype"[tiab] OR
   "PF-ILD"[tiab] OR
   PFILD[tiab] OR
+  "progressive pulmonary fibrosis"[Title] OR
   (
-    "progressive pulmonary fibrosis"[tiab] AND
+    "progressive pulmonary fibrosis"[Abstract] AND
     (
       "interstitial lung disease"[tiab] OR
       "interstitial lung diseases"[tiab] OR
       ILD[tiab] OR
       non-IPF[tiab] OR
-      "non IPF"[tiab]
+      "non IPF"[tiab] OR
+      fibrosing[tiab] OR
+      fibrotic[tiab]
     )
   )
 )
@@ -39,7 +42,11 @@ OR
   )
   AND
   (
-    progress*[tiab] OR
+    progression[tiab] OR
+    progressive[tiab] OR
+    progressing[tiab] OR
+    progressed[tiab] OR
+    "disease progression"[tiab] OR
     "Disease Progression"[Mesh]
   )
 )
@@ -52,9 +59,10 @@ OR
   "Disease Progression"[Mesh]
 )
 
-# Required validation before execution as the formal replacement:
-# 1. Verify all 62 PubMed-applicable sentinel references.
-# 2. Inspect at least 100 random retrieved records for precision and unexpected term mappings.
-# 3. Inspect PubMed Search Details / Query Translation.
-# 4. Obtain independent PRESS review.
-# 5. Freeze the final string and preserve the full export and run metadata.
+# Required validation before formal replacement:
+# 1. Recover all PubMed-applicable eligible sentinel references.
+# 2. Inspect at least 100 deterministic random records for precision and unexpected mappings.
+# 3. Inspect PubMed Query Translation and any phrase-not-found warnings.
+# 4. Run the internal adversarial PRESS agent and resolve critical findings.
+# 5. Obtain formal independent PRESS review by a qualified information specialist.
+# 6. Freeze the final string, date, platform, counts, translation and raw export.
