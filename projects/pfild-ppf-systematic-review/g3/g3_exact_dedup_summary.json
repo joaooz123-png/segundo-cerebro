@@ -1,0 +1,38 @@
+{
+  "generated_at_utc": "2026-08-02T22:51:05.662453+00:00",
+  "source_counts": {
+    "pubmed_candidate_union": 2767,
+    "europe_pmc": 1125,
+    "clinicaltrials_gov": 146,
+    "selected_non_us_registry_records": 22,
+    "regulatory_documents": 6,
+    "raw_retrieval_units_total": 4066
+  },
+  "exact_deduplication": {
+    "europe_pmc_records_matching_pubmed_by_exact_pmid": 1072,
+    "same_doi_same_title_exact_duplicate_groups": 1,
+    "same_doi_multiple_distinct_report_collision_groups": 1,
+    "safe_exact_duplicate_representations_removed_provisionally": 1073,
+    "provisional_unique_retrieval_units_after_safe_exact_dedup": 2993
+  },
+  "family_linkage_candidates": {
+    "exact_title_clusters": 25,
+    "preprint_published_family_clusters": 15,
+    "same_title_distinct_reports_review_clusters": 6,
+    "duplicate_indexing_candidate_clusters": 2,
+    "duplicate_source_representation_candidate_clusters": 1,
+    "exact_duplicate_source_representation_clusters": 1,
+    "report_to_nct_links": 57,
+    "unique_nct_ids_linked_inside_current_ctgov_set": 11,
+    "unique_nct_ids_mentioned_but_outside_current_ctgov_set": 21,
+    "non_us_protocol_roots": 14,
+    "multi_country_euctr_protocol_roots": 2
+  },
+  "governance": {
+    "automatic_eligibility_decisions": 0,
+    "prisma_counts_changed": false,
+    "doi_alone_is_not_sufficient_for_deduplication": true,
+    "preprints_and_published_articles_retained_as_separate_reports": true,
+    "country_specific_trial_registrations_retained_but_linked_to_protocol_family": true
+  }
+}
