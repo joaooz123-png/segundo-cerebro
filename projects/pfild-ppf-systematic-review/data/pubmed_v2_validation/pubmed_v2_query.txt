@@ -12,14 +12,17 @@
   "progressive fibrosis phenotype"[tiab] OR
   "PF-ILD"[tiab] OR
   PFILD[tiab] OR
+  "progressive pulmonary fibrosis"[Title] OR
   (
-    "progressive pulmonary fibrosis"[tiab] AND
+    "progressive pulmonary fibrosis"[Abstract] AND
     (
       "interstitial lung disease"[tiab] OR
       "interstitial lung diseases"[tiab] OR
       ILD[tiab] OR
       non-IPF[tiab] OR
-      "non IPF"[tiab]
+      "non IPF"[tiab] OR
+      fibrosing[tiab] OR
+      fibrotic[tiab]
     )
   )
 )
@@ -35,7 +38,11 @@ OR
   )
   AND
   (
-    progress*[tiab] OR
+    progression[tiab] OR
+    progressive[tiab] OR
+    progressing[tiab] OR
+    progressed[tiab] OR
+    "disease progression"[tiab] OR
     "Disease Progression"[Mesh]
   )
 )
