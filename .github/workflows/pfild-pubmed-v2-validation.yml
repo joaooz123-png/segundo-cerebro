@@ -10,13 +10,22 @@ on:
       - projects/pfild-ppf-systematic-review/search/pubmed_v2_candidate.txt
       - projects/pfild-ppf-systematic-review/data/project_state.json
       - projects/pfild-ppf-systematic-review/data/seeds/**
+  pull_request:
+    branches:
+      - mainn
+    paths:
+      - .github/workflows/pfild-pubmed-v2-validation.yml
+      - projects/pfild-ppf-systematic-review/scripts/validate_pubmed_v2.py
+      - projects/pfild-ppf-systematic-review/search/pubmed_v2_candidate.txt
+      - projects/pfild-ppf-systematic-review/data/project_state.json
+      - projects/pfild-ppf-systematic-review/data/seeds/**
   workflow_dispatch:
 
 permissions:
   contents: write
 
 concurrency:
-  group: pfild-pubmed-v2-validation-${{ github.ref }}
+  group: pfild-pubmed-v2-validation-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: false
 
 jobs:
@@ -25,10 +34,20 @@ jobs:
     timeout-minutes: 30
 
     steps:
+      - name: Resolve target branch
+        id: target
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            echo "branch=${{ github.head_ref }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "branch=${{ github.ref_name }}" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Check out validation branch
         uses: actions/checkout@v4
         with:
-          ref: pfild-g1-search-validation
+          ref: ${{ steps.target.outputs.branch }}
           fetch-depth: 0
           persist-credentials: true
 
@@ -51,7 +70,7 @@ jobs:
           if-no-files-found: error
           retention-days: 90
 
-      - name: Commit validation outputs to branch
+      - name: Commit validation outputs to source branch
         shell: bash
         run: |
           if [ -z "$(git status --porcelain -- projects/pfild-ppf-systematic-review/data/pubmed_v2_validation)" ]; then
@@ -62,4 +81,4 @@ jobs:
           git config user.email 'pfild-review-bot@users.noreply.github.com'
           git add projects/pfild-ppf-systematic-review/data/pubmed_v2_validation
           git commit -m 'data: execute and validate PubMed v2 candidate'
-          git push origin HEAD:pfild-g1-search-validation
+          git push origin HEAD:${{ steps.target.outputs.branch }}
