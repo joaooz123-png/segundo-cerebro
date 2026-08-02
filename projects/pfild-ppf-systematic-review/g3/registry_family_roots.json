@@ -1,0 +1,35 @@
+{
+  "cross_registry_family_candidates": [
+    {
+      "family": "INBUILD",
+      "clinicaltrials_gov": "NCT02999178",
+      "eudract_root": "EUCTR2015-003360-37",
+      "relationship": "same_trial_candidate",
+      "evidence": ["matching intervention", "matching sponsor", "matching PF-ILD phase 3 design", "matching enrollment scale"],
+      "action": "retain each registry record; count as one study family only after human confirmation"
+    },
+    {
+      "family": "INBUILD-ON",
+      "clinicaltrials_gov": "NCT03820726",
+      "eudract_root": "EUCTR2018-000525-32",
+      "relationship": "same_extension_trial_candidate",
+      "country_registrations_captured": ["GB", "BE", "DE", "PL", "IT", "ES"],
+      "action": "retain national registrations and link them to one protocol root"
+    },
+    {
+      "family": "Pirfenidone in unclassifiable progressive fibrosing ILD",
+      "clinicaltrials_gov": "NCT03099187",
+      "eudract_root": "EUCTR2016-002744-17",
+      "relationship": "same_trial_candidate",
+      "country_registrations_captured": ["IT", "GR", "ES", "PL"],
+      "action": "retain national registrations and link them to one protocol root"
+    }
+  ],
+  "additional_non_us_registry_records_captured": 22,
+  "non_us_protocol_roots": 14,
+  "governance": {
+    "country_records_are_source_records": true,
+    "country_records_are_not_automatically_separate_studies": true,
+    "human_confirmation_required": true
+  }
+}
