@@ -1,0 +1,54 @@
+{
+  "as_of": "2026-08-02",
+  "documents": [
+    {
+      "agency": "FDA",
+      "product": "Ofev",
+      "active_substance": "nintedanib esylate",
+      "authorization_date": "2014-10-15",
+      "scope": "label includes chronic fibrosing interstitial lung diseases with a progressive phenotype",
+      "url": "https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=205832"
+    },
+    {
+      "agency": "EMA",
+      "product": "Ofev",
+      "active_substance": "nintedanib",
+      "authorization_date": "2015-01-14",
+      "scope": "core EPAR; verify current PF-ILD wording at document-section level",
+      "url": "https://www.ema.europa.eu/en/medicines/human/EPAR/ofev"
+    },
+    {
+      "agency": "FDA",
+      "product": "Jascayd",
+      "active_substance": "nerandomilast",
+      "authorization_date": "2025-10-07",
+      "scope": "label includes treatment of progressive pulmonary fibrosis in adults",
+      "url": "https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=218764"
+    },
+    {
+      "agency": "EMA",
+      "product": "Jascayd",
+      "active_substance": "nerandomilast",
+      "authorization_date": "2026-07-15",
+      "scope": "authorization includes treatment of adult patients with progressive pulmonary fibrosis",
+      "url": "https://www.ema.europa.eu/en/medicines/human/EPAR/jascayd"
+    },
+    {
+      "agency": "FDA",
+      "product": "Esbriet",
+      "active_substance": "pirfenidone",
+      "authorization_date": "2017-01-11",
+      "scope": "retrieved indication limited to idiopathic pulmonary fibrosis",
+      "url": "https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=208780"
+    },
+    {
+      "agency": "EMA",
+      "product": "Esbriet",
+      "active_substance": "pirfenidone",
+      "authorization_date": "2011-02-28",
+      "scope": "retrieved indication limited to idiopathic pulmonary fibrosis",
+      "url": "https://www.ema.europa.eu/en/medicines/human/EPAR/esbriet"
+    }
+  ],
+  "rule": "Regulatory documents are distinct source documents and are never substituted for peer-reviewed reports."
+}
