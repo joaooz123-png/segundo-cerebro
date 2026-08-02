@@ -9,13 +9,20 @@ on:
       - .github/workflows/pfild-pubmed-enrichment.yml
       - projects/pfild-ppf-systematic-review/scripts/enrich_pubmed.py
       - projects/pfild-ppf-systematic-review/data/project_state.json
+  pull_request:
+    branches:
+      - mainn
+    paths:
+      - .github/workflows/pfild-pubmed-enrichment.yml
+      - projects/pfild-ppf-systematic-review/scripts/enrich_pubmed.py
+      - projects/pfild-ppf-systematic-review/data/project_state.json
   workflow_dispatch:
 
 permissions:
   contents: write
 
 concurrency:
-  group: pfild-pubmed-enrichment-${{ github.ref }}
+  group: pfild-pubmed-enrichment-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: false
 
 jobs:
@@ -24,10 +31,20 @@ jobs:
     timeout-minutes: 30
 
     steps:
-      - name: Check out the triggering branch
+      - name: Resolve target branch
+        id: target
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            echo "branch=${{ github.head_ref }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "branch=${{ github.ref_name }}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Check out the source branch
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.ref_name }}
+          ref: ${{ steps.target.outputs.branch }}
           fetch-depth: 0
           persist-credentials: true
 
@@ -50,7 +67,8 @@ jobs:
           if-no-files-found: error
           retention-days: 90
 
-      - name: Commit enriched metadata to the triggering branch
+      - name: Commit enriched metadata to the source branch
+        shell: bash
         run: |
           if git diff --quiet -- projects/pfild-ppf-systematic-review/data/pubmed; then
             echo 'No metadata changes to commit.'
@@ -60,4 +78,4 @@ jobs:
           git config user.email 'pfild-review-bot@users.noreply.github.com'
           git add projects/pfild-ppf-systematic-review/data/pubmed
           git commit -m 'data: enrich 1004 PubMed records from NCBI'
-          git push origin HEAD:${{ github.ref_name }}
+          git push origin HEAD:${{ steps.target.outputs.branch }}
