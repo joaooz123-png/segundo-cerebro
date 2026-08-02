@@ -1,0 +1,42 @@
+{
+  "generated_at_utc": "2026-08-02T22:36:10.891895+00:00",
+  "method": "two deterministic internal review passes; no human or PRISMA decisions",
+  "europe_pmc_non_pubmed": {
+    "n_non_pubmed_records": 53,
+    "source_counts": {
+      "PPR": 47,
+      "AGR": 2,
+      "PMC": 2,
+      "ETH": 2
+    },
+    "consensus_counts": {
+      "internal_adjudication_required": 36,
+      "candidate_human_exclusion": 2,
+      "retain_for_human_screening": 15
+    },
+    "eligibility_decisions_made": 0
+  },
+  "clinicaltrials_gov": {
+    "n_trials": 146,
+    "consensus_counts": {
+      "internal_adjudication_required": 109,
+      "candidate_human_exclusion": 6,
+      "retain_for_human_screening": 31
+    },
+    "overall_status_counts": {
+      "COMPLETED": 36,
+      "UNKNOWN": 16,
+      "TERMINATED": 7,
+      "ACTIVE_NOT_RECRUITING": 18,
+      "RECRUITING": 42,
+      "NO_LONGER_AVAILABLE": 1,
+      "ENROLLING_BY_INVITATION": 2,
+      "WITHDRAWN": 1,
+      "AVAILABLE": 1,
+      "NOT_YET_RECRUITING": 21,
+      "SUSPENDED": 1
+    },
+    "eligibility_decisions_made": 0
+  },
+  "next_step": "human screening later; cross-source deduplication and family linkage under Gate G3"
+}
