@@ -1,0 +1,49 @@
+(
+  "progressive fibrosing interstitial lung disease"[tiab] OR
+  "progressive fibrosing interstitial lung diseases"[tiab] OR
+  "progressive-fibrosing interstitial lung disease"[tiab] OR
+  "progressive-fibrosing interstitial lung diseases"[tiab] OR
+  "progressive fibrotic interstitial lung disease"[tiab] OR
+  "progressive fibrotic interstitial lung diseases"[tiab] OR
+  "progressive fibrosing ILD"[tiab] OR
+  "progressive fibrotic ILD"[tiab] OR
+  "progressive fibrosing phenotype"[tiab] OR
+  "progressive fibrotic phenotype"[tiab] OR
+  "progressive fibrosis phenotype"[tiab] OR
+  "PF-ILD"[tiab] OR
+  PFILD[tiab] OR
+  (
+    "progressive pulmonary fibrosis"[tiab] AND
+    (
+      "interstitial lung disease"[tiab] OR
+      "interstitial lung diseases"[tiab] OR
+      ILD[tiab] OR
+      non-IPF[tiab] OR
+      "non IPF"[tiab]
+    )
+  )
+)
+OR
+(
+  (
+    "fibrosing interstitial lung disease"[tiab] OR
+    "fibrosing interstitial lung diseases"[tiab] OR
+    "fibrotic interstitial lung disease"[tiab] OR
+    "fibrotic interstitial lung diseases"[tiab] OR
+    "chronic fibrosing interstitial lung disease"[tiab] OR
+    "chronic fibrosing interstitial lung diseases"[tiab]
+  )
+  AND
+  (
+    progress*[tiab] OR
+    "Disease Progression"[Mesh]
+  )
+)
+OR
+(
+  "Lung Diseases, Interstitial"[Mesh]
+  AND
+  "Pulmonary Fibrosis"[Mesh]
+  AND
+  "Disease Progression"[Mesh]
+)

@@ -1,0 +1,47 @@
+{
+  "generated_at_utc": "2026-08-02T22:10:07.736181+00:00",
+  "database": "PubMed/MEDLINE",
+  "platform": "NCBI E-utilities",
+  "candidate_strategy_file": "search/pubmed_v2_candidate.txt",
+  "submitted_query": "(\n  \"progressive fibrosing interstitial lung disease\"[tiab] OR\n  \"progressive fibrosing interstitial lung diseases\"[tiab] OR\n  \"progressive-fibrosing interstitial lung disease\"[tiab] OR\n  \"progressive-fibrosing interstitial lung diseases\"[tiab] OR\n  \"progressive fibrotic interstitial lung disease\"[tiab] OR\n  \"progressive fibrotic interstitial lung diseases\"[tiab] OR\n  \"progressive fibrosing ILD\"[tiab] OR\n  \"progressive fibrotic ILD\"[tiab] OR\n  \"progressive fibrosing phenotype\"[tiab] OR\n  \"progressive fibrotic phenotype\"[tiab] OR\n  \"progressive fibrosis phenotype\"[tiab] OR\n  \"PF-ILD\"[tiab] OR\n  PFILD[tiab] OR\n  (\n    \"progressive pulmonary fibrosis\"[tiab] AND\n    (\n      \"interstitial lung disease\"[tiab] OR\n      \"interstitial lung diseases\"[tiab] OR\n      ILD[tiab] OR\n      non-IPF[tiab] OR\n      \"non IPF\"[tiab]\n    )\n  )\n)\nOR\n(\n  (\n    \"fibrosing interstitial lung disease\"[tiab] OR\n    \"fibrosing interstitial lung diseases\"[tiab] OR\n    \"fibrotic interstitial lung disease\"[tiab] OR\n    \"fibrotic interstitial lung diseases\"[tiab] OR\n    \"chronic fibrosing interstitial lung disease\"[tiab] OR\n    \"chronic fibrosing interstitial lung diseases\"[tiab]\n  )\n  AND\n  (\n    progress*[tiab] OR\n    \"Disease Progression\"[Mesh]\n  )\n)\nOR\n(\n  \"Lung Diseases, Interstitial\"[Mesh]\n  AND\n  \"Pulmonary Fibrosis\"[Mesh]\n  AND\n  \"Disease Progression\"[Mesh]\n)",
+  "query_translation": "\"progressive-fibrosing interstitial lung disease\"[Title/Abstract] OR \"progressive-fibrosing interstitial lung diseases\"[Title/Abstract] OR \"progressive-fibrosing interstitial lung disease\"[Title/Abstract] OR \"progressive-fibrosing interstitial lung diseases\"[Title/Abstract] OR \"progressive fibrotic interstitial lung disease\"[Title/Abstract] OR \"progressive fibrotic interstitial lung diseases\"[Title/Abstract] OR \"progressive fibrosing ILD\"[Title/Abstract] OR \"progressive fibrotic ILD\"[Title/Abstract] OR \"progressive fibrosing phenotype\"[Title/Abstract] OR \"progressive fibrotic phenotype\"[Title/Abstract] OR \"progressive fibrosis phenotype\"[Title/Abstract] OR \"PF-ILD\"[Title/Abstract] OR \"PFILD\"[Title/Abstract] OR (\"progressive pulmonary fibrosis\"[Title/Abstract] AND (\"interstitial lung disease\"[Title/Abstract] OR \"interstitial lung diseases\"[Title/Abstract] OR \"ILD\"[Title/Abstract] OR \"non ipf\"[Title/Abstract] OR \"non ipf\"[Title/Abstract])) OR ((\"fibrosing interstitial lung disease\"[Title/Abstract] OR \"fibrosing interstitial lung diseases\"[Title/Abstract] OR \"fibrotic interstitial lung disease\"[Title/Abstract] OR \"fibrotic interstitial lung diseases\"[Title/Abstract] OR \"chronic fibrosing interstitial lung disease\"[Title/Abstract] OR \"chronic fibrosing interstitial lung diseases\"[Title/Abstract]) AND (\"progress*\"[Title/Abstract] OR \"Disease Progression\"[MeSH Terms])) OR (\"lung diseases, interstitial\"[MeSH Terms] AND \"Pulmonary Fibrosis\"[MeSH Terms] AND \"Disease Progression\"[MeSH Terms])",
+  "translation_stack": [],
+  "count": 2509,
+  "unique_pmids": 2509,
+  "pmid_order_sha256": "38d7b5eebdda17e8882e26072ed13a0e8773f058b0165e789e1fa48ab5636bc2",
+  "comparison_with_v1": {
+    "v1_count": 1004,
+    "v2_count": 2509,
+    "overlap": 730,
+    "added_by_v2": 1779,
+    "present_in_v1_not_v2": 274
+  },
+  "sentinel_validation": {
+    "pubmed_applicable_sentinels": 62,
+    "retrieved": 60,
+    "missing": 2,
+    "recall": 0.967741935483871,
+    "missing_records": [
+      {
+        "seed_id": "S029",
+        "pmid": "32019572",
+        "title": "Progression of fibrosing interstitial lung disease",
+        "doi": "10.1186/s12931-020-1296-3",
+        "document_type": "Review"
+      },
+      {
+        "seed_id": "S032",
+        "pmid": "37003612",
+        "title": "Design considerations and implications of findings on progressive pulmonary fibrosis from the prospective Canadian Registry for Pulmonary Fibrosis",
+        "doi": "10.1183/13993003.00208-2023",
+        "document_type": "Author response"
+      }
+    ]
+  },
+  "interpretation": {
+    "eligibility_decisions_made": 0,
+    "prisma_counts_changed": false,
+    "press_status": "internal validation only; external independent PRESS still required",
+    "precision_sample_size": 100
+  }
+}
