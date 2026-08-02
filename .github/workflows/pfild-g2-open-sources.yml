@@ -7,6 +7,7 @@ on:
     paths:
       - .github/workflows/pfild-g2-open-sources.yml
       - projects/pfild-ppf-systematic-review/scripts/collect_g2_open_sources.py
+      - projects/pfild-ppf-systematic-review/scripts/audit_g2_open_sources.py
       - projects/pfild-ppf-systematic-review/data/pubmed_v2_validation/pubmed_candidate_union_pmids.csv
   pull_request:
     branches:
@@ -14,6 +15,7 @@ on:
     paths:
       - .github/workflows/pfild-g2-open-sources.yml
       - projects/pfild-ppf-systematic-review/scripts/collect_g2_open_sources.py
+      - projects/pfild-ppf-systematic-review/scripts/audit_g2_open_sources.py
       - projects/pfild-ppf-systematic-review/data/pubmed_v2_validation/pubmed_candidate_union_pmids.csv
   workflow_dispatch:
 
@@ -55,6 +57,9 @@ jobs:
       - name: Collect Europe PMC and ClinicalTrials.gov
         run: python projects/pfild-ppf-systematic-review/scripts/collect_g2_open_sources.py
 
+      - name: Run dual internal audit of open-source candidates
+        run: python projects/pfild-ppf-systematic-review/scripts/audit_g2_open_sources.py
+
       - name: Upload source exports
         uses: actions/upload-artifact@v4
         with:
@@ -73,7 +78,7 @@ jobs:
           git config user.name 'pfild-review-bot'
           git config user.email 'pfild-review-bot@users.noreply.github.com'
           git add projects/pfild-ppf-systematic-review/data/g2_open_sources
-          git commit -m 'data: collect Europe PMC and ClinicalTrials.gov candidate records'
+          git commit -m 'data: collect and audit Europe PMC and ClinicalTrials.gov records'
           git fetch origin ${{ steps.target.outputs.branch }}
           git rebase origin/${{ steps.target.outputs.branch }}
           git push origin HEAD:${{ steps.target.outputs.branch }}
