@@ -6,6 +6,7 @@ on:
       - pfild-g1-search-validation
     paths:
       - .github/workflows/pfild-pubmed-v2-validation.yml
+      - projects/pfild-ppf-systematic-review/scripts/correct_seed_metadata.py
       - projects/pfild-ppf-systematic-review/scripts/validate_pubmed_v2.py
       - projects/pfild-ppf-systematic-review/search/pubmed_v2_candidate.txt
       - projects/pfild-ppf-systematic-review/data/project_state.json
@@ -15,6 +16,7 @@ on:
       - mainn
     paths:
       - .github/workflows/pfild-pubmed-v2-validation.yml
+      - projects/pfild-ppf-systematic-review/scripts/correct_seed_metadata.py
       - projects/pfild-ppf-systematic-review/scripts/validate_pubmed_v2.py
       - projects/pfild-ppf-systematic-review/search/pubmed_v2_candidate.txt
       - projects/pfild-ppf-systematic-review/data/project_state.json
@@ -56,6 +58,9 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Apply audited bibliographic corrections
+        run: python projects/pfild-ppf-systematic-review/scripts/correct_seed_metadata.py
+
       - name: Execute PubMed v2 and validate sentinel recall
         env:
           NCBI_API_KEY: ${{ secrets.NCBI_API_KEY }}
@@ -66,19 +71,23 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: pfild-pubmed-v2-validation-${{ github.run_id }}
-          path: projects/pfild-ppf-systematic-review/data/pubmed_v2_validation/
+          path: |
+            projects/pfild-ppf-systematic-review/data/pubmed_v2_validation/
+            projects/pfild-ppf-systematic-review/data/metadata_corrections.csv
           if-no-files-found: error
           retention-days: 90
 
-      - name: Commit validation outputs to source branch
+      - name: Commit correction and validation outputs to source branch
         shell: bash
         run: |
-          if [ -z "$(git status --porcelain -- projects/pfild-ppf-systematic-review/data/pubmed_v2_validation)" ]; then
-            echo 'No validation output changes to commit.'
+          if [ -z "$(git status --porcelain -- projects/pfild-ppf-systematic-review/data/seeds projects/pfild-ppf-systematic-review/data/metadata_corrections.csv projects/pfild-ppf-systematic-review/data/pubmed_v2_validation)" ]; then
+            echo 'No correction or validation output changes to commit.'
             exit 0
           fi
           git config user.name 'pfild-review-bot'
           git config user.email 'pfild-review-bot@users.noreply.github.com'
+          git add projects/pfild-ppf-systematic-review/data/seeds
+          git add projects/pfild-ppf-systematic-review/data/metadata_corrections.csv
           git add projects/pfild-ppf-systematic-review/data/pubmed_v2_validation
-          git commit -m 'data: execute and validate PubMed v2 candidate'
+          git commit -m 'data: correct S029 PMID and revalidate PubMed v2.1'
           git push origin HEAD:${{ steps.target.outputs.branch }}
