@@ -14,7 +14,7 @@
   PFILD[tiab] OR
   "progressive pulmonary fibrosis"[Title] OR
   (
-    "progressive pulmonary fibrosis"[Abstract] AND
+    "progressive pulmonary fibrosis"[tiab] AND
     (
       "interstitial lung disease"[tiab] OR
       "interstitial lung diseases"[tiab] OR

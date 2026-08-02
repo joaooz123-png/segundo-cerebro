@@ -336,7 +336,7 @@
 40849172,yes,yes,overlap
 40847341,no,yes,v2_only
 40836270,no,yes,v2_only
-40826379,yes,yes,overlap
+40826379,yes,no,v1_only
 40824943,yes,yes,overlap
 40815686,yes,yes,overlap
 40815109,no,yes,v2_only

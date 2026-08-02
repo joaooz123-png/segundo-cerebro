@@ -1,28 +1,29 @@
 {
-  "generated_at_utc": "2026-08-02T22:21:45.760961+00:00",
+  "generated_at_utc": "2026-08-02T22:22:58.876183+00:00",
   "status": "machine pre-audit only; no eligibility or PRISMA decisions",
   "precision_sample": {
     "n": 100,
     "label_counts": {
-      "likely_irrelevant_ipf_only": 38,
-      "likely_irrelevant_or_incidental": 14,
-      "core_explicit": 32,
+      "core_explicit": 33,
+      "likely_irrelevant_ipf_only": 35,
+      "likely_irrelevant_or_incidental": 20,
+      "likely_irrelevant_other_fibrosis": 6,
       "probable_relevant": 4,
-      "contextual_or_uncertain": 6,
-      "likely_irrelevant_other_fibrosis": 6
+      "contextual_or_uncertain": 2
     },
-    "high_confidence_relevance_fraction": 0.36,
-    "upper_bound_including_uncertain": 0.42,
+    "high_confidence_relevance_fraction": 0.37,
+    "upper_bound_including_uncertain": 0.39,
     "sampling_seed": 20260802
   },
   "v1_only_safety_set": {
-    "n": 137,
+    "n": 138,
     "label_counts": {
       "core_explicit": 131,
+      "contextual_or_uncertain": 1,
       "likely_irrelevant_or_incidental": 5,
       "likely_irrelevant_other_fibrosis": 1
     },
-    "machine_flagged_for_internal_review": 131
+    "machine_flagged_for_internal_review": 132
   },
   "next_required_steps": [
     "complete two independent internal AI reviews of all 100 precision-sample records",

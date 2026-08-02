@@ -1,48 +1,48 @@
 {
-  "generated_at_utc": "2026-08-02T22:21:45.907883+00:00",
+  "generated_at_utc": "2026-08-02T22:22:59.017424+00:00",
   "method": "Two deliberately different deterministic internal reviewers: sensitivity-first and specificity/adversarial. They are not independent human reviewers and do not alter PRISMA counts.",
   "datasets": {
     "precision_sample": {
       "dataset": "precision_sample",
       "n": 100,
       "reviewer_1_sensitivity_counts": {
-        "exclude_candidate": 38,
-        "adjudicate": 26,
-        "retain": 36
+        "retain": 35,
+        "exclude_candidate": 36,
+        "adjudicate": 29
       },
       "reviewer_2_adversarial_counts": {
-        "exclude_candidate": 66,
-        "retain": 31,
+        "retain": 29,
+        "exclude_candidate": 68,
         "adjudicate": 3
       },
       "consensus_counts": {
-        "candidate_human_exclusion": 38,
-        "internal_adjudication_required": 31,
-        "retain_for_human_screening": 31
+        "retain_for_human_screening": 29,
+        "candidate_human_exclusion": 36,
+        "internal_adjudication_required": 35
       },
-      "exact_agreement_n": 69,
-      "exact_agreement_fraction": 0.69,
+      "exact_agreement_n": 65,
+      "exact_agreement_fraction": 0.65,
       "prisma_decisions_made": 0
     },
     "v1_only_safety": {
       "dataset": "v1_only_safety",
-      "n": 137,
+      "n": 138,
       "reviewer_1_sensitivity_counts": {
         "exclude_candidate": 46,
         "retain": 60,
-        "adjudicate": 31
+        "adjudicate": 32
       },
       "reviewer_2_adversarial_counts": {
-        "exclude_candidate": 99,
+        "exclude_candidate": 100,
         "retain": 38
       },
       "consensus_counts": {
         "candidate_human_exclusion": 46,
         "retain_for_human_screening": 38,
-        "internal_adjudication_required": 53
+        "internal_adjudication_required": 54
       },
       "exact_agreement_n": 84,
-      "exact_agreement_fraction": 0.6131386861313869,
+      "exact_agreement_fraction": 0.6086956521739131,
       "prisma_decisions_made": 0
     }
   },
