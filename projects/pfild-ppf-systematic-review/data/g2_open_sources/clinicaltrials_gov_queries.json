@@ -1,0 +1,20 @@
+{
+  "queries": [
+    "\"progressive fibrosing interstitial lung disease\"",
+    "\"progressive-fibrosing interstitial lung disease\"",
+    "\"progressive fibrotic interstitial lung disease\"",
+    "\"progressive pulmonary fibrosis\"",
+    "\"progressive fibrotic phenotype\" AND \"interstitial lung disease\"",
+    "PF-ILD",
+    "PFILD"
+  ],
+  "query_counts": {
+    "\"progressive fibrosing interstitial lung disease\"": 25,
+    "\"progressive-fibrosing interstitial lung disease\"": 25,
+    "\"progressive fibrotic interstitial lung disease\"": 3,
+    "\"progressive pulmonary fibrosis\"": 51,
+    "\"progressive fibrotic phenotype\" AND \"interstitial lung disease\"": 2,
+    "PF-ILD": 97,
+    "PFILD": 0
+  }
+}

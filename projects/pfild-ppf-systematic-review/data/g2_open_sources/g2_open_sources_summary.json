@@ -1,0 +1,60 @@
+{
+  "generated_at_utc": "2026-08-02T22:36:31.218842+00:00",
+  "gate": "G2 source coverage",
+  "status": "partial — two open sources executed; no completeness claim",
+  "europe_pmc": {
+    "submitted_query": "(\n  TITLE_ABS:\"progressive fibrosing interstitial lung disease\" OR\n  TITLE_ABS:\"progressive fibrosing interstitial lung diseases\" OR\n  TITLE_ABS:\"progressive-fibrosing interstitial lung disease\" OR\n  TITLE_ABS:\"progressive-fibrosing interstitial lung diseases\" OR\n  TITLE_ABS:\"progressive fibrotic interstitial lung disease\" OR\n  TITLE_ABS:\"progressive fibrotic interstitial lung diseases\" OR\n  TITLE_ABS:\"progressive fibrosing ILD\" OR\n  TITLE_ABS:\"progressive fibrotic ILD\" OR\n  TITLE_ABS:\"progressive fibrosing phenotype\" OR\n  TITLE_ABS:\"progressive fibrotic phenotype\" OR\n  TITLE_ABS:\"progressive fibrosis phenotype\" OR\n  TITLE_ABS:\"PF-ILD\" OR\n  TITLE_ABS:PFILD OR\n  TITLE:\"progressive pulmonary fibrosis\" OR\n  (\n    TITLE_ABS:\"progressive pulmonary fibrosis\" AND\n    (\n      TITLE_ABS:\"interstitial lung disease\" OR\n      TITLE_ABS:\"interstitial lung diseases\" OR\n      TITLE_ABS:ILD OR\n      TITLE_ABS:\"non-IPF\" OR\n      TITLE_ABS:\"non IPF\" OR\n      TITLE_ABS:fibrosing OR\n      TITLE_ABS:fibrotic\n    )\n  )\n) OR (\n  (\n    TITLE_ABS:\"fibrosing interstitial lung disease\" OR\n    TITLE_ABS:\"fibrosing interstitial lung diseases\" OR\n    TITLE_ABS:\"fibrotic interstitial lung disease\" OR\n    TITLE_ABS:\"fibrotic interstitial lung diseases\" OR\n    TITLE_ABS:\"chronic fibrosing interstitial lung disease\" OR\n    TITLE_ABS:\"chronic fibrosing interstitial lung diseases\"\n  ) AND (\n    TITLE_ABS:progression OR TITLE_ABS:progressive OR TITLE_ABS:progressing OR TITLE_ABS:progressed OR\n    TITLE_ABS:\"disease progression\"\n  )\n)",
+    "reported_hit_count": 1125,
+    "unique_source_records": 1125,
+    "source_counts": {
+      "MED": 1072,
+      "PPR": 47,
+      "AGR": 2,
+      "PMC": 2,
+      "ETH": 2
+    },
+    "records_with_pmid": 1072,
+    "records_without_pmid": 53,
+    "records_not_in_pubmed_candidate_union_by_pmid": 53,
+    "pages_retrieved": 3,
+    "raw_sha256": "c688a8edbae24639fd1fff4fae2e9091976690222136f93eb3628299db0d2d7b"
+  },
+  "clinicaltrials_gov": {
+    "queries": [
+      "\"progressive fibrosing interstitial lung disease\"",
+      "\"progressive-fibrosing interstitial lung disease\"",
+      "\"progressive fibrotic interstitial lung disease\"",
+      "\"progressive pulmonary fibrosis\"",
+      "\"progressive fibrotic phenotype\" AND \"interstitial lung disease\"",
+      "PF-ILD",
+      "PFILD"
+    ],
+    "query_counts_before_union": {
+      "\"progressive fibrosing interstitial lung disease\"": 25,
+      "\"progressive-fibrosing interstitial lung disease\"": 25,
+      "\"progressive fibrotic interstitial lung disease\"": 3,
+      "\"progressive pulmonary fibrosis\"": 51,
+      "\"progressive fibrotic phenotype\" AND \"interstitial lung disease\"": 2,
+      "PF-ILD": 97,
+      "PFILD": 0
+    },
+    "unique_nct_records_after_union": 146,
+    "sentinel_nct_ids": [
+      "NCT02999178",
+      "NCT03099187",
+      "NCT03858842"
+    ],
+    "sentinels_retrieved": [
+      "NCT02999178",
+      "NCT03099187",
+      "NCT03858842"
+    ],
+    "sentinels_missing": [],
+    "raw_sha256": "ded6b986bb25359d8acaa43c39465a7ccb474035142a413693267884213f86a3"
+  },
+  "governance": {
+    "eligibility_decisions_made": 0,
+    "prisma_counts_changed": false,
+    "cross_source_deduplication_status": "candidate identifiers only; formal G3 deduplication pending"
+  }
+}

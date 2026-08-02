@@ -1,0 +1,40 @@
+(
+  TITLE_ABS:"progressive fibrosing interstitial lung disease" OR
+  TITLE_ABS:"progressive fibrosing interstitial lung diseases" OR
+  TITLE_ABS:"progressive-fibrosing interstitial lung disease" OR
+  TITLE_ABS:"progressive-fibrosing interstitial lung diseases" OR
+  TITLE_ABS:"progressive fibrotic interstitial lung disease" OR
+  TITLE_ABS:"progressive fibrotic interstitial lung diseases" OR
+  TITLE_ABS:"progressive fibrosing ILD" OR
+  TITLE_ABS:"progressive fibrotic ILD" OR
+  TITLE_ABS:"progressive fibrosing phenotype" OR
+  TITLE_ABS:"progressive fibrotic phenotype" OR
+  TITLE_ABS:"progressive fibrosis phenotype" OR
+  TITLE_ABS:"PF-ILD" OR
+  TITLE_ABS:PFILD OR
+  TITLE:"progressive pulmonary fibrosis" OR
+  (
+    TITLE_ABS:"progressive pulmonary fibrosis" AND
+    (
+      TITLE_ABS:"interstitial lung disease" OR
+      TITLE_ABS:"interstitial lung diseases" OR
+      TITLE_ABS:ILD OR
+      TITLE_ABS:"non-IPF" OR
+      TITLE_ABS:"non IPF" OR
+      TITLE_ABS:fibrosing OR
+      TITLE_ABS:fibrotic
+    )
+  )
+) OR (
+  (
+    TITLE_ABS:"fibrosing interstitial lung disease" OR
+    TITLE_ABS:"fibrosing interstitial lung diseases" OR
+    TITLE_ABS:"fibrotic interstitial lung disease" OR
+    TITLE_ABS:"fibrotic interstitial lung diseases" OR
+    TITLE_ABS:"chronic fibrosing interstitial lung disease" OR
+    TITLE_ABS:"chronic fibrosing interstitial lung diseases"
+  ) AND (
+    TITLE_ABS:progression OR TITLE_ABS:progressive OR TITLE_ABS:progressing OR TITLE_ABS:progressed OR
+    TITLE_ABS:"disease progression"
+  )
+)
