@@ -1,0 +1,26 @@
+{
+  "doi_collision_cases": [
+    {
+      "doi": "10.1056/nejmc1917224",
+      "classification": "same_doi_multiple_distinct_reports",
+      "pmids": ["32074430", "32074431", "32074432", "32074433"],
+      "titles": [
+        "Nintedanib in Progressive Fibrosing Interstitial Lung Diseases.",
+        "Nintedanib in Progressive Fibrosing Interstitial Lung Diseases.",
+        "Nintedanib in Progressive Fibrosing Interstitial Lung Diseases.",
+        "Nintedanib in Progressive Fibrosing Interstitial Lung Diseases. Reply."
+      ],
+      "rule": "retain every PMID; never deduplicate by DOI alone"
+    },
+    {
+      "doi": "10.12688/f1000research.8209.1",
+      "classification": "same_doi_same_title_source_representation_candidate",
+      "records": [
+        {"source": "PPR", "source_id": "PPR43809", "pmid": null},
+        {"source": "MED", "source_id": "27303645", "pmid": "27303645"}
+      ],
+      "title": "Recent advances in understanding idiopathic pulmonary fibrosis",
+      "rule": "possible source duplicate; confirm version and authors before collapse"
+    }
+  ]
+}
