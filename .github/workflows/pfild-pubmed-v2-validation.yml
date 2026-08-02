@@ -1,0 +1,65 @@
+name: PF-ILD PubMed v2 validation
+
+on:
+  push:
+    branches:
+      - pfild-g1-search-validation
+    paths:
+      - .github/workflows/pfild-pubmed-v2-validation.yml
+      - projects/pfild-ppf-systematic-review/scripts/validate_pubmed_v2.py
+      - projects/pfild-ppf-systematic-review/search/pubmed_v2_candidate.txt
+      - projects/pfild-ppf-systematic-review/data/project_state.json
+      - projects/pfild-ppf-systematic-review/data/seeds/**
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pfild-pubmed-v2-validation-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate-search:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Check out validation branch
+        uses: actions/checkout@v4
+        with:
+          ref: pfild-g1-search-validation
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Execute PubMed v2 and validate sentinel recall
+        env:
+          NCBI_API_KEY: ${{ secrets.NCBI_API_KEY }}
+          NCBI_EMAIL: ${{ secrets.NCBI_EMAIL }}
+        run: python projects/pfild-ppf-systematic-review/scripts/validate_pubmed_v2.py
+
+      - name: Upload reproducible validation outputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: pfild-pubmed-v2-validation-${{ github.run_id }}
+          path: projects/pfild-ppf-systematic-review/data/pubmed_v2_validation/
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Commit validation outputs to branch
+        shell: bash
+        run: |
+          if [ -z "$(git status --porcelain -- projects/pfild-ppf-systematic-review/data/pubmed_v2_validation)" ]; then
+            echo 'No validation output changes to commit.'
+            exit 0
+          fi
+          git config user.name 'pfild-review-bot'
+          git config user.email 'pfild-review-bot@users.noreply.github.com'
+          git add projects/pfild-ppf-systematic-review/data/pubmed_v2_validation
+          git commit -m 'data: execute and validate PubMed v2 candidate'
+          git push origin HEAD:pfild-g1-search-validation
