@@ -1,0 +1,63 @@
+name: PF-ILD PubMed metadata enrichment
+
+on:
+  push:
+    branches:
+      - mainn
+      - pfild-pubmed-metadata-enrichment
+    paths:
+      - .github/workflows/pfild-pubmed-enrichment.yml
+      - projects/pfild-ppf-systematic-review/scripts/enrich_pubmed.py
+      - projects/pfild-ppf-systematic-review/data/project_state.json
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pfild-pubmed-enrichment-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  enrich-pubmed:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Check out the triggering branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Retrieve and validate PubMed metadata
+        env:
+          NCBI_API_KEY: ${{ secrets.NCBI_API_KEY }}
+          NCBI_EMAIL: ${{ secrets.NCBI_EMAIL }}
+        run: python projects/pfild-ppf-systematic-review/scripts/enrich_pubmed.py
+
+      - name: Upload reproducible enrichment outputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: pfild-pubmed-metadata-${{ github.run_id }}
+          path: projects/pfild-ppf-systematic-review/data/pubmed/
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Commit enriched metadata to the triggering branch
+        run: |
+          if git diff --quiet -- projects/pfild-ppf-systematic-review/data/pubmed; then
+            echo 'No metadata changes to commit.'
+            exit 0
+          fi
+          git config user.name 'pfild-review-bot'
+          git config user.email 'pfild-review-bot@users.noreply.github.com'
+          git add projects/pfild-ppf-systematic-review/data/pubmed
+          git commit -m 'data: enrich 1004 PubMed records from NCBI'
+          git push origin HEAD:${{ github.ref_name }}
