@@ -9,6 +9,7 @@ on:
       - projects/pfild-ppf-systematic-review/scripts/correct_seed_metadata.py
       - projects/pfild-ppf-systematic-review/scripts/validate_pubmed_v2.py
       - projects/pfild-ppf-systematic-review/scripts/audit_pubmed_precision.py
+      - projects/pfild-ppf-systematic-review/scripts/dual_internal_search_review.py
       - projects/pfild-ppf-systematic-review/search/pubmed_v2_candidate.txt
       - projects/pfild-ppf-systematic-review/data/project_state.json
       - projects/pfild-ppf-systematic-review/data/seeds/**
@@ -20,6 +21,7 @@ on:
       - projects/pfild-ppf-systematic-review/scripts/correct_seed_metadata.py
       - projects/pfild-ppf-systematic-review/scripts/validate_pubmed_v2.py
       - projects/pfild-ppf-systematic-review/scripts/audit_pubmed_precision.py
+      - projects/pfild-ppf-systematic-review/scripts/dual_internal_search_review.py
       - projects/pfild-ppf-systematic-review/search/pubmed_v2_candidate.txt
       - projects/pfild-ppf-systematic-review/data/project_state.json
       - projects/pfild-ppf-systematic-review/data/seeds/**
@@ -75,6 +77,9 @@ jobs:
           NCBI_EMAIL: ${{ secrets.NCBI_EMAIL }}
         run: python projects/pfild-ppf-systematic-review/scripts/audit_pubmed_precision.py
 
+      - name: Run sensitivity-first and adversarial internal reviews
+        run: python projects/pfild-ppf-systematic-review/scripts/dual_internal_search_review.py
+
       - name: Upload reproducible validation outputs
         uses: actions/upload-artifact@v4
         with:
@@ -97,7 +102,7 @@ jobs:
           git add projects/pfild-ppf-systematic-review/data/seeds
           git add projects/pfild-ppf-systematic-review/data/metadata_corrections.csv
           git add projects/pfild-ppf-systematic-review/data/pubmed_v2_validation
-          git commit -m 'data: audit PubMed v2.1 precision and v1-only safety set'
+          git commit -m 'data: add dual internal review of PubMed search precision'
           git fetch origin ${{ steps.target.outputs.branch }}
           git rebase origin/${{ steps.target.outputs.branch }}
           git push origin HEAD:${{ steps.target.outputs.branch }}
