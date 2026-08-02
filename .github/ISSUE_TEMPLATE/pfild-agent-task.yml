@@ -1,0 +1,62 @@
+name: PF-ILD agent task
+description: Create an auditable task for a PF-ILD/PPF GitHub Copilot custom agent.
+title: "[PF-ILD Agent] "
+labels: []
+body:
+  - type: dropdown
+    id: agent
+    attributes:
+      label: Requested agent
+      description: Select the specialist that should handle this issue.
+      options:
+        - PF-ILD Review Orchestrator
+        - PF-ILD Search Librarian
+        - PF-ILD Deduplication and Family Linker
+        - PF-ILD High-Recall Screener
+        - PF-ILD Metadata and Vancouver Curator
+        - PF-ILD Lawful Full-Text Retriever
+        - PF-ILD Methodology and PRISMA Auditor
+    validations:
+      required: true
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective
+      description: State the exact evidence-review task and the intended output.
+      placeholder: Describe the source, batch, records, family, or methodological question.
+    validations:
+      required: true
+  - type: textarea
+    id: inputs
+    attributes:
+      label: Inputs and source provenance
+      description: List files, record IDs, queries, exports, URLs, dates, and counts that the agent may use.
+    validations:
+      required: true
+  - type: textarea
+    id: constraints
+    attributes:
+      label: Constraints
+      description: Record limits such as no PRISMA count change, no final eligibility decision, or no raw-data overwrite.
+      value: |
+        - Preserve original source values and provenance.
+        - Do not make final human eligibility or deduplication decisions.
+        - Do not change PRISMA counts unless explicitly authorized by traceable evidence.
+        - Do not modify unrelated repository areas.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Define the auditable outputs required for completion.
+      placeholder: Include files changed, evidence sources, uncertainty, human decisions required, and validation checks.
+    validations:
+      required: true
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Human-review boundary
+      options:
+        - label: I understand that agent outputs are recommendations and require human confirmation where specified.
+          required: true
