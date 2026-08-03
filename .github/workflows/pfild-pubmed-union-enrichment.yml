@@ -1,0 +1,59 @@
+name: PF-ILD PubMed union enrichment and boundary dedup
+
+on:
+  pull_request:
+    branches: [mainn]
+    paths:
+      - "projects/pfild-ppf-systematic-review/scripts/enrich_pubmed_union.py"
+      - ".github/workflows/pfild-pubmed-union-enrichment.yml"
+      - "projects/pfild-ppf-systematic-review/data/pubmed_v2_validation/pubmed_candidate_union_pmids.csv"
+      - "projects/pfild-ppf-systematic-review/data/g2_open_sources/europe_pmc_records.csv"
+      - "projects/pfild-ppf-systematic-review/data/g2_open_sources/clinicaltrials_gov_records.csv"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  enrich:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      NCBI_EMAIL: joaorenno96@gmail.com
+      PUBMED_UNION_BATCH_SIZE: "100"
+      PFILD_OUTPUT_DIR: projects/pfild-ppf-systematic-review/artifacts/pubmed_union_enrichment
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Enrich all candidate PMIDs and recover linked NCTs
+        run: python projects/pfild-ppf-systematic-review/scripts/enrich_pubmed_union.py
+
+      - name: Verify invariant counts
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path("projects/pfild-ppf-systematic-review/artifacts/pubmed_union_enrichment/pubmed_union_enrichment_boundary_summary.json")
+          data = json.loads(path.read_text(encoding="utf-8"))
+          assert data["input_candidate_pmids"] == 2767, data
+          assert data["metadata_rows"] == 2767, data
+          assert data["unique_pmids"] == 2767, data
+          assert data["prisma_decisions_created"] == 0, data
+          assert data["human_eligibility_decisions_created"] == 0, data
+          print(json.dumps(data, indent=2))
+          PY
+
+      - name: Upload reproducible enrichment artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pfild-pubmed-union-enrichment-boundary-dedup
+          path: projects/pfild-ppf-systematic-review/artifacts/pubmed_union_enrichment/
+          if-no-files-found: error
+          retention-days: 90
