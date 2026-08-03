@@ -1,0 +1,51 @@
+{
+  "version": "1.0",
+  "generated": "2026-08-03",
+  "total_records": 120,
+  "source_counts": {
+    "PubMed": 90,
+    "ClinicalTrials.gov": 10,
+    "Citation candidate": 10,
+    "Europe PMC": 10
+  },
+  "stratum_counts": {
+    "PUB-CANON-PFILD": 10,
+    "PUB-CANON-PPF": 10,
+    "PUB-HISTORICAL-EQUIVALENT": 10,
+    "PUB-IPF-ONLY-SUSPECTED": 10,
+    "PUB-NO-ABSTRACT": 10,
+    "PUB-BROAD-LOW-PRIORITY": 10,
+    "PUB-ETIOLOGIC-PROGRESSION": 10,
+    "PUB-REVIEW-GUIDELINE-OPINION": 10,
+    "PUB-TRIAL-INTERVENTION": 10,
+    "EPMC-PPR": 5,
+    "EPMC-ETH": 2,
+    "EPMC-AGR": 1,
+    "EPMC-PMC": 2,
+    "CT-DIRECT": 7,
+    "CT-BROAD-CONTROL": 3,
+    "CIT-DIRECT-OUTSIDE-UNION": 2,
+    "CIT-PROGRESSION-NETWORK": 8
+  },
+  "eligibility_decisions_created": 0,
+  "gold_standard_answers_created": 0,
+  "sampling_key_must_not_be_shown_to_screeners": true,
+  "manifest": [
+    {
+      "file": "pilot_reviewer_A_blinded.csv",
+      "bytes": 181281,
+      "sha256": "190ae363fc4a769b043065dc91ef0cda808c995351509cd1c2830ad2f34f426e"
+    },
+    {
+      "file": "pilot_reviewer_B_blinded.csv",
+      "bytes": 181281,
+      "sha256": "190ae363fc4a769b043065dc91ef0cda808c995351509cd1c2830ad2f34f426e"
+    },
+    {
+      "file": "pilot_sampling_key_restricted.csv",
+      "bytes": 39494,
+      "sha256": "9745e18f897d59c1199267e57692cf8158c34de05e86d19c76952f49849439aa"
+    }
+  ],
+  "local_package": "PFILD_PPF_piloto_triagem_v1.zip"
+}

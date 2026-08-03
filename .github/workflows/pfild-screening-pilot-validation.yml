@@ -1,0 +1,40 @@
+name: PF-ILD screening pilot validation
+
+on:
+  pull_request:
+    branches: [mainn]
+    paths:
+      - "projects/pfild-ppf-systematic-review/scripts/build_screening_pilot.py"
+      - "projects/pfild-ppf-systematic-review/data/g4_screening_pilot/**"
+      - ".github/workflows/pfild-screening-pilot-validation.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile deterministic pilot builder
+        run: python -m py_compile projects/pfild-ppf-systematic-review/scripts/build_screening_pilot.py
+      - name: Validate frozen pilot manifest
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("projects/pfild-ppf-systematic-review/data/g4_screening_pilot/pilot_summary.json")
+          d=json.loads(p.read_text(encoding="utf-8"))
+          assert d["total_records"] == 120, d
+          assert sum(d["source_counts"].values()) == 120, d
+          assert d["eligibility_decisions_created"] == 0, d
+          assert d["gold_standard_answers_created"] == 0, d
+          assert d["sampling_key_must_not_be_shown_to_screeners"] is True, d
+          assert len(d["manifest"]) == 3, d
+          print(json.dumps(d, ensure_ascii=False, indent=2))
+          PY
