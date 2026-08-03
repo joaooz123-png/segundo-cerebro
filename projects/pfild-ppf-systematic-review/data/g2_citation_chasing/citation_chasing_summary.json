@@ -1,0 +1,45 @@
+{
+  "generated_at_utc": "2026-08-03T05:13:56.713016+00:00",
+  "status": "valid corrected bidirectional run",
+  "sentinels_processed": 62,
+  "endpoint_requests": 127,
+  "edge_count": 9712,
+  "direction_counts": {
+    "backward": 2634,
+    "forward": 7078
+  },
+  "unique_candidate_records": 5184,
+  "unique_candidates_in_pubmed_union": 918,
+  "unique_candidates_outside_pubmed_union": 4266,
+  "unique_direction_counts": {
+    "forward_only": 3774,
+    "backward_only": 1193,
+    "both_directions": 217
+  },
+  "candidate_source_counts": {
+    "MED": 5064,
+    "PPR": 118,
+    "unresolved": 2
+  },
+  "outside_union_priority_counts": {
+    "P1_direct_terminology": 2,
+    "P2_progression_ILD_title": 106,
+    "P3_high_network_support": 163,
+    "P4_multiple_sentinel_links": 914,
+    "P5_single_link_broad_recall": 3081
+  },
+  "failures": 0,
+  "human_eligibility_decisions_created": 0,
+  "prisma_counts_changed": 0,
+  "github_actions": {
+    "run_id": 30786461287,
+    "artifact_id": 8845434002,
+    "artifact_name": "pfild-sentinel-citation-chasing",
+    "artifact_sha256": "da467d16e863b0ec8d2a79ffc099ed4558e8c9dee5fb1e0f8f04f7a05a1badb0"
+  },
+  "invalidated_prior_run": {
+    "run_id": 30786253606,
+    "reason": "parser returned an empty referenceList before checking citationList, artificially setting forward citations to zero",
+    "disposition": "preserved for audit but prohibited from use"
+  }
+}
