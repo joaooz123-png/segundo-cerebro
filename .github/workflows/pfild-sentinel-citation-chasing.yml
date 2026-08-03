@@ -5,6 +5,7 @@ on:
     branches: [mainn]
     paths:
       - "projects/pfild-ppf-systematic-review/scripts/collect_sentinel_citations.py"
+      - "projects/pfild-ppf-systematic-review/scripts/collect_sentinel_citations_v2.py"
       - ".github/workflows/pfild-sentinel-citation-chasing.yml"
       - "projects/pfild-ppf-systematic-review/data/pubmed_v2_validation/pubmed_v2_sentinel_validation.csv"
   workflow_dispatch:
@@ -22,8 +23,8 @@ jobs:
         with:
           python-version: "3.12"
       - name: Collect backward and forward citations
-        run: python projects/pfild-ppf-systematic-review/scripts/collect_sentinel_citations.py
-      - name: Verify safeguards and complete endpoint coverage
+        run: python projects/pfild-ppf-systematic-review/scripts/collect_sentinel_citations_v2.py
+      - name: Verify safeguards and bidirectional coverage
         run: |
           python - <<'PY'
           import json
@@ -32,6 +33,8 @@ jobs:
           d=json.loads(p.read_text())
           assert d["sentinels_processed"] == 62, d
           assert d["failures"] == 0, d
+          assert d["direction_counts"].get("backward", 0) > 0, d
+          assert d["direction_counts"].get("forward", 0) > 0, d
           assert d["human_eligibility_decisions_created"] == 0, d
           assert d["prisma_counts_changed"] == 0, d
           print(json.dumps(d, indent=2))
