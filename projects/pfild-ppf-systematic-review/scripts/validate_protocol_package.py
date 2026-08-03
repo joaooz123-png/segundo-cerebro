@@ -94,8 +94,14 @@ def main() -> None:
         if re.search(pattern, combined, re.I):
             failures.append(f"prohibited or misleading claim detected: {pattern}")
 
-    if "search development preceded registration" not in texts.get("registration", "").lower():
-        warnings.append("OSF package should explicitly state that search development preceded registration")
+    registration = texts.get("registration", "").lower()
+    timing_patterns = [
+        r"completed before registration.*search",
+        r"prospective for human selection and analysis but not for initial search development or retrieval",
+        r"search development.*preceded registration",
+    ]
+    if not any(re.search(pattern, registration, re.I | re.S) for pattern in timing_patterns):
+        failures.append("OSF package lacks an explicit disclosure that search development/retrieval preceded registration")
 
     if not re.search(r"AMD-\d{3}", texts.get("amendments", "")):
         failures.append("amendment log has no structured amendment identifiers")
