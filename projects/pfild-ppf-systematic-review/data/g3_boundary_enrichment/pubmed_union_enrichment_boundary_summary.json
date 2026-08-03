@@ -1,0 +1,54 @@
+{
+  "generated_at_utc": "2026-08-03T04:41:52.277149+00:00",
+  "input_candidate_pmids": 2767,
+  "metadata_rows": 2767,
+  "unique_pmids": 2767,
+  "pmid_order_sha256": "6fa34a916379c89a33b1dfcd84d1a5f0ac28f059f57a7c45a454fb928e389111",
+  "metadata_status_counts": {
+    "complete": 2761,
+    "summary_only": 6
+  },
+  "records_with_abstract": 2496,
+  "records_with_doi": 2614,
+  "records_with_pmcid": 1325,
+  "boundary_deduplication": {
+    "europe_pmc_records": 1125,
+    "exact_pmid_source_duplicates": 1072,
+    "europe_pmc_without_matching_pmid": 53,
+    "doi_group_rows": 2107,
+    "doi_collision_groups": 1,
+    "boundary_candidate_pairs": 42,
+    "boundary_class_counts": {
+      "exact_duplicate_candidate": 7,
+      "weak_similarity_context_only": 7,
+      "same_report_or_family_candidate": 3,
+      "preprint_published_family_candidate": 25
+    },
+    "non_pubmed_epmc_with_no_candidate_above_threshold": 17
+  },
+  "registry_recovery": {
+    "registry_mentions_total": 164,
+    "registry_type_counts": {
+      "NCT": 136,
+      "jRCT": 5,
+      "UMIN": 9,
+      "DRKS": 5,
+      "ISRCTN": 2,
+      "ChiCTR": 2,
+      "EudraCT": 5
+    },
+    "unique_nct_mentions": 68,
+    "ncts_already_in_current_set": 12,
+    "ncts_missing_from_current_set": 56,
+    "ncts_recovered": 56,
+    "nct_recovery_failures": 0
+  },
+  "prisma_decisions_created": 0,
+  "human_eligibility_decisions_created": 0,
+  "github_actions": {
+    "run_id": 30785059672,
+    "artifact_id": 8844988389,
+    "artifact_name": "pfild-pubmed-union-enrichment-boundary-dedup",
+    "artifact_sha256": "4c315e6f17f5cc099887fe0e43a91a24a2da8eba924a440e40b8cd94eea566f1"
+  }
+}
