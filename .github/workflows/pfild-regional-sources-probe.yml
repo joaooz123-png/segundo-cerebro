@@ -1,0 +1,49 @@
+name: PF-ILD regional sources export probe
+
+on:
+  pull_request:
+    branches: [mainn]
+    paths:
+      - "projects/pfild-ppf-systematic-review/scripts/probe_regional_sources.py"
+      - ".github/workflows/pfild-regional-sources-probe.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Probe official regional search and export interfaces
+        run: python projects/pfild-ppf-systematic-review/scripts/probe_regional_sources.py
+
+      - name: Verify no methodological decisions were generated
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          path = Path("projects/pfild-ppf-systematic-review/artifacts/regional_sources_probe/regional_sources_probe_summary.json")
+          data = json.loads(path.read_text(encoding="utf-8"))
+          assert data["eligibility_decisions_created"] == 0
+          assert data["prisma_counts_changed"] == 0
+          assert len(data["sources"]) == 3
+          print(json.dumps(data, ensure_ascii=False, indent=2))
+          PY
+
+      - name: Upload technical probe artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pfild-regional-sources-export-probe
+          path: projects/pfild-ppf-systematic-review/artifacts/regional_sources_probe/
+          if-no-files-found: error
+          retention-days: 90
