@@ -1,0 +1,41 @@
+name: PF-ILD SciELO ArticleMeta probe
+
+on:
+  pull_request:
+    branches: [mainn]
+    paths:
+      - "projects/pfild-ppf-systematic-review/scripts/probe_scielo_articlemeta.py"
+      - ".github/workflows/pfild-scielo-articlemeta-probe.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Probe SciELO ArticleMeta API
+        run: python projects/pfild-ppf-systematic-review/scripts/probe_scielo_articlemeta.py
+      - name: Verify safeguards
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          path = Path("projects/pfild-ppf-systematic-review/artifacts/scielo_articlemeta_probe/scielo_articlemeta_probe_summary.json")
+          data = json.loads(path.read_text(encoding="utf-8"))
+          assert data["eligibility_decisions_created"] == 0
+          assert data["prisma_counts_changed"] == 0
+          print(json.dumps(data, ensure_ascii=False, indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pfild-scielo-articlemeta-probe
+          path: projects/pfild-ppf-systematic-review/artifacts/scielo_articlemeta_probe/
+          if-no-files-found: error
+          retention-days: 90

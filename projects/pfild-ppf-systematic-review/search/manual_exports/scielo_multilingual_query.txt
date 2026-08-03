@@ -1,0 +1,19 @@
+subject:(
+  "progressive pulmonary fibrosis"
+  OR "progressive fibrosing interstitial lung disease"
+  OR "progressive-fibrosing interstitial lung disease"
+  OR "progressive fibrotic interstitial lung disease"
+  OR "progressive-fibrotic interstitial lung disease"
+  OR "progressive fibrosing interstitial lung diseases"
+  OR "progressive-fibrosing interstitial lung diseases"
+  OR "fibrose pulmonar progressiva"
+  OR "fibrose pulmonar fibrosante progressiva"
+  OR "doença pulmonar intersticial fibrosante progressiva"
+  OR "doenças pulmonares intersticiais fibrosantes progressivas"
+  OR "fibrosis pulmonar progresiva"
+  OR "fibrosis pulmonar fibrosante progresiva"
+  OR "enfermedad pulmonar intersticial fibrosante progresiva"
+  OR "enfermedades pulmonares intersticiales fibrosantes progresivas"
+  OR "PF-ILD"
+  OR PFILD
+)
