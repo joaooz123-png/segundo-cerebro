@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-08-06T11:58:17.563905",
+  "timestamp": "2026-08-06T14:08:05.105879",
   "timezone": "America/Sao_Paulo",
   "quotes": {
     "PETR4.SA": {
@@ -22,7 +22,7 @@
     },
     "^BVSP": {
       "name": "IBOVESPA",
-      "price": 177726.0,
+      "price": 177726.17,
       "prev_close": 177894.97,
       "change_pct": -0.09
     },
