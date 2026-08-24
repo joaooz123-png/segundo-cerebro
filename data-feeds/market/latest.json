@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-08-24T10:29:45.789855",
+  "timestamp": "2026-08-24T12:31:38.343354",
   "timezone": "America/Sao_Paulo",
   "quotes": {
     "PETR4.SA": {
@@ -30,13 +30,13 @@
       "name": "USD/BRL",
       "price": 5.14,
       "prev_close": 5.14,
-      "change_pct": 0.0
+      "change_pct": 0.11
     },
     "BTC-USD": {
       "name": "Bitcoin",
-      "price": 77823.28,
-      "prev_close": 77725.59,
-      "change_pct": 0.13
+      "price": 78559.04,
+      "prev_close": 77725.54,
+      "change_pct": 1.07
     }
   }
 }
