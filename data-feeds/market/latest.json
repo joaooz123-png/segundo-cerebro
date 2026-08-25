@@ -1,42 +1,42 @@
 {
-  "timestamp": "2026-08-25T14:36:04.668490",
+  "timestamp": "2026-08-25T16:26:36.138175",
   "timezone": "America/Sao_Paulo",
   "quotes": {
     "PETR4.SA": {
       "name": "Petrobras",
-      "price": 41.44,
+      "price": 41.14,
       "prev_close": 41.98,
-      "change_pct": -1.29
+      "change_pct": -2.0
     },
     "VALE3.SA": {
       "name": "Vale",
-      "price": 77.21,
+      "price": 78.0,
       "prev_close": 77.4,
-      "change_pct": -0.25
+      "change_pct": 0.78
     },
     "ITUB4.SA": {
       "name": "Itau",
-      "price": 38.78,
+      "price": 39.07,
       "prev_close": 38.76,
-      "change_pct": 0.05
+      "change_pct": 0.8
     },
     "^BVSP": {
       "name": "IBOVESPA",
-      "price": 171795.59,
+      "price": 173092.02,
       "prev_close": 172055.52,
-      "change_pct": -0.15
+      "change_pct": 0.6
     },
     "USDBRL=X": {
       "name": "USD/BRL",
       "price": 5.15,
       "prev_close": 5.16,
-      "change_pct": -0.2
+      "change_pct": -0.17
     },
     "BTC-USD": {
       "name": "Bitcoin",
-      "price": 79200.57,
+      "price": 79074.14,
       "prev_close": 78987.43,
-      "change_pct": 0.27
+      "change_pct": 0.11
     }
   }
 }
