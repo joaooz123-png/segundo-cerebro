@@ -1,0 +1,35 @@
+name: PF-ILD regional source probe
+
+on:
+  pull_request:
+    branches: [mainn]
+    paths:
+      - "projects/pfild-ppf-systematic-review/scripts/probe_regional_search.py"
+      - ".github/workflows/pfild-regional-search-probe.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      PFILD_REGIONAL_PROBE_DIR: projects/pfild-ppf-systematic-review/artifacts/regional_probe
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Probe BVS and SciELO endpoints
+        run: python projects/pfild-ppf-systematic-review/scripts/probe_regional_search.py
+      - name: Upload probe artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pfild-regional-source-probe
+          path: projects/pfild-ppf-systematic-review/artifacts/regional_probe/
+          if-no-files-found: error
+          retention-days: 30
