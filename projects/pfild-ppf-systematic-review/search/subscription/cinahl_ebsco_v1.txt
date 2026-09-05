@@ -1,0 +1,65 @@
+# CINAHL on EBSCOhost translation v1 — PRESS/platform validation required
+# No language, date, publication-type, age, human, or evidence-based-practice limiters.
+# Verify exact CINAHL Headings in the institutional interface before freezing.
+
+S1 TI (
+  "progressive fibrosing interstitial lung disease" OR
+  "progressive fibrosing interstitial lung diseases" OR
+  "progressive-fibrosing interstitial lung disease" OR
+  "progressive-fibrosing interstitial lung diseases" OR
+  "progressive fibrotic interstitial lung disease" OR
+  "progressive fibrotic interstitial lung diseases" OR
+  "progressive fibrosing ILD" OR
+  "progressive fibrotic ILD" OR
+  "progressive fibrosing phenotype" OR
+  "progressive fibrotic phenotype" OR
+  "progressive fibrosis phenotype" OR
+  "PF-ILD" OR PFILD
+)
+OR AB (
+  "progressive fibrosing interstitial lung disease" OR
+  "progressive fibrosing interstitial lung diseases" OR
+  "progressive-fibrosing interstitial lung disease" OR
+  "progressive-fibrosing interstitial lung diseases" OR
+  "progressive fibrotic interstitial lung disease" OR
+  "progressive fibrotic interstitial lung diseases" OR
+  "progressive fibrosing ILD" OR
+  "progressive fibrotic ILD" OR
+  "progressive fibrosing phenotype" OR
+  "progressive fibrotic phenotype" OR
+  "progressive fibrosis phenotype" OR
+  "PF-ILD" OR PFILD
+)
+
+S2 TI "progressive pulmonary fibrosis"
+
+S3 (TI "progressive pulmonary fibrosis" OR AB "progressive pulmonary fibrosis")
+AND
+(
+  TI ("interstitial lung disease" OR "interstitial lung diseases" OR ILD OR "non-IPF" OR "non IPF" OR fibrosing OR fibrotic)
+  OR
+  AB ("interstitial lung disease" OR "interstitial lung diseases" OR ILD OR "non-IPF" OR "non IPF" OR fibrosing OR fibrotic)
+)
+
+S4 (
+  TI ("fibrosing interstitial lung disease" OR "fibrosing interstitial lung diseases" OR "fibrotic interstitial lung disease" OR "fibrotic interstitial lung diseases" OR "chronic fibrosing interstitial lung disease" OR "chronic fibrosing interstitial lung diseases")
+  OR
+  AB ("fibrosing interstitial lung disease" OR "fibrosing interstitial lung diseases" OR "fibrotic interstitial lung disease" OR "fibrotic interstitial lung diseases" OR "chronic fibrosing interstitial lung disease" OR "chronic fibrosing interstitial lung diseases")
+)
+AND
+(
+  TI (progression OR progressive OR progressing OR progressed OR "disease progression")
+  OR
+  AB (progression OR progressive OR progressing OR progressed OR "disease progression")
+)
+
+# Controlled-heading block — verify preferred heading names and explosion behavior in CINAHL Headings:
+S5 (MH "Lung Diseases, Interstitial+") AND (MH "Pulmonary Fibrosis+") AND (MH "Disease Progression+")
+
+S6 S1 OR S2 OR S3 OR S4 OR S5
+
+# Platform checks:
+# - Confirm TI and AB field codes in the active EBSCO interface/profile.
+# - Confirm the three MH headings exist as written; replace only with the platform's preferred CINAHL headings and log the change.
+# - Do not activate limiters.
+# - Preserve search history, exact count, database name/version, date, and raw export.

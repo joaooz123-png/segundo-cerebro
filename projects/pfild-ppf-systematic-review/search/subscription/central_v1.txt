@@ -1,0 +1,51 @@
+# Cochrane CENTRAL translation v1 — PRESS/platform validation required
+# No date, language, publication-status, or study-design limits beyond the database being CENTRAL itself.
+
+#1 (
+  "progressive fibrosing interstitial lung disease" OR
+  "progressive fibrosing interstitial lung diseases" OR
+  "progressive-fibrosing interstitial lung disease" OR
+  "progressive-fibrosing interstitial lung diseases" OR
+  "progressive fibrotic interstitial lung disease" OR
+  "progressive fibrotic interstitial lung diseases" OR
+  "progressive fibrosing ILD" OR
+  "progressive fibrotic ILD" OR
+  "progressive fibrosing phenotype" OR
+  "progressive fibrotic phenotype" OR
+  "progressive fibrosis phenotype" OR
+  "PF-ILD" OR PFILD
+):ti,ab,kw
+
+#2 "progressive pulmonary fibrosis":ti
+
+#3 "progressive pulmonary fibrosis":ti,ab,kw
+AND
+(
+  "interstitial lung disease" OR "interstitial lung diseases" OR ILD OR
+  "non-IPF" OR "non IPF" OR fibrosing OR fibrotic
+):ti,ab,kw
+
+#4 (
+  "fibrosing interstitial lung disease" OR
+  "fibrosing interstitial lung diseases" OR
+  "fibrotic interstitial lung disease" OR
+  "fibrotic interstitial lung diseases" OR
+  "chronic fibrosing interstitial lung disease" OR
+  "chronic fibrosing interstitial lung diseases"
+):ti,ab,kw
+
+#5 (progression OR progressive OR progressing OR progressed OR "disease progression"):ti,ab,kw
+
+#6 #4 AND #5
+
+#7 MeSH descriptor: [Lung Diseases, Interstitial] explode all trees
+#8 MeSH descriptor: [Pulmonary Fibrosis] explode all trees
+#9 MeSH descriptor: [Disease Progression] explode all trees
+#10 #7 AND #8 AND #9
+
+#11 #1 OR #2 OR #3 OR #6 OR #10
+
+# Platform checks:
+# - Execute in Cochrane Library Advanced Search > Search Manager and select CENTRAL as the target database/output.
+# - Confirm MeSH descriptors map as written.
+# - Preserve Search Manager history, exact CENTRAL count, date, and export.
