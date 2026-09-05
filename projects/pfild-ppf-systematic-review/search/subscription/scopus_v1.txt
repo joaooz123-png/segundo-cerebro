@@ -1,0 +1,47 @@
+# Scopus advanced-search translation v1 — PRESS/platform validation required
+# No language, date, document-type, source-type, or study-design limits.
+# Uses TITLE-ABS-KEY and explicit title-only logic for uncontextualized PPF phrase.
+
+TITLE-ABS-KEY(
+  "progressive fibrosing interstitial lung disease" OR
+  "progressive fibrosing interstitial lung diseases" OR
+  "progressive-fibrosing interstitial lung disease" OR
+  "progressive-fibrosing interstitial lung diseases" OR
+  "progressive fibrotic interstitial lung disease" OR
+  "progressive fibrotic interstitial lung diseases" OR
+  "progressive fibrosing ILD" OR
+  "progressive fibrotic ILD" OR
+  "progressive fibrosing phenotype" OR
+  "progressive fibrotic phenotype" OR
+  "progressive fibrosis phenotype" OR
+  "PF-ILD" OR PFILD
+)
+OR TITLE("progressive pulmonary fibrosis")
+OR (
+  TITLE-ABS-KEY("progressive pulmonary fibrosis") AND
+  TITLE-ABS-KEY(
+    "interstitial lung disease" OR "interstitial lung diseases" OR ILD OR
+    "non-IPF" OR "non IPF" OR fibrosing OR fibrotic
+  )
+)
+OR (
+  TITLE-ABS-KEY(
+    "fibrosing interstitial lung disease" OR
+    "fibrosing interstitial lung diseases" OR
+    "fibrotic interstitial lung disease" OR
+    "fibrotic interstitial lung diseases" OR
+    "chronic fibrosing interstitial lung disease" OR
+    "chronic fibrosing interstitial lung diseases"
+  )
+  AND
+  TITLE-ABS-KEY(progression OR progressive OR progressing OR progressed OR "disease progression")
+)
+
+# Optional diagnostic sensitivity line — test but do not merge into the frozen search without PRESS review:
+# TITLE-ABS-KEY((fibros* W/3 "interstitial lung disease*") AND (progress* W/8 disease*))
+
+# Platform checks:
+# - Use straight ASCII quotation marks.
+# - Run line-by-line if the interface rejects the long expression.
+# - Scopus loose phrases in double quotes include spelling/plural variants; record the displayed parsed query.
+# - Preserve exact result count, date, platform, and raw export.
