@@ -1,0 +1,43 @@
+# Web of Science Core Collection advanced-search translation v1 — PRESS/platform validation required
+# No language, year, document-type, index, or study-design limits unless the institutional platform requires selecting Core Collection itself.
+# TS searches Title, Abstract, Author Keywords, and Keywords Plus; TI is title-only.
+
+TS=(
+  "progressive fibrosing interstitial lung disease" OR
+  "progressive fibrosing interstitial lung diseases" OR
+  "progressive-fibrosing interstitial lung disease" OR
+  "progressive-fibrosing interstitial lung diseases" OR
+  "progressive fibrotic interstitial lung disease" OR
+  "progressive fibrotic interstitial lung diseases" OR
+  "progressive fibrosing ILD" OR
+  "progressive fibrotic ILD" OR
+  "progressive fibrosing phenotype" OR
+  "progressive fibrotic phenotype" OR
+  "progressive fibrosis phenotype" OR
+  "PF-ILD" OR PFILD
+)
+OR TI=("progressive pulmonary fibrosis")
+OR (
+  TS=("progressive pulmonary fibrosis") AND
+  TS=("interstitial lung disease" OR "interstitial lung diseases" OR ILD OR "non-IPF" OR "non IPF" OR fibrosing OR fibrotic)
+)
+OR (
+  TS=(
+    "fibrosing interstitial lung disease" OR
+    "fibrosing interstitial lung diseases" OR
+    "fibrotic interstitial lung disease" OR
+    "fibrotic interstitial lung diseases" OR
+    "chronic fibrosing interstitial lung disease" OR
+    "chronic fibrosing interstitial lung diseases"
+  )
+  AND
+  TS=(progression OR progressive OR progressing OR progressed OR "disease progression")
+)
+
+# Optional sensitivity test, not part of the frozen search until PRESS approval:
+# TS=((fibros* NEAR/3 "interstitial lung disease*") AND (progress* NEAR/8 disease*))
+
+# Platform checks:
+# - Record the exact database/index collection and timespan setting; set timespan to all years available.
+# - Confirm TS parsed as Topic and TI as Title.
+# - Preserve exact hit count, search history/export date, and raw export.
