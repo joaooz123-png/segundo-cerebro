@@ -1,0 +1,47 @@
+# ProQuest Dissertations & Theses Global translation v1
+# Platform: ProQuest
+# Status: prepared, not executed. Institutional access required.
+# No language, date, degree, institution, full-text-availability, or publication-status limiter.
+# NOFT = Anywhere except full text. TITLE is used for uncontextualized PPF phrase protection.
+
+NOFT(
+  "progressive fibrosing interstitial lung disease" OR
+  "progressive fibrosing interstitial lung diseases" OR
+  "progressive-fibrosing interstitial lung disease" OR
+  "progressive-fibrosing interstitial lung diseases" OR
+  "progressive fibrotic interstitial lung disease" OR
+  "progressive fibrotic interstitial lung diseases" OR
+  "progressive fibrosing ILD" OR
+  "progressive fibrotic ILD" OR
+  "progressive fibrosing phenotype" OR
+  "progressive fibrotic phenotype" OR
+  "progressive fibrosis phenotype" OR
+  "PF-ILD" OR PFILD
+)
+OR TITLE("progressive pulmonary fibrosis")
+OR (
+  NOFT("progressive pulmonary fibrosis")
+  AND NOFT(
+    "interstitial lung disease" OR "interstitial lung diseases" OR ILD OR
+    "non-IPF" OR "non IPF" OR fibrosing OR fibrotic
+  )
+)
+OR (
+  NOFT(
+    "fibrosing interstitial lung disease" OR
+    "fibrosing interstitial lung diseases" OR
+    "fibrotic interstitial lung disease" OR
+    "fibrotic interstitial lung diseases" OR
+    "chronic fibrosing interstitial lung disease" OR
+    "chronic fibrosing interstitial lung diseases"
+  )
+  AND NOFT(progression OR progressive OR progressing OR progressed OR "disease progression")
+)
+
+# Platform validation before freezing:
+# 1. Confirm search is run only in ProQuest Dissertations & Theses Global.
+# 2. Confirm NOFT and TITLE field parsing in Search History / Command Line.
+# 3. Do not enable Full text, Doctoral dissertations only, Language, Date, or Subject limiters.
+# 4. Record displayed total, exact parsed query, date/time/timezone and database/platform.
+# 5. Export every record in RIS plus CSV/Excel if available; preserve raw files and SHA-256.
+# 6. If export limits require partitioning, partition deterministically by year and document every partition.
