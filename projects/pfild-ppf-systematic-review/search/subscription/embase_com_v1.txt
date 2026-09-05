@@ -1,0 +1,58 @@
+# Embase.com translation v1 — PRESS/platform validation required before formal execution
+# No language, date, human, publication-type, conference, or study-design filters.
+# Field syntax verified against current Embase.com guidance: :ti, :ab, :kw; /exp for Emtree explosion.
+
+#1 (
+  'progressive fibrosing interstitial lung disease':ti,ab,kw OR
+  'progressive fibrosing interstitial lung diseases':ti,ab,kw OR
+  'progressive-fibrosing interstitial lung disease':ti,ab,kw OR
+  'progressive-fibrosing interstitial lung diseases':ti,ab,kw OR
+  'progressive fibrotic interstitial lung disease':ti,ab,kw OR
+  'progressive fibrotic interstitial lung diseases':ti,ab,kw OR
+  'progressive fibrosing ild':ti,ab,kw OR
+  'progressive fibrotic ild':ti,ab,kw OR
+  'progressive fibrosing phenotype':ti,ab,kw OR
+  'progressive fibrotic phenotype':ti,ab,kw OR
+  'progressive fibrosis phenotype':ti,ab,kw OR
+  'pf-ild':ti,ab,kw OR
+  pfild:ti,ab,kw OR
+  'progressive pulmonary fibrosis':ti OR
+  (
+    'progressive pulmonary fibrosis':ti,ab,kw AND
+    (
+      'interstitial lung disease':ti,ab,kw OR
+      'interstitial lung diseases':ti,ab,kw OR
+      ild:ti,ab,kw OR
+      'non-ipf':ti,ab,kw OR
+      'non ipf':ti,ab,kw OR
+      fibrosing:ti,ab,kw OR
+      fibrotic:ti,ab,kw
+    )
+  )
+)
+
+#2 (
+  (
+    'fibrosing interstitial lung disease':ti,ab,kw OR
+    'fibrosing interstitial lung diseases':ti,ab,kw OR
+    'fibrotic interstitial lung disease':ti,ab,kw OR
+    'fibrotic interstitial lung diseases':ti,ab,kw OR
+    'chronic fibrosing interstitial lung disease':ti,ab,kw OR
+    'chronic fibrosing interstitial lung diseases':ti,ab,kw
+  )
+  AND
+  (
+    progression:ti,ab,kw OR progressive:ti,ab,kw OR progressing:ti,ab,kw OR progressed:ti,ab,kw OR
+    'disease progression':ti,ab,kw
+  )
+)
+
+#3 ('interstitial lung disease'/exp AND 'lung fibrosis'/exp AND 'disease progression'/exp)
+
+#4 #1 OR #2 OR #3
+
+# Required platform checks before freezing:
+# - Confirm Emtree preferred terms/mapping for interstitial lung disease, lung fibrosis, and disease progression.
+# - Inspect Display full query for unintended broad mapping.
+# - Validate applicable sentinels indexed in Embase.
+# - Preserve search history, exact count, platform date, and raw export.
