@@ -5,6 +5,7 @@ on:
     branches: [mainn]
     paths:
       - "projects/pfild-ppf-systematic-review/scripts/collect_regional_open_sources.py"
+      - "projects/pfild-ppf-systematic-review/scripts/collect_regional_open_sources_v2.py"
       - ".github/workflows/pfild-regional-open-sources.yml"
       - ".github/agents/pfild-regional-source-auditor.agent.md"
   workflow_dispatch:
@@ -20,7 +21,7 @@ jobs:
     env:
       PFILD_REGIONAL_OUTPUT_DIR: projects/pfild-ppf-systematic-review/artifacts/regional_open_sources
       PUBMED_UNION_METADATA_PATH: /tmp/pubmed_artifact/pubmed_union_metadata.csv
-      REGIONAL_REQUEST_DELAY: "0.65"
+      REGIONAL_REQUEST_DELAY: "0.75"
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -47,10 +48,10 @@ jobs:
           unzip -q /tmp/pubmed_artifact.zip -d /tmp/pubmed_artifact
           test -s /tmp/pubmed_artifact/pubmed_union_metadata.csv
 
-      - name: Run LILACS/BVS and SciELO searches
-        run: python projects/pfild-ppf-systematic-review/scripts/collect_regional_open_sources.py
+      - name: Run resilient LILACS/BVS and SciELO searches
+        run: python projects/pfild-ppf-systematic-review/scripts/collect_regional_open_sources_v2.py
 
-      - name: Verify governance invariants
+      - name: Verify governance and provenance invariants
         run: |
           python - <<'PY'
           import json
@@ -60,6 +61,7 @@ jobs:
           data = json.loads(p.read_text(encoding="utf-8"))
           assert data["human_eligibility_decisions_created"] == 0, data
           assert data["prisma_decisions_created"] == 0, data
+          assert "status" in data["lilacs"] and "status" in data["scielo"], data
           assert data["lilacs"]["unique_records"] >= 0, data
           assert data["scielo"]["unique_records"] >= 0, data
           print(json.dumps(data, indent=2, ensure_ascii=False))
