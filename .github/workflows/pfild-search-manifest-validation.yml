@@ -1,0 +1,35 @@
+name: PF-ILD search execution manifest validation
+
+on:
+  pull_request:
+    branches: [mainn]
+    paths:
+      - "projects/pfild-ppf-systematic-review/search/SEARCH_EXECUTION_MANIFEST.csv"
+      - "projects/pfild-ppf-systematic-review/scripts/validate_search_execution_manifest.py"
+      - "projects/pfild-ppf-systematic-review/methods/PRESS_EXTERNAL_REVIEW_PACKAGE_V2.md"
+      - "projects/pfild-ppf-systematic-review/STATUS.md"
+      - ".github/workflows/pfild-search-manifest-validation.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-manifest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate execution-status governance
+        run: python projects/pfild-ppf-systematic-review/scripts/validate_search_execution_manifest.py
+      - name: Upload validation report
+        uses: actions/upload-artifact@v4
+        with:
+          name: pfild-search-execution-manifest-validation
+          path: projects/pfild-ppf-systematic-review/artifacts/search_execution_manifest_validation.json
+          if-no-files-found: error
+          retention-days: 90
