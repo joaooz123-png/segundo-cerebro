@@ -1,0 +1,63 @@
+name: PF-ILD regional open sources search
+
+on:
+  pull_request:
+    branches: [mainn]
+    paths:
+      - "projects/pfild-ppf-systematic-review/scripts/collect_regional_open_sources_v3.py"
+      - ".github/workflows/pfild-regional-open-sources.yml"
+      - ".github/agents/pfild-regional-source-auditor.agent.md"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  regional-search:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      PFILD_REGIONAL_OUTPUT_DIR: projects/pfild-ppf-systematic-review/artifacts/regional_open_sources
+      REGIONAL_REQUEST_DELAY: "0.75"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install parser dependencies
+        run: python -m pip install --disable-pip-version-check requests beautifulsoup4 lxml
+
+      - name: Run audited regional retrieval
+        run: python projects/pfild-ppf-systematic-review/scripts/collect_regional_open_sources_v3.py
+
+      - name: Verify governance and source-state invariants
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          p = Path("projects/pfild-ppf-systematic-review/artifacts/regional_open_sources/regional_open_sources_summary.json")
+          data = json.loads(p.read_text(encoding="utf-8"))
+          assert data["human_eligibility_decisions_created"] == 0, data
+          assert data["prisma_decisions_created"] == 0, data
+          assert data["pubmed_dedup_index_pmids"] == 2767, data
+          for source in ("lilacs", "scielo"):
+              assert "status" in data[source], data
+              assert "manual_export_required" in data[source], data
+              assert data[source]["unique_records"] >= 0, data
+          if not data["regional_automation_complete"]:
+              assert Path("projects/pfild-ppf-systematic-review/artifacts/regional_open_sources/REGIONAL_ASSISTED_EXPORT_REQUIRED.md").exists(), data
+          print(json.dumps(data, indent=2, ensure_ascii=False))
+          PY
+
+      - name: Upload regional search artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pfild-regional-open-sources
+          path: projects/pfild-ppf-systematic-review/artifacts/regional_open_sources/
+          if-no-files-found: error
+          retention-days: 90
