@@ -424,7 +424,7 @@ def load_pubmed_index() -> tuple[dict[str, set[str]], dict[str, set[str]], str, 
             doi_map[row["doi"]].add(row["pmid"])
         if row["normalized_title"] and row["pmid"]:
             title_map[row["normalized_title"]].add(row["pmid"])
-    return dict(doi_map), dict(title_map), source
+    return dict(doi_map), dict(title_map), source, len(rows)
 
 
 def match_pubmed(records: list[dict[str, Any]], doi_map: dict[str, set[str]], title_map: dict[str, set[str]]) -> None:
