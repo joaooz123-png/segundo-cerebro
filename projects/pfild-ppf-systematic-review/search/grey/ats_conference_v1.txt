@@ -39,3 +39,10 @@ AND
 Search ATS Journals and retain only records explicitly labelled as conference/meeting abstracts or carrying ATS meeting-abstract DOI/issue metadata. Do not restrict to a specific ATS assembly or ILD session. Preserve the exact query, execution date/time, displayed hit count, all exported records, and source-native evidence.
 
 Recent ATS meeting abstracts may use DOI forms such as 10.1164/ajrccm.<year>.<volume>.Abstracts.<abstract-id>; older records can use conference-specific DOI patterns. DOI shape is useful for provenance but must not be used as an eligibility rule.
+
+
+## Source-validation sentinels
+
+Validation file: `search/grey/GREY_SOURCE_SENTINELS_V1.csv`.
+
+The source-specific sentinels applicable to this platform should be recovered by the executed search. A miss does not authorize silent query editing: investigate platform indexing/syntax first, then record any retrieval-changing modification as a protocol/search amendment and execute a new immutable strategy version. Sentinel presence validates source execution sensitivity only and is not an eligibility decision.
