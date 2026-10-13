@@ -118,6 +118,53 @@ The following entries reconstruct major methodological decisions made before for
 - **Reason:** citation-network membership alone does not establish target relevance or uniqueness.
 - **Expected bias effect:** avoids inflated PRISMA identification counts and unreviewed additions.
 
+
+### AMD-012 — OpenAlex supplementary identification layer
+
+- **Date and timezone:** 2026-10-13 America/Sao_Paulo (formalization; source execution preceded formalization)
+- **Proposer:** review automation team
+- **Approving human(s):** pending named-author ratification
+- **Status:** IMPLEMENTED; awaits named-author ratification
+- **Review stage:** source identification; human screening not begun
+- **Original wording/method:** OpenAlex not specified as a formal supplementary discovery layer.
+- **Proposed wording/method:** preserve the 1,210 explicit-terminology OpenAlex candidates that remain after conservative existing-source matching as a supplementary identification layer; preserve the 4,713 broad-concept records as a sensitivity reservoir only.
+- **Reason and evidence:** OpenAlex recovered conference/dissertation/preprint material not well represented by PubMed, including 1,061 explicit candidates without PMID.
+- **Records or decisions already affected:** no eligibility decisions; no PRISMA counts changed automatically.
+- **Expected direction/magnitude of bias:** improves sensitivity for grey/non-PubMed material while avoiding uncontrolled inflation by keeping the broad concept reservoir outside PRISMA identification.
+- **Implementation commit/file:** search execution manifest; STATUS.md; OpenAlex workflow/artifact 11808957431.
+- **Effect on registration/reporting:** report OpenAlex as supplementary; explicitly distinguish explicit candidate set from sensitivity reservoir.
+
+### AMD-013 — Independent grey-source validation sentinels
+
+- **Date and timezone:** 2026-10-13 America/Sao_Paulo
+- **Proposer:** review automation team
+- **Approving human(s):** pending named-author ratification
+- **Status:** IMPLEMENTED; awaits named-author ratification
+- **Review stage:** source validation; human screening not begun
+- **Original wording/method:** ATS, ERS and BDTD strategies had no external-discovery sentinel set.
+- **Proposed wording/method:** use 41 source-execution validation sentinels (15 ATS, 20 ERS, 6 BDTD), without assigning eligibility.
+- **Reason and evidence:** source-specific searches require an independent sensitivity check before they can be considered complete.
+- **Records or decisions already affected:** none; sentinels are validation records only.
+- **Expected direction/magnitude of bias:** reduces false completeness claims and source-interface implementation error.
+- **Implementation commit/file:** search/grey/GREY_SOURCE_SENTINELS_V1.csv and methods/GREY_SOURCE_SENTINELS_V1.md.
+- **Effect on registration/reporting:** report sentinel validation as a search-quality control; any strategy change prompted by a miss requires a new amendment/version.
+
+### AMD-014 — PRISMA-S search reporting and update policy
+
+- **Date and timezone:** 2026-10-13 America/Sao_Paulo
+- **Proposer:** review automation team
+- **Approving human(s):** pending named-author ratification
+- **Status:** PROPOSED / operationally prepared before human screening
+- **Review stage:** search execution; human screening not begun
+- **Original wording/method:** targeted contacts, final search-refresh timing, search-filter declaration and prior-strategy reuse were not explicit enough for complete PRISMA-S reporting.
+- **Proposed wording/method:** adopt SEARCH_REPORTING_UPDATE_ADDENDUM_V1.md: targeted contact log, core-source refresh targeted within 3 months of manuscript submission, explicit declaration of no published methodological filters, and explicit declaration that no prior review strategy was substantively copied as the master search.
+- **Reason and evidence:** PRISMA-S operational audit identified these as reportability gaps before selection.
+- **Records or decisions already affected:** none.
+- **Expected direction/magnitude of bias:** improves transparency and currency; targeted contact policy may reduce missing-study/data bias.
+- **Implementation commit/file:** methods/PRISMA_S_AUDIT_V1.md and methods/SEARCH_REPORTING_UPDATE_ADDENDUM_V1.md.
+- **Effect on registration/reporting:** add to protocol/OSF amendment history after named-author ratification.
+
+
 ## Post-freeze amendment template
 
 Copy the following block for every proposed change.
