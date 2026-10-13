@@ -71,7 +71,7 @@ Core FDA and EMA documents relevant to PF-ILD/PPF treatment history have been ca
 
 ### Citation chasing
 
-Formal backward and forward citation chasing was executed for all 62 PubMed-applicable sentinel records through the Europe PMC REST API. Raw pages, checksums, edges, candidate records and overlap with the PubMed union are preserved.
+Formal backward and forward citation chasing was executed for all 62 PubMed-applicable sentinel records through the Europe PMC REST API. Raw pages, checksums, edges, candidate records and overlap with the PubMed union are preserved. The run produced **5,184 unique candidates**; after reconciliation against the refreshed 2,855-PMID union, **919** match the current PubMed set and **4,265** remain outside it.
 
 ### OpenAlex supplementary discovery
 
@@ -79,8 +79,9 @@ A reproducible OpenAlex Works search was executed as a supplementary sensitivity
 
 - 7,299 unique OpenAlex works;
 - 1,376 matched existing PubMed/Europe PMC records conservatively;
-- 1,210 explicit supplementary candidates after existing-source matching;
-- 1,061 of the explicit candidates have no PMID;
+- 1,210 explicit supplementary candidates after existing-source matching at the time of the OpenAlex run;
+- current 2026-10-13 reconciliation: **58** of those now match refreshed PubMed/Europe PMC identifiers, leaving **1,152** still unmatched to the current indexed core;
+- 1,061 of the original explicit candidates have no PMID;
 - explicit-candidate mix includes 543 articles, 428 conference abstracts, 42 conference papers, 27 dissertations, 22 preprints, 21 reviews and other report types;
 - 62 explicit candidates are grey-literature-like records;
 - a separate 4,713-record broad concept reservoir is preserved strictly for sensitivity auditing and is **not** treated as a PRISMA identification set.
@@ -108,6 +109,7 @@ A resilient collector revision now continues after isolated query failures rathe
 - **42** Europe PMC–PubMed boundary candidate pairs after the sequential refresh.
 - **25** of those are preprint → published-report family candidates.
 - The refreshed linkage layer contains **176 registry mentions**, including 72 unique NCTs; 59 publication-linked NCTs absent from the direct query set were recovered with 0 failures.
+- Registry-family map v2: **116 candidate families**, **236 explicit report–registry links**, **36** families with >=2 reports and **10** with >=5; INBUILD (NCT02999178) is largest with **17** linked reports.
 - DOI alone is prohibited as an automatic merge key because reuse/collision among distinct correspondence reports has been observed.
 - Preprint, protocol, article, letter, correction, registry entry and regulatory document remain distinct reports unless a human confirms the same source representation.
 
@@ -206,7 +208,7 @@ Internal adversarial agents and CI checks are quality controls only and are not 
 | G0 | Architecture/protocol | Advanced; protocol v2 frozen before human selection; external registration/human guarantor steps remain |
 | G1 | Search validity | Internally validated; independent PRESS review pending |
 | G2 | Source coverage | Advanced partial: PubMed updated to 2,855 candidate PMIDs; Europe PMC refreshed to 1,192 records; ClinicalTrials.gov refreshed to 152 direct NCTs; citation chasing, registry supplementation, regulatory sources and OpenAlex supplementary discovery executed; BDTD partially executed; LILACS/SciELO browser exports and subscription databases pending |
-| G3 | Record management | Advanced preparation: 1,129 exact Europe PMC/PubMed source-representation duplicates, 42 boundary pairs, 25 preprint→published candidates and refreshed registry linkage; human boundary confirmation pending |
+| G3 | Record management | Advanced preparation: 1,129 exact Europe PMC/PubMed source-representation duplicates, 42 boundary pairs, 25 preprint→published candidates, 116 registry-linked candidate families and 236 explicit report–registry links; human boundary/family confirmation pending |
 | G4 | Selection | Calibration pilot prepared; no human eligibility decisions yet |
 | G5 | Full text | Not started formally |
 | G6 | Extraction | Not started formally |
