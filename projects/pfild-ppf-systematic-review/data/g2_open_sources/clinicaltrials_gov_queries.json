@@ -12,9 +12,9 @@
     "\"progressive fibrosing interstitial lung disease\"": 25,
     "\"progressive-fibrosing interstitial lung disease\"": 25,
     "\"progressive fibrotic interstitial lung disease\"": 3,
-    "\"progressive pulmonary fibrosis\"": 51,
+    "\"progressive pulmonary fibrosis\"": 55,
     "\"progressive fibrotic phenotype\" AND \"interstitial lung disease\"": 2,
-    "PF-ILD": 97,
+    "PF-ILD": 102,
     "PFILD": 0
   }
 }
