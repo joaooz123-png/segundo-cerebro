@@ -1,18 +1,18 @@
 {
-  "generated_at_utc": "2026-08-02T22:27:00.688678+00:00",
+  "generated_at_utc": "2026-10-13T12:21:59.333777+00:00",
   "status": "machine pre-audit only; no eligibility or PRISMA decisions",
   "precision_sample": {
     "n": 100,
     "label_counts": {
-      "core_explicit": 33,
-      "likely_irrelevant_ipf_only": 35,
-      "likely_irrelevant_or_incidental": 20,
+      "likely_irrelevant_ipf_only": 34,
       "likely_irrelevant_other_fibrosis": 6,
-      "probable_relevant": 4,
-      "contextual_or_uncertain": 2
+      "likely_irrelevant_or_incidental": 16,
+      "core_explicit": 31,
+      "probable_relevant": 8,
+      "contextual_or_uncertain": 5
     },
-    "high_confidence_relevance_fraction": 0.37,
-    "upper_bound_including_uncertain": 0.39,
+    "high_confidence_relevance_fraction": 0.39,
+    "upper_bound_including_uncertain": 0.44,
     "sampling_seed": 20260802
   },
   "v1_only_safety_set": {

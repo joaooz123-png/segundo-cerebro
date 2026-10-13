@@ -40,11 +40,16 @@ jobs:
           import json
           from pathlib import Path
 
-          path = Path("projects/pfild-ppf-systematic-review/artifacts/pubmed_union_enrichment/pubmed_union_enrichment_boundary_summary.json")
-          data = json.loads(path.read_text(encoding="utf-8"))
-          assert data["input_candidate_pmids"] == 2767, data
-          assert data["metadata_rows"] == 2767, data
-          assert data["unique_pmids"] == 2767, data
+          import csv
+          summary_path = Path("projects/pfild-ppf-systematic-review/artifacts/pubmed_union_enrichment/pubmed_union_enrichment_boundary_summary.json")
+          pmid_path = Path("projects/pfild-ppf-systematic-review/data/pubmed_v2_validation/pubmed_candidate_union_pmids.csv")
+          data = json.loads(summary_path.read_text(encoding="utf-8"))
+          with pmid_path.open(encoding="utf-8-sig", newline="") as handle:
+              expected = len({row["pmid"].strip() for row in csv.DictReader(handle) if row.get("pmid", "").strip()})
+          assert expected > 0, expected
+          assert data["input_candidate_pmids"] == expected, (expected, data)
+          assert data["metadata_rows"] == expected, (expected, data)
+          assert data["unique_pmids"] == expected, (expected, data)
           assert data["prisma_decisions_created"] == 0, data
           assert data["human_eligibility_decisions_created"] == 0, data
           print(json.dumps(data, indent=2))

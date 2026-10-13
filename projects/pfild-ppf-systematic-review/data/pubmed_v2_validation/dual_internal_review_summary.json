@@ -1,24 +1,24 @@
 {
-  "generated_at_utc": "2026-08-02T22:27:00.845989+00:00",
+  "generated_at_utc": "2026-10-13T12:21:59.498606+00:00",
   "method": "Two deliberately different deterministic internal reviewers: sensitivity-first and specificity/adversarial. They are not independent human reviewers and do not alter PRISMA counts.",
   "datasets": {
     "precision_sample": {
       "dataset": "precision_sample",
       "n": 100,
       "reviewer_1_sensitivity_counts": {
-        "retain": 35,
-        "exclude_candidate": 36,
-        "adjudicate": 29
+        "exclude_candidate": 35,
+        "adjudicate": 26,
+        "retain": 39
       },
       "reviewer_2_adversarial_counts": {
-        "retain": 29,
-        "exclude_candidate": 68,
-        "adjudicate": 3
+        "exclude_candidate": 65,
+        "retain": 30,
+        "adjudicate": 5
       },
       "consensus_counts": {
-        "retain_for_human_screening": 29,
-        "candidate_human_exclusion": 36,
-        "internal_adjudication_required": 35
+        "candidate_human_exclusion": 35,
+        "internal_adjudication_required": 35,
+        "retain_for_human_screening": 30
       },
       "exact_agreement_n": 65,
       "exact_agreement_fraction": 0.65,
