@@ -1,0 +1,30 @@
+# ProQuest Dissertations & Theses Global — PF-ILD / PPF — command-line strategy v1
+# Platform syntax: ALL() searches indexed record fields/citation+abstract without relying on full text.
+# Run in PQDT Global only. No date or language restriction.
+
+ALL(
+  "progressive pulmonary fibrosis"
+  OR "progressive fibrosing interstitial lung disease"
+  OR "progressive fibrosing interstitial lung diseases"
+  OR "progressive-fibrosing interstitial lung disease"
+  OR "progressive-fibrosing interstitial lung diseases"
+  OR "progressive fibrotic interstitial lung disease"
+  OR "progressive fibrotic interstitial lung diseases"
+  OR "progressive fibrosing ILD"
+  OR "progressive fibrotic ILD"
+  OR "PF-ILD"
+  OR PFILD
+  OR ("PPF" AND ("interstitial lung disease" OR ILD OR fibros*))
+  OR ("interstitial lung disease" AND (fibrosing OR fibrotic OR fibrosis) AND (progressive OR progression))
+  OR ("fibrose pulmonar progressiva")
+  OR ("doença pulmonar intersticial" AND fibros* AND progress*)
+  OR ("fibrosis pulmonar progresiva")
+  OR ("enfermedad pulmonar intersticial" AND fibros* AND progres*)
+)
+
+# Required execution
+# - Database: ProQuest Dissertations & Theses Global only.
+# - Preserve exact executed syntax from Search History.
+# - Export every retrieved dissertation/thesis record with full bibliographic metadata and abstract.
+# - Do not limit to full text, doctoral dissertations, language, date, country or subject category.
+# - Save raw RIS/CSV export plus search-history evidence and displayed total.
