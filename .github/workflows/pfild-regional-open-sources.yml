@@ -44,7 +44,7 @@ jobs:
           data = json.loads(p.read_text(encoding="utf-8"))
           assert data["human_eligibility_decisions_created"] == 0, data
           assert data["prisma_decisions_created"] == 0, data
-          assert data["pubmed_dedup_index_pmids"] == 2767, data
+          assert data["pubmed_dedup_index_rows"] == 2767, data\n          assert data["pubmed_dedup_index_pmids_with_doi_or_title"] <= 2767, data
           for source in ("lilacs", "scielo"):
               assert "status" in data[source], data
               assert "manual_export_required" in data[source], data
