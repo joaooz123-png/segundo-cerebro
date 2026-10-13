@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-08-02T22:27:00.918027+00:00",
+  "generated_at_utc": "2026-10-13T12:19:37.135023+00:00",
   "status": "candidate PubMed identification set pending external independent PRESS",
   "architecture": {
     "stratum_a": "PubMed v2.2 controlled terminology and progression-in-fibrotic-ILD strategy",
@@ -8,11 +8,11 @@
   },
   "counts": {
     "v1_legacy": 1004,
-    "v2_2_controlled": 2629,
+    "v2_2_controlled": 2717,
     "overlap": 866,
     "v1_legacy_only": 138,
-    "v2_2_only": 1763,
-    "candidate_union_unique_pmids": 2767
+    "v2_2_only": 1851,
+    "candidate_union_unique_pmids": 2855
   },
   "sentinel_recall": {
     "pubmed_applicable": 62,
@@ -24,7 +24,7 @@
     "retain_for_human_screening": 38,
     "internal_adjudication_required": 54
   },
-  "pmid_order_sha256": "6fa34a916379c89a33b1dfcd84d1a5f0ac28f059f57a7c45a454fb928e389111",
+  "pmid_order_sha256": "a35b8447a0c9d9ca7048699acd7c15f3e655917cd06ab3928b39230094875946",
   "governance": {
     "eligibility_decisions_made": 0,
     "prisma_counts_changed": false,
