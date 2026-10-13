@@ -1,0 +1,48 @@
+# ERS conference abstracts — PF-ILD / PPF — search translation v1
+
+Source: European Respiratory Society publications platform
+Official conference archive: https://publications.ersnet.org/conference-abstracts
+Target record class: Conference abstract
+Coverage: database/archive inception through execution date
+Limits: none by year, language, disease, treatment, study design or underlying ILD
+
+Run all three strata separately and preserve each displayed hit count.
+
+## Stratum A — explicit modern terminology
+
+"progressive pulmonary fibrosis" OR
+"progressive fibrosing interstitial lung disease" OR
+"progressive fibrosing interstitial lung diseases" OR
+"progressive-fibrosing interstitial lung disease" OR
+"progressive-fibrosing interstitial lung diseases" OR
+"progressive fibrotic interstitial lung disease" OR
+"progressive fibrotic interstitial lung diseases" OR
+"progressive fibrosing ILD" OR
+"progressive fibrotic ILD" OR
+"PF-ILD" OR PFILD OR
+"fibrose pulmonar progressiva" OR
+"doença pulmonar intersticial fibrosante progressiva" OR
+"fibrosis pulmonar progresiva" OR
+"enfermedad pulmonar intersticial fibrosante progresiva"
+
+## Stratum B — context-bound acronym recall
+
+(PPF AND ("interstitial lung disease" OR ILD OR fibros*)) OR
+("progressive phenotype" AND ("interstitial lung disease" OR ILD)) OR
+("progressive fibrotic phenotype" AND ("interstitial lung disease" OR ILD))
+
+## Stratum C — concept recall
+
+("interstitial lung disease" OR "interstitial lung diseases" OR
+ "doença pulmonar intersticial" OR "doenças pulmonares intersticiais" OR
+ "enfermedad pulmonar intersticial" OR "enfermedades pulmonares intersticiales")
+AND
+(fibrosing OR fibrotic OR fibrosis OR fibrose OR fibrosante)
+AND
+(progressive OR progression OR progressiva OR progressivo OR progressão OR progresiva OR progresión)
+
+## Execution rule
+
+Use the ERS publication search and restrict the *content type* to Conference abstract only; this is a source-type restriction, not an eligibility restriction. Search all ERS conference abstract series exposed by the platform, including ERS Congress and Lung Science Conference. Do not restrict to ILD sessions, because PPF reports may appear in treatment, epidemiology, rheumatology, imaging, trial, economics or translational sessions.
+
+Export or capture every result with title, authors, meeting/year, abstract identifier, DOI, URL and abstract text when available. Preserve source-native output/screenshots or HTML evidence of query + displayed count.
