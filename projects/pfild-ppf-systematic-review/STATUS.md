@@ -129,6 +129,34 @@ A deterministic blinded 120-record calibration pilot has been prepared for two i
 
 Human eligibility decisions remain **0**.
 
+
+## Supplementary discovery and saturation audit
+
+### OpenAlex
+
+A reproducible supplementary OpenAlex search completed successfully and was merged to `mainn` in PR #26.
+
+- unique OpenAlex works retrieved: **7,299**;
+- matched to existing PubMed/Europe PMC: **1,376**;
+- explicit supplementary candidates not matched to the existing indexed corpus: **1,210**;
+- explicit-phrase flag among those candidates: **989**;
+- acronym-context flag: **418**;
+- grey-like explicit candidates: **62**;
+- broad concept-only sensitivity reservoir: **4,713**, preserved outside the PRISMA identification set pending yield audit;
+- conference material within the explicit candidate set: **428 conference abstracts + 42 conference papers**;
+- dissertations within the explicit candidate set: **27**.
+
+OpenAlex is a supplementary discovery source only; it does not replace Embase, Scopus, Web of Science, CINAHL or CENTRAL.
+
+### Independent academic-engine saturation checks
+
+Two independent discovery engines were used only as saturation controls, not as formal database substitutes:
+
+- Consensus: the top **10/10** PF-ILD/PPF results were already present in the 2,767-record PubMed union (one title differed only by subtitle/punctuation).
+- SciSpace: **8/10** results were already in PubMed; the remaining **2/10** were already captured among the OpenAlex supplementary candidates.
+
+Thus, this auxiliary check produced **0 novel core records outside the current PubMed + OpenAlex discovery universe**. Scite MCP and Elicit API could not be used because the connected accounts lack the required paid/API plans; this limitation is operational, not evidence of zero results.
+
 ## Regional sources: LILACS/BVS and SciELO
 
 Technical probes demonstrated that both official search interfaces return HTTP 403 to GitHub-hosted runners. This is an access-path limitation and **must never be reported as zero results**.
