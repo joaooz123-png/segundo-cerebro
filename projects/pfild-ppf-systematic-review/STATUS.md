@@ -150,12 +150,14 @@ OpenAlex is a supplementary discovery source only; it does not replace Embase, S
 
 ### Independent academic-engine saturation checks
 
-Two independent discovery engines were used only as saturation controls, not as formal database substitutes:
+Independent discovery engines were used only as saturation controls, not as formal database substitutes. Full reconciliation is documented in `methods/SATURATION_AUDIT_2026-10-13.md`.
 
-- Consensus: the top **10/10** PF-ILD/PPF results were already present in the 2,767-record PubMed union (one title differed only by subtitle/punctuation).
-- SciSpace: **8/10** results were already in PubMed; the remaining **2/10** were already captured among the OpenAlex supplementary candidates.
+- Consensus: the top **10/10** PF-ILD/PPF results mapped to the 2,767-record PubMed union (one title differed only by subtitle/punctuation).
+- SciSpace: four targeted semantic searches (definitions/criteria, epidemiology/prognosis, treatment, predictors/biomarkers) yielded **35 unique DOI-bearing papers** after cross-query de-duplication.
+- Of those 35 SciSpace papers, **25** were already in PubMed and **8** additional papers were already among the OpenAlex explicit supplementary candidates.
+- The remaining **2** were already captured by the formal sentinel citation-chasing workflow: PMID `36174209` (PPF criteria correspondence) and PMID `40786886` (broad antifibrotic systematic review/meta-analysis).
 
-Thus, this auxiliary check produced **0 novel core records outside the current PubMed + OpenAlex discovery universe**. Scite MCP and Elicit API could not be used because the connected accounts lack the required paid/API plans; this limitation is operational, not evidence of zero results.
+Thus, the expanded auxiliary audit produced **0 records outside the combined PubMed + OpenAlex explicit + formal citation-chasing discovery universe**. This supports saturation but does not prove exhaustiveness. It also confirms the value of citation chasing for title-oblique correspondence and broader evidence syntheses. Scite MCP and Elicit API could not be used because the connected accounts lack the required paid/API plans; this limitation is operational, not evidence of zero results.
 
 ## Regional sources: LILACS/BVS and SciELO
 
