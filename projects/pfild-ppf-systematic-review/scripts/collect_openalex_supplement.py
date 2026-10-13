@@ -24,32 +24,33 @@ EUROPE_PMC = ROOT / "data" / "g2_open_sources" / "europe_pmc_records.csv"
 
 OPENALEX_URL = "https://api.openalex.org/works"
 USER_AGENT = "pfild-ppf-systematic-review/1.0 (+https://github.com/joaooz123-png/segundo-cerebro)"
-REQUEST_DELAY = float(os.getenv("OPENALEX_REQUEST_DELAY", "0.20"))
+REQUEST_DELAY = float(os.getenv("OPENALEX_REQUEST_DELAY", "1.10"))
 MAX_RETRIES = 6
 MAX_PAGES_PER_TERM = int(os.getenv("OPENALEX_MAX_PAGES_PER_TERM", "100"))
 PER_PAGE = 200
 
-SEARCH_TERMS = [
-    "progressive pulmonary fibrosis",
-    "progressive fibrosing interstitial lung disease",
-    "progressive fibrosing interstitial lung diseases",
-    "progressive-fibrosing interstitial lung disease",
-    "progressive-fibrosing interstitial lung diseases",
-    "progressive fibrotic interstitial lung disease",
-    "progressive fibrotic interstitial lung diseases",
-    "progressive fibrosing ILD",
-    "progressive fibrotic ILD",
-    "PF-ILD",
-    "PFILD",
-    "PPF interstitial lung disease",
-    "fibrosing interstitial lung disease progressive phenotype",
-    "fibrosing interstitial lung diseases progressive phenotype",
-    "fibrose pulmonar progressiva",
-    "doença pulmonar intersticial fibrosante progressiva",
-    "fenótipo fibrosante progressivo",
-    "fibrosis pulmonar progresiva",
-    "enfermedad pulmonar intersticial fibrosante progresiva",
-    "fenotipo fibrosante progresivo",
+SEARCH_STRATA = [
+    (
+        "explicit_title_abstract_exact",
+        "search.title_and_abstract.exact",
+        '("progressive pulmonary fibrosis" OR "progressive fibrosing interstitial lung disease" OR '
+        '"progressive fibrosing interstitial lung diseases" OR "progressive-fibrosing interstitial lung disease" OR '
+        '"progressive-fibrosing interstitial lung diseases" OR "progressive fibrotic interstitial lung disease" OR '
+        '"progressive fibrotic interstitial lung diseases" OR "progressive fibrosing ILD" OR '
+        '"progressive fibrotic ILD" OR "PF-ILD" OR PFILD OR "fibrose pulmonar progressiva" OR '
+        '"doença pulmonar intersticial fibrosante progressiva" OR "fenótipo fibrosante progressivo" OR '
+        '"fibrosis pulmonar progresiva" OR "enfermedad pulmonar intersticial fibrosante progresiva" OR '
+        '"fenotipo fibrosante progresivo")',
+    ),
+    (
+        "concept_title_abstract",
+        "search.title_and_abstract",
+        '(("interstitial lung disease" OR "interstitial lung diseases" OR "doença pulmonar intersticial" OR '
+        '"doenças pulmonares intersticiais" OR "enfermedad pulmonar intersticial" OR '
+        '"enfermedades pulmonares intersticiales") AND '
+        '(fibrosing OR fibrotic OR fibrosis OR fibrose OR fibrosante OR fibrótica) AND '
+        '(progressive OR progression OR progressiva OR progressivo OR progressão OR progresiva OR progresión))',
+    ),
 ]
 
 EXACT_PHRASES = [
@@ -173,7 +174,17 @@ def request_json(session: requests.Session, params: dict[str, Any]) -> tuple[dic
     for attempt in range(1, MAX_RETRIES + 1):
         try:
             response = session.get(OPENALEX_URL, params=params, timeout=120)
-            if response.status_code == 429 or response.status_code >= 500:
+            if response.status_code == 429:
+                retry_after = response.headers.get("Retry-After")
+                if attempt < MAX_RETRIES:
+                    try:
+                        wait = max(2.0, float(retry_after)) if retry_after else min(60.0, 5.0 * attempt)
+                    except ValueError:
+                        wait = min(60.0, 5.0 * attempt)
+                    time.sleep(wait)
+                    continue
+                raise requests.HTTPError("HTTP 429", response=response)
+            if response.status_code >= 500:
                 raise requests.HTTPError(f"HTTP {response.status_code}", response=response)
             response.raise_for_status()
             return response.json(), response
@@ -312,11 +323,11 @@ def main() -> None:
     source_status = "completed"
     blocking_error = ""
 
-    for term_index, term in enumerate(SEARCH_TERMS, start=1):
+    for term_index, (stratum, search_parameter, term) in enumerate(SEARCH_STRATA, start=1):
         cursor = "*"
         for page in range(1, MAX_PAGES_PER_TERM + 1):
             params: dict[str, Any] = {
-                "search": term,
+                search_parameter: term,
                 "per-page": PER_PAGE,
                 "cursor": cursor,
             }
@@ -331,6 +342,8 @@ def main() -> None:
                 source_status = f"blocked_http_{status}" if status else "request_failed"
                 blocking_error = repr(exc)
                 request_trace.append({
+                    "stratum": stratum,
+                    "search_parameter": search_parameter,
                     "term": term,
                     "term_index": term_index,
                     "page": page,
@@ -359,6 +372,8 @@ def main() -> None:
             results = payload.get("results") or []
             meta = payload.get("meta") or {}
             request_trace.append({
+                "stratum": stratum,
+                "search_parameter": search_parameter,
                 "term": term,
                 "term_index": term_index,
                 "page": page,
@@ -378,7 +393,7 @@ def main() -> None:
                     continue
                 if work_id not in works_by_id:
                     works_by_id[work_id] = work
-                provenance[work_id].add(term)
+                provenance[work_id].add(stratum)
 
             next_cursor = meta.get("next_cursor")
             if not results or not next_cursor or next_cursor == cursor:
@@ -416,7 +431,10 @@ def main() -> None:
     write_json(OUTPUT_DIR / "openalex_search_terms.json", {
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "source": "OpenAlex Works API",
-        "search_terms": SEARCH_TERMS,
+        "search_strata": [
+            {"name": name, "search_parameter": parameter, "query": query}
+            for name, parameter, query in SEARCH_STRATA
+        ],
         "type_restrictions": None,
         "date_restrictions": None,
         "language_restrictions": None,
@@ -431,7 +449,8 @@ def main() -> None:
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "status": source_status,
         "blocking_error": blocking_error,
-        "queries_executed": len(SEARCH_TERMS) if source_status == "completed" else len({x.get("term") for x in request_trace}),
+        "queries_planned": len(SEARCH_STRATA),
+        "queries_executed": len({x.get("stratum") for x in request_trace if x.get("stratum")}),
         "unique_openalex_works": len(records),
         "matched_existing_pubmed_or_europe_pmc": sum(r["existing_indexed_match"] for r in records),
         "supplementary_candidates": len(new_records),
