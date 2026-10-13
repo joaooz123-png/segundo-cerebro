@@ -84,6 +84,7 @@ GREY_LIKE_TYPES = {
 FIELDS = [
     "openalex_id",
     "title",
+    "abstract",
     "publication_year",
     "publication_date",
     "work_type",
@@ -272,9 +273,18 @@ def parse_work(work: dict[str, Any], search_terms: set[str], pubmed_pmids: set[s
     pubmed_match = bool((pmid and pmid in pubmed_pmids) or (doi and doi in pubmed_dois))
     epmc_match = bool((pmid and pmid in epmc_pmids) or (doi and doi in epmc_dois))
     existing = pubmed_match or epmc_match
+    strata = set(search_terms)
+    if existing:
+        discovery_status = "already_in_pubmed_or_europe_pmc"
+    elif "explicit_title_abstract_exact" in strata:
+        discovery_status = "supplementary_explicit_candidate"
+    else:
+        discovery_status = "concept_sensitivity_reservoir"
+
     return {
         "openalex_id": str(work.get("id") or "").replace("https://openalex.org/", ""),
         "title": title,
+        "abstract": abstract,
         "publication_year": work.get("publication_year") or "",
         "publication_date": work.get("publication_date") or "",
         "work_type": work_type,
@@ -295,7 +305,7 @@ def parse_work(work: dict[str, Any], search_terms: set[str], pubmed_pmids: set[s
         "pubmed_match": pubmed_match,
         "europe_pmc_match": epmc_match,
         "existing_indexed_match": existing,
-        "discovery_status": "already_in_pubmed_or_europe_pmc" if existing else "supplementary_candidate",
+        "discovery_status": discovery_status,
         "openalex_url": str(work.get("id") or ""),
     }
 
@@ -417,8 +427,13 @@ def main() -> None:
             )
         )
 
+    status_order = {
+        "supplementary_explicit_candidate": 0,
+        "concept_sensitivity_reservoir": 1,
+        "already_in_pubmed_or_europe_pmc": 2,
+    }
     records.sort(key=lambda r: (
-        r["discovery_status"] != "supplementary_candidate",
+        status_order.get(r["discovery_status"], 9),
         not r["explicit_phrase_flag"],
         not r["acronym_context_flag"],
         str(r["publication_year"]),
@@ -443,8 +458,42 @@ def main() -> None:
         "prisma_decisions_created": 0,
     })
 
-    new_records = [r for r in records if r["discovery_status"] == "supplementary_candidate"]
-    grey_new = [r for r in new_records if r["grey_like_type_flag"]]
+    explicit_candidates = [
+        r for r in records
+        if r["discovery_status"] == "supplementary_explicit_candidate"
+    ]
+    concept_reservoir = [
+        r for r in records
+        if r["discovery_status"] == "concept_sensitivity_reservoir"
+    ]
+    explicit_grey = [r for r in explicit_candidates if r["grey_like_type_flag"]]
+
+    # The concept layer is retained as a sensitivity experiment, not silently
+    # promoted into the formal identification set. A deterministic 200-record
+    # sample is emitted for yield assessment before any protocol amendment.
+    concept_sample = sorted(
+        concept_reservoir,
+        key=lambda r: hashlib.sha256(
+            str(r["openalex_id"]).encode("utf-8")
+        ).hexdigest(),
+    )[: min(200, len(concept_reservoir))]
+
+    write_csv(
+        OUTPUT_DIR / "openalex_explicit_identification_candidates.csv",
+        explicit_candidates,
+        FIELDS,
+    )
+    write_csv(
+        OUTPUT_DIR / "openalex_concept_sensitivity_reservoir.csv",
+        concept_reservoir,
+        FIELDS,
+    )
+    write_csv(
+        OUTPUT_DIR / "openalex_concept_sensitivity_sample_200.csv",
+        concept_sample,
+        FIELDS,
+    )
+
     summary = {
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "status": source_status,
@@ -453,13 +502,17 @@ def main() -> None:
         "queries_executed": len({x.get("stratum") for x in request_trace if x.get("stratum")}),
         "unique_openalex_works": len(records),
         "matched_existing_pubmed_or_europe_pmc": sum(r["existing_indexed_match"] for r in records),
-        "supplementary_candidates": len(new_records),
-        "supplementary_candidates_with_explicit_phrase": sum(r["explicit_phrase_flag"] for r in new_records),
-        "supplementary_candidates_with_acronym_context": sum(r["acronym_context_flag"] for r in new_records),
-        "supplementary_grey_like_candidates": len(grey_new),
+        "formal_supplementary_explicit_candidates": len(explicit_candidates),
+        "formal_explicit_candidates_with_explicit_phrase_flag": sum(r["explicit_phrase_flag"] for r in explicit_candidates),
+        "formal_explicit_candidates_with_acronym_context": sum(r["acronym_context_flag"] for r in explicit_candidates),
+        "formal_explicit_grey_like_candidates": len(explicit_grey),
+        "concept_sensitivity_reservoir": len(concept_reservoir),
+        "concept_sensitivity_sample_size": len(concept_sample),
+        "concept_reservoir_is_prisma_identification_set": False,
         "all_type_counts": dict(Counter(r["work_type"] or "unknown" for r in records)),
-        "supplementary_type_counts": dict(Counter(r["work_type"] or "unknown" for r in new_records)),
-        "grey_like_type_counts": dict(Counter(r["work_type"] or "unknown" for r in grey_new)),
+        "formal_explicit_type_counts": dict(Counter(r["work_type"] or "unknown" for r in explicit_candidates)),
+        "formal_explicit_grey_like_type_counts": dict(Counter(r["work_type"] or "unknown" for r in explicit_grey)),
+        "concept_reservoir_type_counts": dict(Counter(r["work_type"] or "unknown" for r in concept_reservoir)),
         "records_without_pmid": sum(not r["pmid"] for r in records),
         "records_without_doi": sum(not r["doi"] for r in records),
         "human_eligibility_decisions_created": 0,
