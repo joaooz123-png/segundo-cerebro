@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-08-02T17:21:34.076844+00:00",
+  "generated_at_utc": "2026-10-13T12:22:56.496641+00:00",
   "source": "NCBI PubMed EFetch with ESummary fallback",
   "input_project_state": "data/project_state.json",
   "expected_pmids": 1004,
@@ -9,7 +9,7 @@
   "unavailable_records": 0,
   "records_with_abstract": 920,
   "records_with_doi": 969,
-  "records_with_pmcid": 568,
+  "records_with_pmcid": 579,
   "high_recall_priority": 385,
   "medium_recall_priority": 534,
   "low_recall_priority": 85,
