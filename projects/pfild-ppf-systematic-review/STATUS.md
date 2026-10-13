@@ -13,11 +13,11 @@ The project distinguishes **record**, **report**, and **study/family**. Automate
 ### Search architecture
 
 - PubMed v1 legacy safety stratum: 1,004 unique PMIDs.
-- PubMed v2.2 controlled stratum: 2,629 unique PMIDs.
-- Overlap: 866.
+- PubMed v2.2 controlled stratum, updated 2026-10-13: **2,717 unique PMIDs**.
+- Overlap with the 1,004-record legacy stratum: 866.
 - v1-only retained: 138.
-- v2.2-only: 1,763.
-- Candidate PubMed union: **2,767 unique PMIDs**.
+- v2.2-only: 1,851.
+- Candidate PubMed union: **2,855 unique PMIDs**.\n- Compared with the August union, the unchanged strategy added **88 PMIDs and lost 0**.
 
 ### Sentinel validation
 
@@ -28,17 +28,19 @@ The project distinguishes **record**, **report**, and **study/family**. Automate
 
 ### Full enrichment
 
-All 2,767 candidate PMIDs were enriched reproducibly through NCBI EFetch with ESummary fallback:
+The refreshed 2,855-record candidate union was enriched reproducibly through NCBI EFetch with ESummary fallback:
 
-- complete EFetch: 2,761;
+- complete EFetch: **2,849**;
 - ESummary fallback: 6;
 - missing: 0;
-- with abstract: 2,496;
-- with DOI: 2,614;
-- with PMCID: 1,325;
-- PMID-order SHA-256: `6fa34a916379c89a33b1dfcd84d1a5f0ac28f059f57a7c45a454fb928e389111`.
+- with abstract: **2,581**;
+- with DOI: **2,702**;
+- with PMCID: **1,374**;
+- candidate-union PMID-order SHA-256: `a35b8447a0c9d9ca7048699acd7c15f3e655917cd06ab3928b39230094875946`.
 
 GitHub Actions run `30785059672`, artifact `8844988389`, artifact digest `sha256:4c315e6f17f5cc099887fe0e43a91a24a2da8eba924a440e40b8cd94eea566f1`.
+
+Sequential post-update enrichment and boundary deduplication passed all invariants in GitHub Actions run `38397412464`, artifact `11812303667`, digest `sha256:999cd33bef5ffc23fd2504e7eac35baec381ebe7516b921f9e69292e5bd58035`. The August artifacts remain historical snapshots.
 
 No PubMed candidate has been finally included or excluded by a human.
 
@@ -46,17 +48,17 @@ No PubMed candidate has been finally included or excluded by a human.
 
 ### Europe PMC
 
-- 1,125 candidate records.
-- 1,072 exact source-representation matches to PubMed by PMID.
-- 53 records without a matching PMID in the PubMed candidate union.
+- **1,192 candidate records**;
+- **1,129** exact source-representation matches to PubMed by PMID;
+- **63** records without a matching PMID in the current PubMed candidate union.
 
 ### ClinicalTrials.gov and registry linkage
 
-- initial ClinicalTrials.gov retrieval: 146 unique NCT records;
-- registry mentions mined from PubMed metadata: 164;
-- unique NCT identifiers mentioned: 68;
-- already present in initial ClinicalTrials.gov set: 12;
-- additional NCTs recovered from publication identifiers: **56/56**, 0 failures.
+- direct ClinicalTrials.gov terminological retrieval: **152 unique NCT records**;
+- registry mentions mined from the refreshed PubMed metadata: **176**;
+- unique NCT identifiers mentioned: **72**;
+- already present in the direct ClinicalTrials.gov set: **13**;
+- additional NCTs recovered from publication identifiers: **59/59**, 0 failures.
 
 Additional non-US registry records and cross-registry family candidates are preserved separately.
 
@@ -99,9 +101,9 @@ A resilient collector revision now continues after isolated query failures rathe
 
 ## Deduplication and report-family preparation
 
-- 1,072 Europe PMC/PubMed source-representation duplicates linked by exact PMID.
-- 42 Europe PMC–PubMed boundary candidate pairs.
-- 25 of those are preprint → published-report family candidates.
+- **1,129** Europe PMC/PubMed source-representation duplicates linked by exact PMID.
+- **42** Europe PMC–PubMed boundary candidate pairs after the sequential refresh.
+- **25** of those are preprint → published-report family candidates.\n- The refreshed linkage layer contains **176 registry mentions**, including 72 unique NCTs; 59 publication-linked NCTs absent from the direct query set were recovered with 0 failures.
 - DOI alone is prohibited as an automatic merge key because reuse/collision among distinct correspondence reports has been observed.
 - Preprint, protocol, article, letter, correction, registry entry and regulatory document remain distinct reports unless a human confirms the same source representation.
 
