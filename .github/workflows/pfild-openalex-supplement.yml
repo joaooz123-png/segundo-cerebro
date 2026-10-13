@@ -1,0 +1,66 @@
+name: PF-ILD OpenAlex supplementary discovery
+
+on:
+  pull_request:
+    branches: [mainn]
+    paths:
+      - "projects/pfild-ppf-systematic-review/scripts/collect_openalex_supplement.py"
+      - ".github/workflows/pfild-openalex-supplement.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      PFILD_OPENALEX_OUTPUT_DIR: projects/pfild-ppf-systematic-review/artifacts/openalex_supplement
+      OPENALEX_REQUEST_DELAY: "1.10"
+      OPENALEX_MAX_PAGES_PER_TERM: "100"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependency
+        run: python -m pip install --disable-pip-version-check requests
+
+      - name: Run OpenAlex supplementary discovery
+        run: python projects/pfild-ppf-systematic-review/scripts/collect_openalex_supplement.py
+
+      - name: Verify governance invariants
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path("projects/pfild-ppf-systematic-review/artifacts/openalex_supplement/openalex_summary.json")
+          data = json.loads(p.read_text(encoding="utf-8"))
+          assert data["human_eligibility_decisions_created"] == 0, data
+          assert data["prisma_decisions_created"] == 0, data
+          assert data["status"] == "completed", data
+          assert data["unique_openalex_works"] >= 0, data
+          assert data["formal_supplementary_explicit_candidates"] >= 0, data
+          assert data["concept_sensitivity_reservoir"] >= 0, data
+          assert (
+              data["matched_existing_pubmed_or_europe_pmc"]
+              + data["formal_supplementary_explicit_candidates"]
+              + data["concept_sensitivity_reservoir"]
+              == data["unique_openalex_works"]
+          ), data
+          assert data["concept_reservoir_is_prisma_identification_set"] is False, data
+          print(json.dumps(data, indent=2, ensure_ascii=False))
+          PY
+
+      - name: Upload reproducible OpenAlex artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pfild-openalex-supplement
+          path: projects/pfild-ppf-systematic-review/artifacts/openalex_supplement/
+          if-no-files-found: error
+          retention-days: 90
