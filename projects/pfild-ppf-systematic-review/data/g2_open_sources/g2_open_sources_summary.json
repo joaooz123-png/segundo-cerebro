@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-10-13T12:23:57.398087+00:00",
+  "generated_at_utc": "2026-10-13T12:29:54.772298+00:00",
   "gate": "G2 source coverage",
   "status": "partial — two open sources executed; no completeness claim",
   "europe_pmc": {
@@ -17,7 +17,7 @@
     "records_without_pmid": 63,
     "records_not_in_pubmed_candidate_union_by_pmid": 63,
     "pages_retrieved": 3,
-    "raw_sha256": "2ecfabaa79bfa2656e506394dde990e1f4ed17422c21094af17f3651ef706cb9"
+    "raw_sha256": "9848694145e35cb663ba5bb3091c5f8fbba87c1026a97136478caa4487be835f"
   },
   "clinicaltrials_gov": {
     "queries": [
