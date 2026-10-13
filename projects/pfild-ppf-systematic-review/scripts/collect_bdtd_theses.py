@@ -244,6 +244,7 @@ def main() -> None:
     trace: list[dict[str, Any]] = []
     status = "completed"
     blocking_error = ""
+    failed_search_strata: list[dict[str, Any]] = []
 
     for query_index, (stratum, query) in enumerate(SEARCH_STRATA, start=1):
         previous_signature = ""
@@ -259,14 +260,29 @@ def main() -> None:
                 response = request(session, SEARCH_URL, params=params)
             except requests.HTTPError as exc:
                 code = exc.response.status_code if exc.response is not None else None
-                status = f"blocked_http_{code}" if code else "request_failed"
+                failure_status = f"blocked_http_{code}" if code else "request_failed"
                 blocking_error = repr(exc)
-                trace.append({"stratum": stratum, "query": query, "page": page, "status": status, "error": blocking_error})
+                failed_search_strata.append({
+                    "stratum": stratum, "query": query, "page": page,
+                    "status": failure_status, "error": blocking_error,
+                })
+                status = "partial_query_failures"
+                trace.append({
+                    "stratum": stratum, "query": query, "page": page,
+                    "status": failure_status, "error": blocking_error,
+                })
                 break
             except Exception as exc:
-                status = "request_failed"
                 blocking_error = repr(exc)
-                trace.append({"stratum": stratum, "query": query, "page": page, "status": status, "error": blocking_error})
+                failed_search_strata.append({
+                    "stratum": stratum, "query": query, "page": page,
+                    "status": "request_failed", "error": blocking_error,
+                })
+                status = "partial_query_failures"
+                trace.append({
+                    "stratum": stratum, "query": query, "page": page,
+                    "status": "request_failed", "error": blocking_error,
+                })
                 break
 
             raw = response.content
@@ -291,8 +307,8 @@ def main() -> None:
             if new_links == 0:
                 break
             time.sleep(REQUEST_DELAY)
-        if status != "completed":
-            break
+        # Continue with the remaining search strata after an isolated source failure.
+        # Partial execution is recorded explicitly and never represented as a completed source.
 
     records: list[dict[str, Any]] = []
     detail_failures: list[dict[str, str]] = []
@@ -326,12 +342,18 @@ def main() -> None:
     write_csv(OUTPUT_DIR / "bdtd_records.csv", rows)
     write_json(OUTPUT_DIR / "bdtd_trace.json", trace)
     write_json(OUTPUT_DIR / "bdtd_detail_failures.json", detail_failures)
+    if status == "completed" and detail_failures:
+        status = "partial_detail_failures"
+
     summary = {
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "source": "Biblioteca Digital Brasileira de Teses e Dissertações (BDTD/IBICT)",
         "status": status,
         "blocking_error": blocking_error,
         "search_strata_count": len(SEARCH_STRATA),
+        "failed_search_strata_count": len(failed_search_strata),
+        "failed_search_strata": failed_search_strata,
+        "manual_recovery_required": status != "completed",
         "unique_record_links": len(links_to_strata),
         "unique_records_parsed": len(rows),
         "priority_counts": dict(Counter(r["machine_priority"] for r in rows)),
