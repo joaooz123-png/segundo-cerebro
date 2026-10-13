@@ -401,7 +401,7 @@ def fetch_pubmed_index_from_ncbi() -> list[dict[str, str]]:
     return rows
 
 
-def load_pubmed_index() -> tuple[dict[str, set[str]], dict[str, set[str]], str]:
+def load_pubmed_index() -> tuple[dict[str, set[str]], dict[str, set[str]], str, int]:
     rows: list[dict[str, str]] = []
     source = ""
     if PUBMED_METADATA.exists() and PUBMED_METADATA.stat().st_size > 0:
@@ -526,7 +526,7 @@ def main() -> None:
 
     lilacs, lilacs_trace = collect_source(session, "LILACS/BVS")
     scielo, scielo_trace = collect_source(session, "SciELO")
-    doi_map, title_map, pubmed_index_source = load_pubmed_index()
+    doi_map, title_map, pubmed_index_source, pubmed_index_rows = load_pubmed_index()
     match_pubmed(lilacs, doi_map, title_map)
     match_pubmed(scielo, doi_map, title_map)
     clusters = build_cross_source_clusters(lilacs, scielo)
@@ -546,7 +546,7 @@ def main() -> None:
     summary = {
         "generated_at_utc": generated,
         "pubmed_dedup_index_source": pubmed_index_source,
-        "pubmed_dedup_index_pmids": len({pmid for values in doi_map.values() for pmid in values} | {pmid for values in title_map.values() for pmid in values}),
+        "pubmed_dedup_index_rows": pubmed_index_rows,\n        "pubmed_dedup_index_pmids_with_doi_or_title": len({pmid for values in doi_map.values() for pmid in values} | {pmid for values in title_map.values() for pmid in values}),
         "lilacs": {
             "status": lilacs_trace["status"],
             "manual_export_required": lilacs_trace["manual_export_required"],
