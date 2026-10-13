@@ -91,9 +91,11 @@ def request_json(url: str, params: dict[str, object], retries: int = 6) -> dict:
 def read_pubmed_union() -> set[str]:
     with PUBMED_UNION_FILE.open(encoding="utf-8-sig", newline="") as handle:
         rows = list(csv.DictReader(handle))
-    pmids = {row["pmid"] for row in rows}
-    if len(pmids) != 2767:
-        raise RuntimeError(f"Expected 2,767 PubMed candidate PMIDs, got {len(pmids)}")
+    pmids = {row["pmid"].strip() for row in rows if row.get("pmid", "").strip()}
+    if not pmids:
+        raise RuntimeError("PubMed candidate union is empty")
+    if len(pmids) != len(rows):
+        raise RuntimeError(f"PubMed candidate union contains duplicate or blank PMIDs: {len(rows)} rows, {len(pmids)} unique")
     return pmids
 
 
