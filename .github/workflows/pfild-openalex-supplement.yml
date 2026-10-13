@@ -43,8 +43,17 @@ jobs:
           data = json.loads(p.read_text(encoding="utf-8"))
           assert data["human_eligibility_decisions_created"] == 0, data
           assert data["prisma_decisions_created"] == 0, data
+          assert data["status"] == "completed", data
           assert data["unique_openalex_works"] >= 0, data
-          assert data["supplementary_candidates"] >= 0, data
+          assert data["formal_supplementary_explicit_candidates"] >= 0, data
+          assert data["concept_sensitivity_reservoir"] >= 0, data
+          assert (
+              data["matched_existing_pubmed_or_europe_pmc"]
+              + data["formal_supplementary_explicit_candidates"]
+              + data["concept_sensitivity_reservoir"]
+              == data["unique_openalex_works"]
+          ), data
+          assert data["concept_reservoir_is_prisma_identification_set"] is False, data
           print(json.dumps(data, indent=2, ensure_ascii=False))
           PY
 
