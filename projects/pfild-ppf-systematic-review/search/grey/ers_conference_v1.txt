@@ -46,3 +46,10 @@ AND
 Use the ERS publication search and restrict the *content type* to Conference abstract only; this is a source-type restriction, not an eligibility restriction. Search all ERS conference abstract series exposed by the platform, including ERS Congress and Lung Science Conference. Do not restrict to ILD sessions, because PPF reports may appear in treatment, epidemiology, rheumatology, imaging, trial, economics or translational sessions.
 
 Export or capture every result with title, authors, meeting/year, abstract identifier, DOI, URL and abstract text when available. Preserve source-native output/screenshots or HTML evidence of query + displayed count.
+
+
+## Source-validation sentinels
+
+Validation file: `search/grey/GREY_SOURCE_SENTINELS_V1.csv`.
+
+The source-specific sentinels applicable to this platform should be recovered by the executed search. A miss does not authorize silent query editing: investigate platform indexing/syntax first, then record any retrieval-changing modification as a protocol/search amendment and execute a new immutable strategy version. Sentinel presence validates source execution sensitivity only and is not an eligibility decision.
