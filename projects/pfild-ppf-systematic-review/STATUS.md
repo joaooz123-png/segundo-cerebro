@@ -1,6 +1,6 @@
 # PF-ILD / PPF project status
 
-Snapshot: 2026-09-04
+Snapshot: 2026-10-13
 
 ## Methodological target
 
@@ -67,6 +67,35 @@ Core FDA and EMA documents relevant to PF-ILD/PPF treatment history have been ca
 ### Citation chasing
 
 Formal backward and forward citation chasing was executed for all 62 PubMed-applicable sentinel records through the Europe PMC REST API. Raw pages, checksums, edges, candidate records and overlap with the PubMed union are preserved.
+
+### OpenAlex supplementary discovery
+
+A reproducible OpenAlex Works search was executed as a supplementary sensitivity source:
+
+- 7,299 unique OpenAlex works;
+- 1,376 matched existing PubMed/Europe PMC records conservatively;
+- 1,210 explicit supplementary candidates after existing-source matching;
+- 1,061 of the explicit candidates have no PMID;
+- explicit-candidate mix includes 543 articles, 428 conference abstracts, 42 conference papers, 27 dissertations, 22 preprints, 21 reviews and other report types;
+- 62 explicit candidates are grey-literature-like records;
+- a separate 4,713-record broad concept reservoir is preserved strictly for sensitivity auditing and is **not** treated as a PRISMA identification set.
+
+OpenAlex is supplementary and does not replace Embase, Scopus, Web of Science, CINAHL or CENTRAL.
+
+### BDTD theses and dissertations
+
+The Brazilian BDTD/IBICT search has been executed partially:
+
+- 129 unique record links discovered in the initial run;
+- 126 records parsed;
+- 55 theses and 71 dissertations;
+- 2 high-priority exact-term candidates;
+- 4 medium-priority conceptual candidates;
+- 120 low-priority records retained for completeness;
+- 3 detail-page failures;
+- a later search stratum timed out.
+
+A resilient collector revision now continues after isolated query failures rather than aborting subsequent strata. Until a complete rerun or manual recovery closes all query/detail gaps, BDTD remains **partial** and its 126 records must not be represented as an exhaustive thesis/dissertation search.
 
 ## Deduplication and report-family preparation
 
@@ -140,7 +169,7 @@ Internal adversarial agents and CI checks are quality controls only and are not 
 |---|---|---|
 | G0 | Architecture/protocol | Advanced; protocol v2 frozen before human selection; external registration/human guarantor steps remain |
 | G1 | Search validity | Internally validated; independent PRESS review pending |
-| G2 | Source coverage | Advanced partial: PubMed, Europe PMC, ClinicalTrials.gov, citation chasing, registry supplementation and regulatory sources executed; LILACS/SciELO browser exports and subscription databases pending |
+| G2 | Source coverage | Advanced partial: PubMed, Europe PMC, ClinicalTrials.gov, citation chasing, registry supplementation, regulatory sources and OpenAlex supplementary discovery executed; BDTD partially executed; LILACS/SciELO browser exports and subscription databases pending |
 | G3 | Record management | Advanced preparation; exact duplicate layer and candidate families built; human boundary confirmation pending |
 | G4 | Selection | Calibration pilot prepared; no human eligibility decisions yet |
 | G5 | Full text | Not started formally |
@@ -156,7 +185,7 @@ Internal adversarial agents and CI checks are quality controls only and are not 
 1. Independent PRESS review and resolution of recommendations.
 2. Execution of Embase, Scopus, Web of Science, CINAHL and CENTRAL on their named platforms.
 3. Browser-assisted LILACS and SciELO searches with raw exports and count evidence.
-4. Remaining grey-literature/conference/thesis source execution or documented justification.
+4. Complete BDTD recovery and execute ERS/ATS conference and remaining dissertation/grey-literature sources or document justified non-execution.
 5. Two-reviewer human screening and adjudication.
 6. Full-text retrieval and specific exclusion reasons.
 7. Validated extraction, design-specific risk-of-bias assessment and appropriate synthesis.
