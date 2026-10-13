@@ -242,6 +242,7 @@ def main() -> None:
 
     links_to_strata: defaultdict[str, set[str]] = defaultdict(set)
     trace: list[dict[str, Any]] = []
+    search_failures: list[dict[str, Any]] = []
     status = "completed"
     blocking_error = ""
     failed_search_strata: list[dict[str, Any]] = []
