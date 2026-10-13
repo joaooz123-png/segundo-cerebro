@@ -546,7 +546,8 @@ def main() -> None:
     summary = {
         "generated_at_utc": generated,
         "pubmed_dedup_index_source": pubmed_index_source,
-        "pubmed_dedup_index_rows": pubmed_index_rows,\n        "pubmed_dedup_index_pmids_with_doi_or_title": len({pmid for values in doi_map.values() for pmid in values} | {pmid for values in title_map.values() for pmid in values}),
+        "pubmed_dedup_index_rows": pubmed_index_rows,
+        "pubmed_dedup_index_pmids_with_doi_or_title": len({pmid for values in doi_map.values() for pmid in values} | {pmid for values in title_map.values() for pmid in values}),
         "lilacs": {
             "status": lilacs_trace["status"],
             "manual_export_required": lilacs_trace["manual_export_required"],
