@@ -14,10 +14,10 @@ permissions:
 jobs:
   search:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 75
     env:
       PFILD_BDTD_OUTPUT_DIR: projects/pfild-ppf-systematic-review/artifacts/bdtd_theses
-      BDTD_REQUEST_DELAY: "0.60"
+      BDTD_REQUEST_DELAY: "1.50"
       BDTD_MAX_PAGES_PER_QUERY: "50"
     steps:
       - uses: actions/checkout@v4
