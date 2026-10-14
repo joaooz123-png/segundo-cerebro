@@ -92,7 +92,7 @@ def request(session: requests.Session, url: str, params: dict[str, Any] | None =
     last: Exception | None = None
     for attempt in range(1, MAX_RETRIES + 1):
         try:
-            response = session.get(url, params=params, timeout=120)
+            response = session.get(url, params=params, timeout=(15, 35))
             if response.status_code == 429 or response.status_code >= 500:
                 raise requests.HTTPError(f"HTTP {response.status_code}", response=response)
             response.raise_for_status()
@@ -241,6 +241,7 @@ def main() -> None:
     session.headers.update({"User-Agent": USER_AGENT, "Accept-Language": "pt-BR,pt;q=0.9,en;q=0.8,es;q=0.7"})
 
     links_to_strata: defaultdict[str, set[str]] = defaultdict(set)
+    print("BDTD collection started", flush=True)
     trace: list[dict[str, Any]] = []
     search_failures: list[dict[str, Any]] = []
     status = "completed"
@@ -257,8 +258,17 @@ def main() -> None:
                 "limit": "100",
                 "page": str(page),
             }
+            print(f"Search {query_index}/{len(SEARCH_STRATA)} page {page}: {stratum}", flush=True)
             try:
-                response = request(session, SEARCH_URL, params=params)
+                if (RAW_DIR / f"search_{query_index:02d}_{page:03d}.html.gz").exists():
+                    cached_path = RAW_DIR / f"search_{query_index:02d}_{page:03d}.html.gz"
+                    raw = gzip.decompress(cached_path.read_bytes())
+                    request_url = requests.Request("GET", SEARCH_URL, params=params).prepare().url
+                    response = None
+                else:
+                    response = request(session, SEARCH_URL, params=params)
+                    raw = response.content
+                    request_url = response.url
             except requests.HTTPError as exc:
                 code = exc.response.status_code if exc.response is not None else None
                 failure_status = f"blocked_http_{code}" if code else "request_failed"
@@ -286,17 +296,18 @@ def main() -> None:
                 })
                 break
 
-            raw = response.content
             raw_path = RAW_DIR / f"search_{query_index:02d}_{page:03d}.html.gz"
             with gzip.open(raw_path, "wb") as handle:
                 handle.write(raw)
-            links = record_links(raw, response.url)
+            links = record_links(raw, request_url)
             signature = hashlib.sha256("\n".join(links).encode()).hexdigest()
             trace.append({
                 "stratum": stratum, "query": query, "page": page, "record_links": len(links),
-                "request_url": response.url, "raw_file": raw_path.name,
-                "raw_sha256": sha256_bytes(raw), "http_status": response.status_code,
+                "request_url": request_url, "raw_file": raw_path.name,
+                "raw_sha256": sha256_bytes(raw), "http_status": response.status_code if response is not None else 200,
             })
+            write_json(OUTPUT_DIR / "bdtd_trace.json", trace)
+            print(f"  links={len(links)} total_unique={len(links_to_strata)}", flush=True)
             if not links or signature == previous_signature:
                 break
             previous_signature = signature
@@ -314,15 +325,23 @@ def main() -> None:
     records: list[dict[str, Any]] = []
     detail_failures: list[dict[str, str]] = []
     for idx, (link, strata) in enumerate(sorted(links_to_strata.items()), start=1):
+        print(f"Record {idx}/{len(links_to_strata)}: {link}", flush=True)
         try:
-            response = request(session, link)
-            raw = response.content
             raw_path = RAW_DIR / f"record_{idx:04d}.html.gz"
+            if raw_path.exists():
+                raw = gzip.decompress(raw_path.read_bytes())
+                final_url = link
+            else:
+                response = request(session, link)
+                raw = response.content
+                final_url = response.url
             with gzip.open(raw_path, "wb") as handle:
                 handle.write(raw)
-            rec = parse_record(raw, response.url, strata)
+            rec = parse_record(raw, final_url, strata)
             if rec:
                 records.append(rec)
+                write_csv(OUTPUT_DIR / "bdtd_records.csv", records)
+            write_json(OUTPUT_DIR / "bdtd_detail_failures.json", detail_failures)
         except Exception as exc:
             detail_failures.append({"url": link, "error": repr(exc)})
         time.sleep(REQUEST_DELAY)
