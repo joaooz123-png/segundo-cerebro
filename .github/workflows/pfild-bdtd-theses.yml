@@ -1,0 +1,49 @@
+name: PF-ILD BDTD theses search
+
+on:
+  pull_request:
+    branches: [mainn]
+    paths:
+      - "projects/pfild-ppf-systematic-review/scripts/collect_bdtd_theses.py"
+      - ".github/workflows/pfild-bdtd-theses.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  search:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    env:
+      PFILD_BDTD_OUTPUT_DIR: projects/pfild-ppf-systematic-review/artifacts/bdtd_theses
+      BDTD_REQUEST_DELAY: "1.50"
+      BDTD_MAX_PAGES_PER_QUERY: "50"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: python -m pip install --disable-pip-version-check requests beautifulsoup4 lxml
+      - name: Search BDTD
+        run: python projects/pfild-ppf-systematic-review/scripts/collect_bdtd_theses.py
+      - name: Verify governance
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("projects/pfild-ppf-systematic-review/artifacts/bdtd_theses/bdtd_summary.json")
+          d=json.loads(p.read_text(encoding="utf-8"))
+          assert d["human_eligibility_decisions_created"] == 0, d
+          assert d["prisma_decisions_created"] == 0, d
+          assert d["unique_records_parsed"] >= 0, d
+          print(json.dumps(d, ensure_ascii=False, indent=2))
+          PY
+      - name: Upload BDTD artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pfild-bdtd-theses
+          path: projects/pfild-ppf-systematic-review/artifacts/bdtd_theses/
+          if-no-files-found: error
+          retention-days: 90
